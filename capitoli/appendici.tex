@@ -1,0 +1,515 @@
+\newpage
+\chapter{Appendici}
+\section{Appendice A: 2-sfera}
+In questa sezione verranno applicati i vari concetti introdotti nella parte matematica, alla superficie sferica bidimensionale immersa nello spazio tridimensionale. Rappresenta un esempio semplice, ma istruttivo per vedere le quantità introdotte applicate e che qui sono radunate.
+\begin{equation*}
+    S^2 = \{ (x,y,z) \in \mathbb{R}^3 : x^2 + y^2 + z^2 = r^2\}
+\end{equation*}
+con $r$ raggio.
+
+\textbf{N.B.}: Le sezioni con l'asterisco sono da correggere, nel senso che vanno lette sostituendo $\theta\mapsto\phi$ e $\phi\mapsto\theta$.+
+\subsection{Proiezione stereoscopica}
+Possiamo ricoprire una 2-sfera tramite due carte ottenibili come proiezione stereografica a partire dai due poli $N$, $S$. Ad ogni punto della varietà, si associano le coordinate del piano che sono intersezione tra la retta passante tra uno dei due poli e il punto, con il piano stesso. In questo modo si ha la mappa tra la varietà e $\mathbb{R}^2$.
+
+Sia $N=(0,0,r)$ nelle coordinate dell'embedding e il punto generico descritto da $(x,y,z)$, mentre $(\xi^1,\xi^2)$ le coordinate sul piano. L'equazione della retta è:
+\begin{equation*}
+    \frac{\xi^1}{x} = \frac{\xi^2}{y} = \frac{\xi^3 - r}{z-r}
+\end{equation*}
+Imponendo $\xi^3 = 0$ (quindi il piano effettivamente) si ottengono:
+\begin{equation*}
+    \left\{\begin{array}{l}
+        \xi^1 = \frac{rx}{r-z} \\ \\
+        \xi^2 = \frac{ry}{r-z}
+    \end{array}\right.
+\end{equation*}
+Questa è la mappa $\phi_1$ definita su $U_1 = S^2\setminus\{N=(0,0,r)\}$. Il polo è mappato a infinito.
+
+Viceversa per il polo $S =(0,0,-r)$:
+\begin{equation*}
+    \frac{\chi^1}{x} = \frac{\chi^2}{y} = \frac{r}{z - r} \implies
+    \left\{\begin{array}{l}
+        \chi^1 = \frac{rx}{r+z} \\ \\
+        \chi^2 = \frac{ry}{r+z}
+    \end{array}\right.
+\end{equation*}
+Questa è la mappa $\phi_2$ definita su $U_2 = S^2 \setminus \{ S = (0,0,-r)\}$, che fallisce in tale polo.
+
+L'applicazione di transizione:
+\begin{align*}
+    \phi_2 \circ \phi_1^{-1} : \phi_1 (U_1 \cap U_2) &\rightarrow \phi_2 (U_1 \cap U_2) \\
+     (\xi^1, \xi^2) &\mapsto (\chi^1, \chi^2)
+\end{align*}
+Osservando che:
+\begin{equation*}
+    \frac{\xi^1}{\xi^2} = \frac{\chi^1}{\chi^2}
+\end{equation*}
+e 
+\begin{align*}
+    (\xi^1)^2 + (\xi^2)^2 = \frac{r^2}{(r-z)^2} \left[ x^2 + y^2\right] && 
+    (\chi^1)^2 + (\chi^2)^2 = \frac{r^2}{(r+z)^2} \left[ x^2 + y^2\right]
+\end{align*}
+Si ottiene, risolvendo:
+\begin{align*}
+    \chi^1 = \frac{r^2 \xi^1}{(\xi^1)^2 + (\xi^2)^2} &&
+    \chi^2 = \frac{r^2\xi^2}{(\xi^1)^2 + (\xi^2)^2}
+\end{align*}
+funzioni differenziabili di $\xi^1$, $\xi^2$. Osserviamo che il punto di non differenziabilità, $(0,0)$, non appartiene alla 2-sfera e quindi non causa problemi.
+\subsection{Metrica}
+La metrica della 2-sfera è indotta dalla metrica dello spazio euclideo (varietà riemanniana propria) nella quale è immersa: $ds^2=dx^2 + dy^2 + dz^2$. Adottando un sistema di coordinate sferiche per lo spazio $\mathbb{E}^3$:
+\begin{equation*}
+    \left\{\begin{array}{l}
+      x = r\sin\theta \cos\phi \\
+      y = r\sin\theta \sin \phi\\
+      z = r\cos\theta
+    \end{array}\right.
+\end{equation*}
+Si calcolano i differenziali per ottenere:
+\begin{equation*}
+    ds^2 = dr^2 + r^2d\theta^2 + r^2\sin^2\theta d\phi^2
+\end{equation*}
+La metrica indotta sulla 2-sfera, descritta quindi da coordinate polari, è pertanto:
+\begin{equation}
+    ds^2 =  r^2d\theta^2 + r^2\sin^2\theta d\phi^2
+    \label{eq.metrica2-sfera}
+\end{equation}
+dunque la matrice del tensore metrico:
+\begin{align*}
+   g_{ij}= \begin{pmatrix}
+     r^2 & 0 \\
+     0 & r^2\sin^2\theta
+    \end{pmatrix}
+    & &
+    g^{ij} = \begin{pmatrix}
+    \frac{1}{r^2} & 0 \\
+     0 & \frac{1}{r^2\sin^2\theta}
+    \end{pmatrix}
+\end{align*}
+Nel caso specifico $r=1$:
+\begin{equation*}
+        ds^2 =  d\theta^2 + \sin^2\theta d\phi^2
+\end{equation*}
+\begin{align*}
+    g_{ij}= \begin{pmatrix}
+     1 & 0 \\
+     0 & \sin^2\theta
+    \end{pmatrix}
+    & &
+    g^{ij} = \begin{pmatrix}
+    1 & 0 \\
+     0 & \frac{1}{\sin^2\theta}
+    \end{pmatrix}
+\end{align*}
+Concludiamo discutendo la normalità degli elementi di base $\partial_\phi, \partial_\theta$: da quanto appena ottenuto si ha $<\partial_\theta, \partial_\theta > = g_{\theta\theta} = r^2$ e $<\partial_\phi,\partial_\phi > = g_{\phi\phi} = r^2\sin^2\theta$. La base non è pertanto ortonormale.
+
+Consideriamo sempre sulla 2-sfera unitaria, le coordinate della proiezione stereoscopica ad esempio del polo $S$ (o polo $N$, purché si tenga fuori dalla regione considerata dove la carta fallisce):
+\begin{align*}
+    \chi^1 = \frac{x}{1+z} & &
+    \chi^2 = \frac{y}{1+z}
+\end{align*}
+Se esprimiamo in coordinate polari $x, y, z$ come visto sopra, si può riscrivere la metrica eq. \ref{eq.metrica2-sfera} come:
+\begin{equation}
+    ds^2 = \frac{4}{(1 + (\chi^1)^2 + (\chi^2)^2)^2}\left[(d\chi^1)^2 + (d\chi^2)^2\right]]
+    \label{eq.metrica_2sfera_conformpiatta}
+\end{equation}
+\subsection{Simboli di Christoffel**}
+La connessione è completamente determinata dalla richiesta che sia metrica e simmetrica (senza torsione). Si usa quindi la formula per la connessione di Levi-Civita, eq. \ref{eq.connlevicivita}, e la metrica prima determinata; per semplificare i calcoli si osserva che essa è diagonale, quindi solo gli elementi $g^{ii},g_{ii}\neq 0$, e che solo $g_{\phi\phi}$ è una funzione della variabile $\phi$, mentre $g_{\theta\theta}$ è costante.
+\begin{align*}
+    \tensor{\Gamma}{^\theta_{\theta\theta}} &= \frac{1}{2}g^{\theta k}(g_{\theta k , \theta} + g_{k \theta, \theta} - g_{\theta \theta , k} ) = \frac{1}{2}g^{\theta \theta}(g_{\theta \theta , \theta} + g_{\theta \theta, \theta} - g_{\theta \theta , \theta} ) = \dots = 0 \\
+    \tensor{\Gamma}{^\phi_{\theta\theta}} &= \dots = \frac{1}{2}g^{\phi\phi}( g_{\theta\phi , \theta} + g_{\phi\theta, \theta} - g_{\theta \theta , \phi} ) = \frac{1}{2} g^{\phi\phi}( - g_{\theta \theta , \phi} ) = - \frac{1}{2} g^{\phi\phi}\partial_\phi\sin^2\phi = -\sin\phi \cos \phi\\
+    \tensor{\Gamma}{^\phi_{\theta\phi}} &=  \tensor{\Gamma}{^\phi_{\phi\theta}} = \dots = \frac{1}{2}g^{\phi\phi}( g_{\phi\phi , \theta} + g_{\phi\theta, \phi} - g_{\theta \phi , \phi} ) = 0
+\end{align*}
+e così via. Otteniamo che i coefficienti della connessione ($r=1$) sono:
+\begin{equation*}
+\begin{array}{lll}
+    \tensor{\Gamma}{^\theta_{\theta\theta}} = 0 &\tensor{\Gamma}{^\theta_{\phi\phi}} = 0 &\tensor{\Gamma}{^\theta_{\theta\phi}} = \tensor{\Gamma}{^\theta_{\phi\theta}} =  \cot\phi
+    \\
+    \tensor{\Gamma}{^\phi_{\theta\theta}} = -\sin\phi\cos\phi
+    &\tensor{\Gamma}{^\phi_{\phi\phi}} = 0 &\tensor{\Gamma}{^\phi_{\theta\phi}} = \tensor{\Gamma}{^\phi_{\phi\theta}} =  0
+\end{array}
+\end{equation*}
+Riassumendo, gli unici coefficienti nonnulli sono:
+\begin{align*}
+\tensor{\Gamma}{^\phi_{\theta\theta}} =  -\frac{1}{2}g^{\phi\phi}\partial_\phi g_{\theta\theta} \\
+\tensor{\Gamma}{^\theta_{\theta\phi}} = \tensor{\Gamma}{^\theta_{\phi\theta}} =  \frac{1}{2}g^{\theta\theta}\partial_\phi g_{\theta\theta}
+\end{align*}
+
+Osserviamo che il risultato è lo stesso sia per $r=1$, sia $r\neq 1$, usando il corretto elemento di matrice.
+\subsection{Curvatura scalare}
+Facendo uso della metrica conformemente piatta, eq. \ref{eq.metrica_2sfera_conformpiatta}, si ottiene (semplificando la notazione con $\chi^1=x$, $\chi^2=y$):
+\begin{equation*}
+    \Omega = \frac{4}{(1 + x^2 + y^2)^2}
+\end{equation*}
+Dunque si usa eq. \ref{eq.curvatura_conforme} e si calcolano le due derivate seconde:
+\begin{align*}
+    \partial^2_x \log \Omega = \frac{4(x^2-y^2-1)}{(1+x^2+y^2)^2} & &
+    \partial^2_y \log \Omega = -\frac{4(1 + x^2 - y^2)}{(1+x^2+y^2)^2}
+\end{align*}
+In questo modo risulta semplice il calcolo dello scalare di curvatura per la 2-sfera unitaria:
+\begin{equation*}
+    R=2
+\end{equation*}
+che è costante in ogni punto. Lo scalare di curvatura gaussiana è quindi $k=1$.
+\subsection{Vettori di Killing**}
+Risolviamo l'equazione dei vettori di Killing, eq. \ref{eq.killing}, esplicitando la derivata covariante per un covettore:
+\begin{equation*}
+    \nabla_\mu \xi_\nu + \nabla_\nu \xi_\mu = 0 \implies \partial_\mu \xi_\nu - \tensor{\Gamma}{^\sigma_{\mu\nu}}\xi_\sigma + \partial_\nu \xi_\mu - \tensor{\Gamma}{^\sigma_{\nu\mu}} \xi_\sigma = 0
+\end{equation*}
+Sfruttando la simmetria della connessione otteniamo le equazioni da risolvere:
+\begin{equation*}
+    \partial_\mu \xi_\nu + \partial_\nu \xi_\mu - 2 \tensor{\Gamma}{^\sigma_{\mu\nu}}\xi_\sigma = 0
+\end{equation*}
+
+I coefficienti sono già stati calcolati e pertanto otteniamo le equazioni:
+\begin{equation*}
+   \left\{ \begin{array}{l}
+        \partial_\theta \xi_\theta + \partial_\theta \xi_\theta - 2 \tensor{\Gamma}{^\phi_{\theta\theta}}\xi_\phi = 0 \\
+        \partial_\theta \xi_\phi + \partial_\phi \xi_\theta - 2 \tensor{\Gamma}{^\theta_{\theta\phi}}\xi_\theta = 0 \\
+        \partial_\phi \xi_\phi + \partial_\phi \xi_\phi - \tensor{\Gamma}{^\sigma_{\phi\phi}}\xi_\sigma = 0
+    \end{array}\right.
+    \implies
+    \left\{ \begin{array}{l}
+        \partial_\theta \xi_\theta = - \sin\phi\cos\phi \xi_\phi \\
+        \partial_\theta \xi_\phi + \partial_\phi \xi_\theta = 2\cot \phi \xi_\theta \\
+        \partial_\phi \xi_\phi = 0
+    \end{array}\right.
+\end{equation*}
+La soluzione generale di questo sistema di equazioni differenziali è:
+\begin{equation*}
+    \xi = [ (A\sin\theta -B \cos\theta)\cot\phi + C]\partial_\theta + ( -A\cos \theta - B\sin\theta)\partial_\phi
+\end{equation*}
+
+Si osserva che la dimensione di tale spazio è 3, pari alla dimensione massima possibile; infatti la 2-sfera è a curvatura costante (si veda il lemma nel capitolo).
+
+Sostituendo i valori di $A, B, C$ si ottengono:
+\begin{itemize}
+    \item $A=B= 0$ e $C= 1$ \begin{equation*}
+        \xi^{(1)} = \partial_\theta
+    \end{equation*}
+    \item $A=1$ e $B=C=0$ \begin{equation*}
+        \xi^{(2)} = \sin\theta\cot\phi \partial_\theta - \cos\theta\partial_\phi
+    \end{equation*}
+    \item $A=C=0$ e $B=-1$ \begin{equation*}
+        \xi^{(3)} = \cos \theta\cot\phi \partial_\theta + \sin\theta \partial_\phi
+    \end{equation*}
+\end{itemize}
+
+Si può osservare che per questi vettori vale la regola di commutazione del gruppo delle rotazioni $SO(3)$:
+\begin{equation*}
+    \left[ \xi^{(i)} , \xi^{(j)} \right] = \epsilon^{ijk}\xi^{(k)}
+\end{equation*}
+che pertanto è il gruppo di simmetrie sulle 2-sfera, come ben intuibile.
+\subsection{Geodetiche}
+
+\section{Appendice B: Richiami di relatività ristretta}
+In questa discussione si utilizzerà il sistema gaussiano per la descrizione delle equazioni di Maxwell e delle costanti in esse.
+\subsection{Tensore di Faraday}
+Il tensore di Faraday viene introdotto nell'elettromagnetismo classico per poter descrivere i campi elettrici e magnetici in forma covariante, una forma più consona alla relatività ristretta che da esso origina (la teoria elettromagnetica contiene intrinsecamente la relatività, ma ci è voluto solo un po' per capirlo \dots), in particolare con esso si possono scrivere in forma compatta le trasformazioni tra sistemi di riferimento dei cambi $\bm{E}$, $\bm{B}$ e anche riscrivere le equazioni di Maxwell.
+
+Il tensore di Faraday è rappresentato dalla matrice\footnote{i vari segni meno che compaiono in questa e nelle prossime matrici dipendono fortemente dalla scelta del segno nella metrica, qui $(-,+,+,+)$} ($c=1$):
+\begin{equation*}
+    F_{\mu \nu}= \begin{pmatrix}
+    0 & -E^1 & -E^2 & -E^3 \\
+    E^1 & 0 & B^3& -B^2 \\
+    E^2 & -B^3 & 0 & B^1 \\
+    E^3 & B^2 & -B^1 & 0
+    \end{pmatrix}
+\end{equation*}
+\'{E} un tensore totalmente antisimmetrico, $F_{\mu\nu}= - F_{\nu\mu}$ ed è pertanto una 2-forma sullo spaziotempo della relatività ristretta.
+Tramite l'uso della metrica di Minkowski,
+\begin{equation}
+    \eta_{\mu\nu} = diag(-1,1,1,1)
+    \label{eq.metricaminko}
+\end{equation}
+si può eseguire l'alzamento degli indici:
+\begin{equation*}
+    F^{\mu\nu} = \eta^{\mu\rho}\eta^{\nu\sigma}F_{\rho\sigma} = 
+    \begin{pmatrix}
+    0 & E^1 & E^2 & E^3 \\
+    -E^1 & 0 & B^3& -B^2 \\
+    -E^2 & -B^3 & 0 & B^1 \\
+    -E^3 & B^2 & -B^1 & 0
+    \end{pmatrix}
+\end{equation*}
+
+Possiamo sfruttare l'antisimmetria e la somma saturata sugli indici (che ci permette di rinominarli) per scrivere in una base dello spazio di tensori:
+\begin{align*}
+    F &= F_{\mu\nu}\theta^\mu \otimes \theta^\nu = \frac{1}{2}F_{\mu\nu}\theta^\mu \otimes \theta^\nu + \frac{1}{2}F_{\mu\nu}\theta^\mu \otimes \theta^\nu \\
+    &= \frac{1}{2}F_{\mu\nu}\theta^\mu \otimes \theta^\nu + \frac{1}{2}F_{\nu\mu}\theta^\nu \otimes \theta^\mu
+    = \frac{1}{2}F_{\mu\nu}(\theta^\mu \otimes \theta^\nu - \theta^\nu \otimes \theta^\mu) \\
+    &= \frac{1}{2}F_{\mu\nu}(\theta^{\mu} \wedge \theta^{\nu} )
+\end{align*}
+($\theta^\mu$ e $\theta^\nu$ devono essere 1-forme).
+
+Il suo tensore duale, definito *$F^{\mu\nu} = \frac{1}{2}\epsilon^{\mu\nu\rho\sigma}F_{\rho\sigma}$, è rappresentato dalla matrice:
+\begin{equation*}
+^*F^{\mu\nu} =
+    \begin{pmatrix}
+    0 & B^1 & B^2 & B^3\\
+    -B^1 & 0 & - E^3 & E^2 \\
+    -B^2 & E^3 & 0 & -E^1 \\
+    -B^3 & -E^2 & E^1 & 0
+    \end{pmatrix}
+\end{equation*}
+che con gli indici abbassati diventa:
+\begin{equation*}
+    ^*F_{\mu\nu} =
+    \begin{pmatrix}
+    0 & -B^1 & -B^2 & -B^3 \\
+    B^1 & 0 & - E^3 & E^2 \\
+    B^2 & E^3 & 0 & -E^1 \\
+    B^3 & -E^2 & E^1 & 0
+    \end{pmatrix}
+\end{equation*}
+
+Si osserva che il tensore duale (chiamato anche \textbf{tensore di Maxwell} e da non confondere col \textit{tensore degli sforzi di Maxwell}) è ottenuto dal tensore di Faraday sostituitendo al campo $\bm{E}$, il campo $\bm{B}$; questa non è altro che la \textit{quasi}-simmetria dei campi elettrici e magnetici, che viene infranta dalla mancanza di sorgenti di campo magnetico, $\nabla \cdot \bm{B} = 0$.
+
+
+
+\subsubsection{Equazioni di Maxwell omogenee}
+Partiamo mostrando che le equazioni di Maxwell:
+\begin{align}
+    \nabla \cdot \bm{B} &=0 \label{eq.divB}\\
+    \nabla \times \bm{E} &= - \frac{\partial \bm{B}}{\partial t}\label{eq.rotE}
+\end{align}
+possono essere contratte nella forma
+\begin{equation}
+    \partial_\mu  \ ^*F^{\mu\nu} = 0 \label{eq.maxcovomog}
+\end{equation}
+usando il tensore duale.
+Sia $\nu = 0$
+\begin{equation*}
+    \partial_\mu \ ^*F^{\mu 0} = \partial_0 \ ^*F^{0 0} + \partial_i \ ^*F^{i0} = 0 - \partial_i B^i = - \nabla \cdot \bm{B} = 0
+\end{equation*}
+Sia $\nu = j = 1,2,3$
+\begin{align*}
+      \partial_\mu \ ^*F^{\mu j} &= \partial_0 \ ^*F^{0 j} + \partial_i \ ^*F^{ij} =  - \partial_o B^j +\partial_i (\epsilon^{ijs}E^s) = - \partial_t B^j + \epsilon^{ijs}\partial_i E^s \\
+      &= -\partial_t B^j + (\nabla \times \bm{E})^j = 0 \iff -\partial_t \bm{B} = \nabla \times \bm{E}
+\end{align*}
+In tal modo risulta verificato.
+
+Come conseguenza, sostituendo il duale:
+\begin{equation*}
+    \frac{1}{2}\partial_\mu(\epsilon^{\mu\nu\rho\sigma}F_{\rho\sigma}) = 0 \implies \epsilon^{\mu\nu\rho\sigma} \partial_\mu F_{\rho\sigma} = \epsilon^{\mu\nu\rho\sigma} \partial_{[\mu} F_{\rho\sigma]} = 0
+\end{equation*}
+in questo ultimo passaggio si è fatto uso dell'antisimmetrizzazione degli indici. Ciò è valido perché
+\begin{equation*}
+    \partial_{[\mu} F_{\rho\sigma]} = \frac{1}{3!}( \partial_\mu F_{\rho\sigma} + \partial_\sigma F_{\mu\rho} + \partial_\rho F_{\sigma\mu} - \partial_\mu F_{\sigma\rho} - \partial_\rho F_{\mu\sigma} - \partial_\sigma F_{\rho \mu})
+\end{equation*}
+prendendo gli ultimi 5 termini uno a uno, si possono scambiare per saturazione gli indici per tornare allo stesso ordine del primo termine, ad esempio
+\begin{equation*}
+    \epsilon^{\mu\nu\rho\sigma}(-\partial_\sigma F_{\rho \mu} ) = - \epsilon^{\sigma\nu\rho\mu}\partial_\mu F_{\rho \sigma} = + \epsilon^{\mu\nu\rho\sigma} \partial_\mu F_{\rho\sigma}
+\end{equation*}
+che sommato 6 volte cancella il fattore ad inizio parentesi e rende valido il passaggio.
+
+Pertanto un modo alternativo per scrivere le equazioni di Maxwell omogenee è:
+\begin{equation*}
+    \partial_{[\mu} F_{\rho\sigma]} = 0
+\end{equation*}
+Il differenziale del tensore di Faraday risulta, usando eq. \ref{eq.derivesterna}:
+\begin{equation*}
+    dF= d(\frac{1}{2}F_{\mu\nu}dx^\mu \wedge dx^\nu) =\frac{1}{2}F_{\mu\nu,\rho} dx^\rho \wedge dx^\mu \wedge dx^\nu = \frac{1}{2}F_{[\mu\nu,\rho]} dx^\rho \wedge dx^\mu \wedge dx^\nu  
+\end{equation*}
+dove nell'ultimo passaggio si è usata l'antisimmetrizzazione (la dimostrazione è la stessa di poco fa). Poichè $F_{[\mu\nu,\rho]} = \partial_{[\rho} F_{\mu\nu]} = 0$ per quanto appena dimostrato, segue che le equazioni omogenee possono essere scritte anche come
+\begin{equation}
+    dF = 0
+    \label{eq.idbianchi}
+\end{equation}
+chiamata \textit{identità di Bianchi}.
+
+\subsubsection{Equazioni di Maxwell non omogenee}
+Consideriamo le equazioni non omogenee di Maxwell:
+\begin{align}
+    \nabla \cdot \bm{E} &= 4\pi \rho \label{eq.divE} \\
+    \nabla \times \bm{B} &= 4\pi \bm{j} + \frac{\partial \bm{E}}{\partial t} \label{eq.rotB}
+\end{align}
+Mentre le equazioni omogenee erano riassunte nella chiusura della derivata esterna di $F$, da cui il nome, le equazioni non omogenee sono tali da non rendere nulla la derivata esterna del duale $^*F$.\footnote{Si può pensare ad una vaghissima analogia col rotore di $\bm{E}$ nullo in elettrostatica, mentre il rotore di $\bm{B}$ presenta la densità di corrente. In realtà non c'è nulla di matematico in ciò detto, ma solo per fissare un'idea simile.}
+
+Calcoliamo pertanto, sfruttando lo sviluppo nella base naturale del tensore:
+\begin{equation*}
+    d \ ^*F = d( \frac{1}{2} \ ^*F_{\mu\nu} dx^\mu \wedge dx^\nu)
+\end{equation*}
+Facciamo notare come sia $^*F$, sia il prodotto wedge sono antisimmetrici e pertanto i contributi per scambio di indice sono gli stessi, $^*F_{\mu\nu}dx^\mu \wedge dx^\nu = \ ^*F_{\nu\mu}dx^\nu \wedge dx^\mu$. Cancellando quindi il 2 e sostituendo i valori della matrice con indici bassi si ottiene:
+\begin{align*}
+    d \ ^*F &= d(-B^1 dt\wedge dx^1 - B^2 dt\wedge dx^3
+    2 - B^3 dt\wedge dx^3 -E^3 dx^1 \wedge dx^3 + E^2 dx^1 \wedge dx^3 - E^1 dx^2 \wedge dx^3) \\
+    &=  - \frac{\partial B^1}{\partial x^2} dx^2 \wedge dt \wedge dx^1
+        - \frac{\partial B^1}{\partial x^3} dx^3 \wedge dt \wedge dx^1
+        - \frac{\partial B^2}{\partial x^1} dx^1 \wedge dt \wedge dx^2 \\
+    &   - \frac{\partial B^2}{\partial x^3} dx^3 \wedge dt \wedge dx^2
+        - \frac{\partial B^3}{\partial x^1} dx^1 \wedge dt \wedge dx^3
+        - \frac{\partial B^3}{\partial x^2} dx^2 \wedge dt \wedge dx^3 \\
+    &   - \frac{\partial E^3}{\partial t} dt \wedge dx^1 \wedge dx^2
+        - \frac{\partial E^3}{\partial x^3} dx^3 \wedge dx^1 \wedge dx^2
+        + \frac{\partial E^2}{\partial t} dt \wedge dx^1 \wedge dx^3 \\
+    &   + \frac{\partial E^2}{\partial x^2} dx^3 \wedge dx^1 \wedge dx^3
+        - \frac{\partial E^1}{\partial t} dt \wedge dx^2 \wedge dx^3
+        - \frac{\partial E^1}{\partial x^1} dx^3 \wedge dx^2 \wedge dx^3 \\
+    &=  - \left(\frac{\partial B^1}{\partial x^2} - \frac{\partial B^2}{\partial x^1} -\frac{\partial E^3}{\partial t} \right)dt \wedge dx^1 \wedge dx^2
+        - \left(\frac{\partial B^1}{\partial x^3} - \frac{\partial B^3}{\partial x^1} -\frac{\partial E^2}{\partial t} \right)dt \wedge dx^1 \wedge dx^3 \\
+    &   - \left(\frac{\partial B^2}{\partial x^3} - \frac{\partial B^3}{\partial x^2} + \frac{\partial E^1}{\partial t} \right)dt \wedge dx^2 \wedge dx^3
+        - \left( \frac{\partial E^1}{\partial x^1}  + \frac{\partial E^2}{\partial x^2} + \frac{\partial E^3}{\partial x^3}\right)dx^1 \wedge dx^2 \wedge dx^3 \\
+\end{align*}
+Nelle quali possiamo riconoscere la divergenza di $\bm{E}$, le componenti del rotore di $\bm{B}$ e le derivate temporali che compaiono nell'equazione di Ampère.
+
+Definendo la 3-forma:
+\begin{equation*}
+    ^*j_{\mu\nu\rho} = \epsilon_{\mu\nu\rho\sigma}j^{\sigma}
+\end{equation*}
+dove $j^\sigma= (\rho,\bm{j}) $, otteniamo
+\begin{equation*}
+    d \ ^*F = 4\pi \ ^*j
+\end{equation*}
+
+Osserviamo infine che l'identità di Bianchi implica nell'elettromagnetismo covariante, la conservazione della carica:
+\begin{equation*}
+    \partial_\mu F^{\mu\nu} = 4 \pi j^\nu \implies \partial_\nu\partial_\mu F^{\mu\nu} = 0 = 4 \pi \partial_\nu j^\nu \implies \partial_\nu j^\nu = 0 
+\end{equation*}
+\subsubsection{Trasformazioni di gauge}
+Riprendendo l'identità di Bianchi, eq. \ref{eq.idbianchi}:
+\begin{equation}
+dF=0 \implies F = dA
+\end{equation}
+dove $A$ è una 1-forma. La validità di tale uguaglianza è solo locale in quanto $dF=0$ non è altro che la chiusura della 2-forma differenziale e la chiusura non implica l'esattezza.
+
+Possiamo esprimere questa 1-forma come
+\begin{equation*}
+    A = A_\mu dx^\mu
+\end{equation*}
+il quadripotenziale. Segue
+\begin{equation*}
+    F = dA = \partial_\mu A_\nu dx^\mu \wedge dx^\nu = \partial_{[\mu} A_{\nu]} dx^\mu \wedge dx^\nu \equiv \frac{1}{2}F_{\mu\nu} dx^\mu \wedge dx^\nu
+\end{equation*}
+dove si è usata l'antisimmetrizzazione per via del prodotto wedge antisimmetrico. Abbiamo dunque:
+\begin{equation}
+    F_{\mu\nu} = \partial_{\mu} A_\nu - \partial_\nu A_\mu
+\end{equation}
+
+La trasformazione di gauge sul quadripotenziale è:
+\begin{equation*}
+    A_\mu \mapsto A'_\mu = A_\mu+ \partial_\mu \chi \iff A' = A + d\chi
+\end{equation*}
+dove $\chi$ è la funzione che definisce il gauge. Infatti $F$ risulta invariante:
+\begin{equation*}
+    F = dA \mapsto d(A+d\chi) = dA + d^2\chi = F
+\end{equation*}
+per la proprietà della derivata esterna.
+
+\subsection{Tensore energia-impulso}
+Nello spaziotempo di Minkowski si definisce il \textbf{tensore energia-impulso del campo di Maxwell}:
+\begin{equation*}
+    T_{\mu\nu} =\frac{1}{4\pi} \left[ F_{\mu\rho}\tensor{F}{_\nu^\rho} - \frac{1}{4}\eta_{\mu\nu} F_{\rho\lambda}F^{\rho\lambda}\right]
+\end{equation*}
+
+Esso è tale da avere:
+\begin{itemize}
+    \item Traccia nulla
+    \item $T_{00}= \frac{1}{8\pi}(\Vec{E}^2 +\Vec{B}^2)$, ovvero esprime la densità di energia del campo elettromagnetico.
+    \item $T^{0i} = \frac{1}{4\pi}(\Vec{E}\times\Vec{B})^i$ cioè la componente $i$-esima del vettore di Poynting $\Vec{S}$.
+    \item $\partial_\mu T^{\mu\nu} = - F^{\nu\mu}j_{\mu}$, una relazione utile per mostrare i punti seguenti.
+    \item $\partial_\mu T^{\mu 0} = - F^{0\mu}j_{\mu} \implies \partial_t u + \nabla \cdot \Vec{S} = - \Vec{j}\cdot \Vec{E}$ ovvero il teorema di Poynting.
+    \item $\partial_\mu T^{\mu i} = - F^{i\mu}j_{\mu} \implies - \partial_t S_i + \partial_j T_{ij}^\textrm{em} = (\rho \Vec{E} + \Vec{j}\times \Vec{B})_i$ cioè la conservazione della quantità di moto. $T_{ij}^\textrm{em}$ è il tensore degli sforzi (o stress) di Maxwell.
+\end{itemize}
+
+\section{Appendice C: Spaziotempo di Rindler}
+Lo spaziotempo di Rindler è definito dalla metrica:
+\begin{equation}
+    ds^2 = -x^2dt^2 + dx^2
+    \label{eq.metrica_rindler}
+\end{equation}
+Poiché
+\begin{align*}
+    (t|t)= -x^2 && (x|x)=1
+\end{align*}
+Non è una metrica ortonormale.
+\subsection{Osservatore accelerato}
+Introduciamo le coordinate:
+\begin{align*}
+    T= x\sinh t &\qquad X= x\cosh t \\
+    dT = \sinh t dx + x\cosh t dt &\qquad dX= \cosh t dx + x\sinh t dt
+\end{align*}
+così si ottiene
+\begin{equation*}
+    ds^2 = -dT^2 +dX^2
+\end{equation*}
+che è sufficiente a mostrare che lo spaziotempo di Rindler è una parte di Minkowski. Ad esso corrisponde:
+\begin{equation*}
+    X^2 - T^2 = x^2 >0 \implies X^2 > T^2 \iff X > |T|
+\end{equation*}
+compresa tra le due bisettrici del primo e quarto quadrante. Viene chiamata \textbf{Rindler wedge}.
+Per $x= \textrm{cost.}$ corrispondono delle iperboli in tale regione e quest'ultimi sono chiamati \emph{osservatori di Rindler}. Calcoliamo la 4-velocità:
+\begin{equation*}
+    u = u^t\partial_t +u^x \partial_x = u^t \partial_t
+\end{equation*}
+poiché $x$ costante. Parametrizzando col tempo proprio e ricordando che $u_j u^j=-1$:
+\begin{equation*}
+    g_{tt}u^t u^t = -1 = -x^2(u^t)^2 \implies u^t = \pm \frac{1}{x}
+\end{equation*}
+Si può già osservare che per $x\rightarrow 0$, il termine tende a $\infty$; $x=0$ viene detto \textbf{orizzonte di accelerazione}. La 4-velocità è dunque:
+\begin{equation*}
+    u= \pm \frac{1}{x}\partial_t
+\end{equation*}
+
+Calcoliamo l'accelerazione. Per fare ciò determiniamo:
+\begin{align*}
+    \frac{\partial}{\partial t} &= \frac{\partial T}{\partial t}\frac{\partial}{\partial T} + \frac{\partial X}{\partial t}\frac{\partial}{\partial X}\\
+    &= x\cosh t \partial_T + x\sinh t \partial_X
+\end{align*}
+così:
+\begin{equation*}
+    u = \cosh t \partial_T + \sinh t \partial_X
+\end{equation*}
+Parametrizzando con il tempo proprio, $d\tau^2 = -ds^2 = -dX^2 +dT^2 = x^2dt^2-dx^2 = x^2dt^2$ ($x$ costante), possiamo calcolare l'accelerazione:
+\begin{equation*}
+    a^i = \frac{d u^i}{d\tau} = \frac{1}{x}\frac{du^i}{dt} = \frac{1}{x}\frac{d}{dt} \begin{pmatrix} \cosh t \\ \sinh t \end{pmatrix} = \frac{1}{x} \begin{pmatrix} \sinh t \\ \cosh t \end{pmatrix}
+\end{equation*}
+ovvero con componenti:
+\begin{align*}
+    a^T = \frac{1}{x}\sinh t && a^X= \frac{1}{x}\cosh t
+\end{align*}
+La norma di questa accelerazione risulta:
+\begin{equation*}
+    \eta_{ij}a^i a^j = -(a^T)^2 + (a^x)^2 = \frac{1}{x^2} = \textrm{cost.}
+\end{equation*}
+L'osservatore di Rindler è uniformemente accelerato.
+\subsection{Estensione allo spaziotempo di Minkowski}
+Apparentemente la metrica eq. \ref{eq.metrica_rindler} risulta singolare in $x=0$ in quanto il determinante di $g_{\mu\nu}$ si annulla causando la non finitezza dell'inversa $g^{\mu\nu}$. Tuttavia le geodetiche sono finite nell'approcciarsi a $x=0$ e gli scalari di curvatura non hanno un comportamento singolare, anzi la curvatura si annulla in quanto lo spaziotempo di Rindler è una regione di Minkowski. Perciò questi elementi ci suggeriscono che tale singolarità lo sia per le coordinate.
+
+Si procederà come in \S\ref{para.kruskal}, considerando la famiglia di geodetiche che si avvicinano alla singolarità con parametro affine finito e si utilizzerà tale parametro per stabilire nuove coordinate così da eliminare tale singolarità. Maggiori dettagli si ricerchino nel detto paragrafo.
+
+Imponendo $ds^2=0$ in eq. \ref{eq.metrica_rindler}:
+\begin{equation*}
+    dt = \pm\frac{1}{x}dx \implies t= \pm \log x + \textrm{cost.}
+\end{equation*}
+Le coordinate di segno $+$ sono le outgoing, mentre le altre ingoing. Si definiscono quindi:
+\begin{align*}
+    u= t - \log x && v= t+ \log x
+\end{align*}
+che assumono valori in $\mathbb{R}$ e corrispondono ai valori $x>0$.La singolarità $x=0$ è ancora presente nelle coordinate e la metrica diventa:
+\begin{equation*}
+    ds^2 = - e^{v-u}dvdu
+\end{equation*}
+Se introduciamo le coordinate:
+\begin{align*}
+    U = -e^{-u} && V = e^{v}
+\end{align*}
+la metrica diventa:
+\begin{equation*}
+    ds^2 = -dUdV
+\end{equation*}
+Tali coordinate sono migliori in quanto siamo riusciti ad estendere lo spaziotempo di Rindler oltre la singolarità $x=0$. Infatti $U, V$ assumono valori in $\mathbb{R}$ e per $U<0$, $V>0$ si ha nuovamente lo spaziotempo iniziale di $x>0$. Infine:
+\begin{align*}
+    T= \frac{U+V}{2} && X= \frac{V-U}{2}
+\end{align*}
+riporta alla metrica:
+\begin{equation*}
+    ds^2 = -dT^2 + dX^2
+\end{equation*}
+In questo modo si è mostrato che lo spaziotempo di Rindler esteso oltre la singolarità delle coordinate $x=0$ è lo spaziotempo di Minkowski.
+
+Il legame con le coordinate iniziali si ha con:
+\begin{equation*}
+    \left\{\begin{array}{l}
+        x = \sqrt{X^2 - T^2} \\
+        t = \arctanh(\frac{T}{X})
+    \end{array}\right.
+\end{equation*}

@@ -1,0 +1,111 @@
+\chapter{Meccanica dei continui: fluido perfetto relativistico}\label{para.fluido}
+\begin{definizione}
+Siano $d\bm{F}$ e $d\bm{A}$ i vettori infinitesimi forza e area. Il \textbf{tensore degli sforzi} $S$ è definito:
+\begin{equation*}
+\begin{array}{ccc}
+     d\bm{F} = S d\bm{A} & \iff & dF_i = S_{ij}dA_j
+\end{array}
+\end{equation*}
+\end{definizione}
+Esso mette in relazione la forza applicata ad una superficie, nel caso più generale dove non necessariamente il materiale è isotropo e quindi non necessariamente $d\bm{F}$ è parallelo a $d\bm{A}$.
+
+\begin{definizione}
+Definiamo un \textbf{fluido perfetto} una distribuzione continua di materia con tensore energia-momento nella forma:
+\begin{equation}
+    T_{\mu\nu} = \rho u_\mu u_\nu + P(\eta_{\mu\nu} + u_\mu u_\nu)
+    \label{eq.fluidoperfetto}
+\end{equation}
+dove $\rho$ è la densità di energia, $P$ è la pressione, $\eta$ la metrica di Minkowski e $u^\mu$ è un vettore di tipo tempo tale che $\eta_{\mu\nu}u^\mu u^\nu = -1$ cioè la 4-velocità del fluido.
+\end{definizione}
+
+Tale fluido è detto \textit{perfetto} poiché non presenta termini riconducibili alla conducibilità termica o sforzi dovuti a viscosità. 
+In altri termini un osservatore comovente al fluido vedrà lo stesso come isotropo, in ogni punto dello stesso.
+Sarà di particolare uso in relatività generale per descrivere le galassie e la radiazione in ambito cosmologico, pertanto ora determineremo alcune sue proprietà o equazioni fondamentali.
+
+Nel sistema di riferimento in quiete, dove $u^\mu = (1,0,0,0)$ si ha:
+\begin{equation*}
+    T_{\mu\nu} = diag(\rho, P,P,P)
+\end{equation*}
+con le due quantità misurate nello stesso sistema di riferimento.
+
+In assenza di forze esterne, le equazioni di moto sono date da $\partial_\mu T^{\mu\nu}=0$ che calcolate esplicitamente:
+\begin{align*}
+    0 = \partial_\mu( \rho u^\mu u^\nu + P(\eta^{\mu\nu} + u^\mu u^\nu) ) &= (\partial_\mu \rho)u^\mu u^\nu + \rho( \partial_\mu u^\mu) u^\nu + \rho u^\mu \partial_\mu u^\nu + \\ &+ (\partial_\mu P)(\eta^{\mu\nu} + u^\mu u^\nu ) +P( (\partial_\mu u^\mu) u^\nu + u^\mu \partial_\mu u^\nu )
+\end{align*}
+Sfruttando:
+\begin{equation*}
+    u_\nu u^\nu = -1 \implies 0 = \partial_\mu(u_\nu u^\nu) = (\partial_\mu u_\nu)u^\nu + u_\nu \partial_\mu u^\nu \implies (\partial_\mu u^\nu) u_\nu = 0
+\end{equation*}
+e osservando:
+\begin{equation*}
+    u_\nu( \eta^{\mu\nu} + u^\mu u^\nu) = u^\mu - u^\mu = 0
+\end{equation*}
+Pertanto moltiplichiamo per $u_\nu$ l'equazione per ottenere:
+\begin{equation}
+    u^\mu \partial_\mu \rho + \rho \partial_\mu u^\mu + P\partial_\mu u^\mu = 0
+    \label{eq.continuitàrelativistica}
+\end{equation}
+Tale equazione, ottenuta a partire dalla conservatività del tensore energia-momento del fluido perfetto, non è altro che \textbf{l'equazione di continuità relativistica} per il fluido relativistico.
+
+Abbiamo visto poco sopra che la quantità $\eta^{\mu\nu} + u^\mu u^\nu$ si comporta come un proiettore sul sottospazio perpendicolare a $u$; similmente avviene per la quantità $\tensor{\delta}{^\beta_\nu} + u^\beta u_\nu$. Deriviamo eq. \ref{eq.fluidoperfetto} con $\partial_\mu$ e moltiplichiamo per quest'ultima quantità:
+\begin{equation*}
+    \rho u^\mu (\tensor{\delta}{^\beta_\nu} + u^\beta u_\nu) \partial_\mu u^\nu +(\partial_\mu P)(\tensor{\delta}{^\beta_\nu} + u^\beta u_\nu)(\eta^{\mu\nu} + u^\mu u^\nu) + P u^\mu (\tensor{\delta}{^\beta_\nu} + u^\beta u_\nu) \partial_\mu u^\nu = 0
+\end{equation*}
+Sfruttando nuovamente quanto ottenuto sopra, $(\partial_\mu u^\nu) u_\nu = 0$, si semplifica:
+\begin{equation*}
+    \rho u^\mu (\tensor{\delta}{^\beta_\nu}) \partial_\mu u^\nu +(\partial_\mu P)(\tensor{\delta}{^\beta_\nu} + u^\beta u_\nu)(\eta^{\mu\nu} + u^\mu u^\nu) + P u^\mu (\tensor{\delta}{^\beta_\nu}) \partial_\mu u^\nu = 0
+\end{equation*}
+
+Si calcola quindi il proiettore:
+\begin{align*}
+   \pi^{\mu\beta} :&= (\tensor{\delta}{^\beta_\nu} +u^\beta u_\nu)(\eta^{\mu\nu}+u^\mu u^\nu)\\
+   &=\eta^{\mu\beta} + u^\mu u^\beta + u^\beta u^\mu -u^\mu u^\beta
+\end{align*}
+così sostituendo:
+\begin{equation}
+    (P+\rho)u^\mu \partial_\mu u^\beta + (\eta^{\beta\mu} +u^\beta u^\mu) \partial_\mu P = 0
+    \label{eq.navierstokes}
+\end{equation}
+Le equazioni \ref{eq.navierstokes} sono dette \textbf{equazioni di Navier-Stokes per il fluido relativistico}. 
+
+Nel limite non relativistico ($c\rightarrow\infty)$, si hanno le approssimazioni:
+\begin{align*}
+    u^\mu = (1, \bm{v}) && P \ll \rho && |\bm{v}|\frac{\partial P}{\partial t} \ll |\nabla P|
+\end{align*}
+tramite le quali si ha, prendendo eq. \ref{eq.continuitàrelativistica}:
+\begin{equation*}
+    \partial_t \rho + v^i\partial_i \rho +\rho\partial_i v^i +P\partial_i v^i = 0
+\end{equation*}
+Trascurando l'ultimo termine poiché $P\ll \rho$, si ottiene la nota equazione di continuità (che esprime la conservazione dell'energia in quanto $\rho$ è densità di energia):
+\begin{equation*}
+    \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho\bm{v}) = 0
+\end{equation*}
+Mentre portando al limite non relativistico eq.d \ref{eq.navierstokes} si ottiene:
+\begin{equation*}
+    (P+\rho)(\partial_t v^i + v^j\partial_j v^i) + \partial_t P + v^i(\partial_t P + v^j \partial_j P )=0
+\end{equation*}
+Trascurando $P$ rispetto $\rho$, $\partial_t P \ll \partial_i P$, $v^iv^j\partial_j P \ll \partial_i P$ ed essendo $|\bm{v}| \ll 1$ si ottiene:
+\begin{equation*}
+    \rho\left[ \frac{\partial \bm{v}}{\partial t} + (\bm{v} \cdot\nabla)\bm{v} \right] = - \nabla P
+\end{equation*}
+che è l'equazione di Eulero. Questa può essere ricavata alternativamente sfruttando il teorema di Gauss e il secondo principio di Newton; considerando un volume $V$ sul quale agisce la forza totale, si ha:
+\begin{equation*}
+    \oint_{\partial V} \rho d^2f = -\int_{V} \nabla P dV
+\end{equation*}
+Essendo $\nabla P$ una densità di forza, si applica il principio di Newton:
+\begin{equation*}
+    - \nabla P = \rho \frac{d \bm{v}}{dt} = \rho \left[\frac{\partial \bm{v}}{\partial t} + \frac{\partial \bm{v}}{\partial x^i} \frac{\partial x^i}{\partial t}  \right] =  \rho\left[ \frac{\partial \bm{v}}{\partial t} + (\bm{v} \cdot\nabla)\bm{v} \right]
+\end{equation*}
+
+A scopo informativo, si riporta il tensore per un fluido caratterizzato da viscosità e conducibilità termica:
+\begin{equation*}
+    T_{\mu\nu} = (\rho + P -\xi \Theta)u_\mu u_\nu + (P -\xi\Theta)\eta_{\mu\nu} -2\eta G_{\mu\nu} +q_\mu u_\nu + q_\nu u_\mu
+\end{equation*}
+dove
+\begin{itemize}
+    \item $\xi$ è il coefficiente di viscosità di \emph{bulk}.
+    \item $\eta$ è il coefficiente di viscosità di \emph{shear}.
+    \item $G_{\mu\nu}$ è il tensore di taglio (\emph{shear}).
+    \item $\Theta$ è il coefficiente di espansione.
+    \item $q_\mu$ è il vettore di flusso del calore.
+\end{itemize}

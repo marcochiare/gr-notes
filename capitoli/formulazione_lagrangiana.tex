@@ -1,0 +1,204 @@
+\chapter{Formulazione lagrangiana della relatività generale}In questa sezione approfondiamo la formulazione della relatività generale a partire dalla teoria lagrangiana e dai principi variazionali. Un accenno è già stato fatto in \S\ref{para.geodetiche} dove si è calcolata l'equazione delle geodetiche come equazione del moto relativa alla lagrangiana $\mathcal{L} = \sqrt{-g}\dot{x}\dot{x}$.
+
+\section{Azione di Einstein-Hilbert}
+Lo spaziotempo è una varietà differenziale 4-dimensionale dotata di metrica $g_{\mu\nu}$. Come visto in \S\ref{para.volume}, la metrica ci permette di definire un elemento di volume naturale con il quale calcolare l'azione come integrale sulla varietà.
+In generale le equazioni di campo possono essere ricavate in uno spazio a dimensione $n$ generico.
+
+\begin{definizione}
+L'\textbf{azione di Einstein-Hilbert} è l'integrale sulla varietà che ha come funzione lo scalare di Ricci $R$:
+\begin{equation}
+    S_H = \frac{1}{16\pi G} \int d^nx \sqrt{-g} R
+    \label{eq.azione_einstein_hilbert}
+\end{equation}
+\end{definizione}
+Lo scalare di Ricci $R$ è l'unico scalare di curvatura costruito dal tensore di Riemann che permette di ottenere equazioni del moto del secondo ordine; esistono teorie dipendenti da, ad esempio, $R_{\mu\nu}R^{\mu\nu}$ o $R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}$ nei quali compaiono derivate seconde e quindi determinano equazioni del moto al quarto ordine. In questa definizione, inoltre, il prefattore (nel quale è esplicitata la costante gravitazionale) è totalmente facoltativo, ma diventerà necessario per la determinazione successiva delle equazioni del moto in presenza di materia.
+
+Come noto da principio variazionale, le equazioni del moto sono ottenute variando l'azione e minimizzandola i.e. $\delta S = 0$. Riscrivendo $R = g^{\mu\nu}R_{\mu\nu}$ e variando rispetto la metrica:
+\begin{equation*}
+    \delta S_H = \frac{1}{16\pi G} \int d^n x \left[ \sqrt{-g}g^{\mu\nu} \delta R_{\mu\nu} + \sqrt{-g}R_{\mu\nu}\delta g^{\mu\nu} + R \delta(\sqrt{-g})\right]
+\end{equation*}
+Come fatto solitamente per un principio variazionale, riscriviamo il primo e terzo termine in modo tale da ottenere e poi raccogliere $\delta g^{\mu\nu}$.
+
+Scriviamo la variazione del tensore di Ricci. Partiamo dal tensore di Riemann, esplicitando i simboli di Christoffel da cui dipende:
+\begin{equation*}
+    \tensor{R}{^\rho_{\mu\lambda\nu}} = \partial_\lambda \tensor{\Gamma}{^\rho_{\nu\mu}} - \partial_\nu \tensor{\Gamma}{^\rho_{\lambda\mu}} +\tensor{\Gamma}{^\rho _{\lambda\sigma}}\tensor{\Gamma}{^\sigma_{\nu\mu}} - \tensor{\Gamma}{^\rho _{\nu\sigma}}\tensor{\Gamma}{^\sigma_{\lambda\mu}}
+\end{equation*}
+ed eseguiamo la variazione della metrica:
+\begin{equation*}
+    \delta\tensor{R}{^\rho_{\mu\lambda\nu}} = \partial_\lambda \delta\tensor{\Gamma}{^\rho_{\nu\mu}} - \partial_\nu \delta\tensor{\Gamma}{^\rho_{\lambda\mu}} +\tensor{\Gamma}{^\rho _{\lambda\sigma}}\delta\tensor{\Gamma}{^\sigma_{\nu\mu}} +\tensor{\Gamma}{^\sigma_{\nu\mu}}\delta\tensor{\Gamma}{^\rho _{\lambda\sigma}}- \tensor{\Gamma}{^\rho _{\nu\sigma}}\delta\tensor{\Gamma}{^\sigma_{\lambda\mu}} - \tensor{\Gamma}{^\sigma_{\lambda\mu}}\delta\tensor{\Gamma}{^\rho _{\nu\sigma}}
+\end{equation*}
+I simboli di Christoffel $\Gamma$ non sono tensori, tuttavia, come mostrato in \S\ref{para.variaz_connessione}, la loro variazione $\delta \Gamma$ corrispondente alla differenza di connessioni calcolate in $g_{\mu\nu}$ e $g_{\mu\nu} + \delta g_{\mu\nu}$, trasforma invece come un tensore e pertanto si possono calcolare le derivate covarianti secondo definizione:
+\begin{equation*}
+    \nabla_\lambda(\delta\tensor{\Gamma}{^\rho_{\nu\mu}}) = \partial_\lambda \delta\tensor{\Gamma}{^\rho_{\nu\mu}} + \tensor{\Gamma}{^\rho_{\lambda\sigma}}\delta\tensor{\Gamma}{^\sigma_{\nu\mu}} - \tensor{\Gamma}{^\sigma_{\lambda\nu}}\delta\tensor{\Gamma}{^\rho_{\sigma\mu}} - \tensor{\Gamma}{^\sigma_{\lambda\mu}}\delta\tensor{\Gamma}{^\rho_{\nu\sigma}}
+\end{equation*}
+Confrontando e sostituendo si ricava la variazione del tensore di Riemann:
+\begin{equation}
+    \delta \tensor{R}{^\rho_{\mu\lambda\nu}} = \nabla_\lambda(\delta\tensor{\Gamma}{^\rho_{\nu\mu}}) - \nabla_\nu(\delta\tensor{\Gamma}{^\rho_{\lambda\mu}}) + 2 \tensor{\Gamma}{^\sigma_{[\lambda\nu]}}\tensor{\Gamma}{^\rho_{\sigma\mu}} 
+\end{equation}
+e poiché siamo in una connessione simmetrica, l'ultimo termine è nullo. Perciò, facendone la traccia:
+\begin{align*}
+    \delta S &= \frac{1}{16\pi G} \int d^n x \sqrt{-g}g^{\mu\nu}\left[\nabla_\lambda(\delta\tensor{\Gamma}{^\lambda_{\nu\mu}}) - \nabla_\nu(\delta\tensor{\Gamma}{^\lambda_{\lambda\mu}}) \right] \\
+    &= \frac{1}{16\pi G} \int d^n x\sqrt{-g}\left[ \nabla_\lambda(g^{\mu\nu}\delta\tensor{\Gamma}{^\lambda_{\nu\mu}}) - \nabla_\nu(g^{\mu\nu}\delta\tensor{\Gamma}{^\lambda_{\lambda\mu}}) \right]
+\end{align*}
+rinominando gli indici saturati nel secondo termine, $\nu \rightarrow \lambda$, $\lambda \rightarrow \sigma$, si definisce il vettore:
+\begin{equation*}
+    v^\lambda = g^{\mu\nu} \delta \tensor{\Gamma}{^\lambda_{\nu\mu}} - g^{\mu\lambda}\delta\tensor{\Gamma}{^\sigma_{\sigma\mu}}
+\end{equation*}
+di fatto questo termine dell'integrale diventa una quadridivergenza:
+\begin{equation*}
+    \delta S = \frac{1}{16\pi G} \int d^n x \sqrt{-g}\nabla_\lambda v^\lambda
+\end{equation*}
+e dunque fornisce un contributo di bordo nullo per il teorema di Gauss.
+
+Calcoliamo la variazione di $\sqrt{-g}$. In generale per ogni matrice $M$ vale\footnote{Questo può essere mostrato considerando che ogni matrice $M$ che abbia tutti gli autovalori appartenenti al campo su cui è definita, può essere scritta in forma triangolare superiore (o inferiore) tramite un'opportuna matrice $S$ con $S M S^{-1}$.}:
+\begin{equation*}
+    \Tr(\log M) = \log( \det M)
+\end{equation*}
+Variandolo:
+\begin{equation*}
+    \Tr(M^{-1}\delta M) = \frac{1}{\det M}\delta(\delta M)
+\end{equation*}
+e applicandolo alla metrica si ottiene:
+\begin{equation*}
+    g^{\mu\nu} \delta g_{\mu\nu} = g^{-1} \delta g
+\end{equation*}
+così la variazione della metrica risulta:
+\begin{equation*}
+    \delta(\sqrt{-g}) = \frac{1}{2}\frac{1}{\sqrt{-g}}\delta(-g) = \frac{1}{2\sqrt{-g}}(-g) g^{\mu\nu} \delta(g_{\mu\nu})
+\end{equation*}
+Ovvero, usando\footnote{Calcola $g^{\mu\nu}\delta g_{\mu\nu} = g^{\mu\nu} \delta(g_{\alpha\mu}g_{\beta\nu}g^{\alpha\beta})$ per verificarla.} $g^{\mu\nu}\delta g_{\mu\nu} = - g_{\mu\nu}\delta g^{\mu\nu}$:
+\begin{equation}
+    \delta(\sqrt{-g}) = - \frac{\sqrt{-g}}{2}g_{\mu\nu} \delta g^{\mu\nu} 
+    \label{eq.variazione_determinante_metrica}
+\end{equation}
+
+Si ottiene infine la variazione dell'azione:
+\begin{equation*}
+    \delta S_H = \frac{1}{16\pi G} \int d^n x\sqrt{-g}\left[ R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu}\right]\delta g^{\mu\nu}
+\end{equation*}
+Richiedendo che sia nulla per ogni variazione della metrica, si ottengono le equazioni di campo di Einstein nel vuoto:
+\begin{equation*}
+    G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = 0
+\end{equation*}
+Osserviamo che se contraiamo $G_{\mu\nu} g^{\mu\nu} = R -2 R = 0 \implies R = 0$ allora le equazioni nel vuoto corrispondono a chiedere che la metrica sia tale da avere il tensore di Ricci nullo $R_{\mu\nu}  = 0$. 
+
+\section{Azione con costante cosmologica}
+L'azione di Einstein-Hilbert è la più semplice azione che permette di ottenere equazioni per il campo gravitazionale di interesse fisico. Possiamo tuttavia aggiungere un termine di volume moltiplicato da una costante per ottenere un'azione di particolare interesse:
+\begin{equation}
+    S = \frac{1}{16\pi G} \int d^n x \sqrt{-g}(R- 2\Lambda)
+    \label{eq.azione_einhilb_cosmologica}
+\end{equation}
+Il prefattore, come preannunciato, permette di ottenere il corretto accoppiamento del campo con la materia; non modifica le equazioni di moto nella sua variazione.
+
+Tale azione comporta le equazioni del moto:
+\begin{equation*}
+  G_{\mu\nu} =  R_{\mu\nu} - \frac{1}{2}g_{\mu\nu} R  = - \Lambda g_{\mu\nu}
+\end{equation*}
+Contraendo sempre con $g^{\mu\nu}$ si ottiene $R = 4\Lambda$ che similmente a quanto visto nel caso precedente comporta $R_{\mu\nu} = \Lambda g_{\mu\nu}$.
+Queste sono le equazioni del moto nel vuoto nel caso sia considerata la costante cosmologica $\Lambda \neq 0$.
+
+\section{Equazioni di Einstein con la materia}
+Consideriamo in aggiunta all'azione di eq. \ref{eq.azione_einhilb_cosmologica}, un'azione $S_M$ dovuta ai campi di materia:
+\begin{equation*}
+    S = \frac{1}{16\pi G} \int d^nx \sqrt{-g}(R- 2\Lambda) + S_M
+\end{equation*}
+Definiamo nella variazione del termine $S_M$, il tensore energia-momento:
+\begin{equation}
+    T_{\mu\nu} = - \frac{2}{\sqrt{-g}}\frac{\delta S_M}{\delta g^{\mu\nu}}
+    \label{eq.tensore_campi}
+\end{equation}
+Osserviamo che questa definizione generale, a differenza di eq. \ref{eq.tensore_enimpulso_teocampi}, è necessariamente simmetrica poiché lo è il tensore metrico. Lo stesso non si può dire per la definizione dalla teoria dei campi; un esempio è il tensore energia-impulso elettrodinamico che ottenuto dalle simmetrie del campo $A^\mu$ è antisimmetrico. Simmetrizzato diventa quello ottenuto da eq. \ref{eq.tensore_campi}.
+
+Così la variazione dell'azione risulta:
+\begin{align*}
+    \delta S &= \frac{1}{16\pi G} \int d^nx \sqrt{-g}(G_{\mu\nu}+ \Lambda g_{\mu\nu})\delta g^{\mu\nu} - \frac{1}{2}\int d^n x\sqrt{-g}T_{\mu\nu} \delta g^{\mu\nu} \\
+    &= \frac{1}{16\pi G} \int d^nx \sqrt{-g}(G_{\mu\nu}+ \Lambda g_{\mu\nu} - 8\pi G T_{\mu\nu} )\delta g^{\mu\nu}
+\end{align*}
+da cui si ottengono le corrette equazioni del moto in presenza di materia:
+\begin{equation*}
+    G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G T_{\mu\nu}
+\end{equation*}
+
+Eventualmente si può includere il termine cosmologico in un tensore energia-impulso definito:
+\begin{equation}
+    T_{\mu\nu} = - \frac{\Lambda}{8\pi G}g_{\mu\nu}
+    \label{eq.tensore_enimpulso_cosmologica}
+\end{equation}
+così che le equazioni di Einstein si riducano semplicemente a $G_{\mu\nu} = 8\pi GT_{\mu\nu}$ (ovviamente ricordando che qui $\Lambda \neq 0$).
+
+
+\section{Campi scalari in spaziotempo curvo}
+Consideriamo un campo scalare $\phi(x)$. In uno spaziotempo piatto la sua azione prende la forma:
+\begin{equation*}
+    S = \int d^4x \mathcal{L}(\phi, \partial \phi) = \int d^4x \left( -\frac{1}{2}\eta^{\mu\nu} \partial_\mu \phi \partial_\nu \phi - V(\phi) \right)
+\end{equation*}
+Questo tipo di lagrangiana mantiene la forma tipica $\mathcal{L} = T - V$, con il segno meno iniziale dovuto alla presenza della segnatura con termine zero negativo.
+Promuovendo a spaziotempo curvo in dimensione $n$:
+\begin{equation*}
+    S = \int d^n x \sqrt{- g}\left( - \frac{1}{2}g^{\mu\nu} \nabla_\mu \phi \nabla_\nu \phi - V(\phi) \right)
+\end{equation*}
+Il termine $V(\phi)$ è quello che andrà a descrivere il campo inflatore.
+Le derivate parziali sono state promosse a covarianti, tuttavia, essendo il campo scalare (e gli scalari sono già covarianti), vale $\nabla_\mu \phi = \partial_\mu \phi$.
+Variando rispetto la metrica, si determina il tensore energia-impulso, mentre variando rispetto $\phi$, le equazioni del moto. Determiniamo il tensore energia-impulso:
+\begin{equation*}
+    \delta S = \int d^n x \left[ \delta(\sqrt{-g})\mathcal{L} - \frac{1}{2}\sqrt{-g}\delta g^{\mu\nu} \nabla_\mu\phi\nabla_\nu\phi \right] \\
+\end{equation*}
+Richiamando eq. \ref{eq.variazione_determinante_metrica}:
+\begin{equation*}
+    \delta S = \frac{1}{2}\int d^n x \sqrt{-g} \left[ - g_{\mu\nu}\mathcal{L} - \nabla_\mu\phi \nabla_\nu\phi \right]\delta g^{\mu\nu}
+\end{equation*}
+Si ottiene, confrontando con eq. \ref{eq.tensore_campi}, il tensore energia-impulso per il campo scalare:
+\begin{equation*}
+    T_{\mu\nu} = \nabla_\mu\phi \nabla_\nu\phi - \frac{1}{2}g_{\mu\nu}\nabla_\alpha \phi \nabla^\alpha\phi - g_{\mu\nu}V(\phi)
+\end{equation*}
+Da questo si può calcolare, ad esempio, che la densità di energia per tale campo è:
+\begin{equation*}
+    T_{00} = \frac{1}{2}\dot{\phi}^2 + \frac{1}{2}(\nabla\phi)^2 + V(\phi)
+\end{equation*}
+
+Un'azione ancora più generale può essere:
+\begin{equation*}
+    S = \int d^n x \sqrt{-g}\left( - \frac{1}{2}g^{\mu\nu} \nabla_\mu \phi \nabla_\nu \phi - V(\phi) - \frac{1}{2}\xi R\phi^2\right)
+\end{equation*}
+infatti nel caso $g_{\mu\nu} = \eta_{\mu\nu}$ si ha $R= 0 $ e torna l'azione nello spaziotempo piatto inizialmente mostrata.
+Facciamo variare l'azione per ottenere le equazioni del moto per $\phi$:
+\begin{align*}
+    \delta S &=  \int d^n x \sqrt{-g} \left( - g^{\mu\nu} \nabla_\mu \delta\phi \nabla_\nu \phi - \frac{\partial V}{\partial \phi }\delta \phi - \xi R\phi\delta\phi\right) \\
+    &= \int d^n x \left[ \sqrt{-g} \left( g^{\mu\nu} \nabla_\mu\nabla_\nu \phi - \frac{\partial V}{\partial \phi} - \xi R\phi\right)\delta\phi - \nabla_\mu(\delta \nabla^\mu \phi)  \right] 
+\end{align*}
+dove si è fatto uso nella seconda riga di $\nabla_\mu g_{\rho\sigma} = 0$ nell'integrazione per parti. L'ultimo termine è di contorno e può essere ignorato con l'uso del teorema della divergenza.
+
+Otteniamo le equazioni del moto per il campo scalare nello spaziotempo curvo:
+\begin{equation*}
+    g^{\mu\nu} \nabla_\mu \nabla_\nu \phi - \frac{\partial V}{\partial \phi } - \xi R\phi = 0
+\end{equation*}
+
+\section{Azione di Einstein-Maxwell}
+La seguente azione permette di calcolare le equazioni del moto che descrivono uno spaziotempo in presenza di un campo elettromagnetico:
+\begin{equation}
+S =  \frac{1}{16\pi G}\int d^4 x \sqrt{-g}\left[ R - \frac{1}{4}F_{\mu\nu}F^{\mu\nu}\right]
+ \label{eq.azione_einstein_maxwell}
+\end{equation}
+e le equazioni del moto determinate sono le equazioni di Einstein con tensore energia-impulso elettromagnetico e le equazioni di Maxwell:
+\begin{align}
+R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} &=\frac{1}{2}\left[F_{\mu\rho}\tensor{F}{_\nu^\rho} - \frac{1}{4}g_{\mu\nu}F_{\rho\sigma}F^{\rho\sigma} \right] \\
+\nabla_\mu F^{\mu\nu} &= 0
+    \label{eq.equazioni_einstein_maxwell}
+\end{align}
+
+\section{Azione di Pauli-Fierz}
+Le equazioni linearizzate possono essere ottenute da principio variazionale introducendo l'azione:
+\begin{equation}
+    S = \frac{1}{8\pi G}\int d^n x \left[ - \frac{1}{4}\partial_\rho h_{\mu\nu} \partial^\rho h^{\mu\nu} + \frac{1}{2}\partial_\rho h_{\mu\nu} \partial^\nu h^{\rho\mu} +\frac{1}{4}\partial_\mu h\partial^\mu h - \frac{1}{2}\partial_\nu h^{\mu\nu} \partial_\mu h \right]
+    \label{eq.azione_paulifierz}
+\end{equation}
+corrispondente all'espansione fino al secondo ordine in $h$ dell'azione di Einstein-Hilbert eq. \ref{eq.azione_einstein_hilbert}, dopo aver eseguito integrazioni per parti. Si può osservare che al primo ordine otterremmo come lagrangiana, lo scalare di Ricci linearizzato che corrisponderebbe ad una derivata totale e quindi nulla.
+
+La variazione di questa azione comporta:
+\begin{align*}
+    \delta S &= \frac{1}{8\pi G} \int d^nx \left[ \frac{1}{2}\partial_\rho \partial^\rho h_{\mu\nu} - \partial^\rho \partial_\nu h_{\rho\mu} - \frac{1}{2}\partial^\rho \partial_\rho h \eta_{\mu\nu} + \frac{1}{2}\partial_\nu \partial_\mu h + \frac{1}{2}\partial_\rho \partial_\sigma h^{\rho\sigma} \eta_{\mu\nu}\right] \delta h^{\mu\nu} \\
+    &= \frac{1}{8\pi G} \int d^n x [ - G_{\mu\nu} \delta h^{\mu\nu} ]
+\end{align*}
+ovvero $G_{\mu\nu} = 0$, come nel caso linearizzato e nel vuoto.
+
+L'aggiunta di un termine $T_{\mu\nu}h^{\mu\nu}$ all'azione permette di ottenere l'accoppiamento con la materia. Per le considerazioni del gauge si può ottenere, come visto, eq. \ref{eq.Glinearizlorenz} e dunque ricavare eq. \ref{eq.GRpaulifierz} dal principio variazionale.

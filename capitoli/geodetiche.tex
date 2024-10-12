@@ -1,0 +1,72 @@
+\chapter{Geodetiche}
+Il concetto di geodetica viene introdotto dal problema variazionale di determinare la curva più breve (o lunga, in ogni caso estremale) tra due punti della varietà. Risulterà abbastanza evidente, come già intuibile, che quanto verrà visto non sarà differente da quanto già affrontato in meccanica classica con l'introduzione dell'Azione e del principio di Minima Azione; basterà pensare alla lunghezza della curva come azione e identificare correttamente la lagrangiana del sistema. Anzi non risulterebbe nemmeno necessario effettuare ulteriori calcoli noto che le equazioni di Eulero-Lagrange forniscono proprio tale curva. Tuttavia procederemo con il calcolo completo per evidenziare delle sottigliezze.
+
+\section{Equazione delle geodetiche}\label{para.geodetiche}
+Consideriamo una varietà riemanniana propria $X$, la generalizzazione al caso lorentziano risulterà poi banale per via di un segno. Sia $C(t)$ tale che $C(t_0)=p$, $C(t_1)= q$ dati $p, q \in X$ fissati. La lunghezza della curva è descritta dalla metrica come\footnote{In particolare questo tipo di lagrangiana descrive una particella (massiva, basta aggiungere un fattore $-m$ all'inizio) in moto libero. L'equazione delle geodetiche descriverà successivamente il moto libero nello spaziotempo.}:
+\begin{equation*}
+    l = \int_{C}ds = \int_{C} \sqrt{ds^2} = \int_{C}\sqrt{g_{ij}dx^idx^j}
+\end{equation*}
+Siccome la curva è descritta da una parametrizzazione\footnote{La lunghezza è invariante dalla parametrizzazione. Definendo una riparametrizzazione $t\rightarrow\lambda(t)$ si avrà $dt= \frac{dt}{d\lambda}d\lambda$ e quindi $$\sqrt{g_{ij}\frac{dx^i}{dt}\frac{dx^j}{dt}}dt \rightarrow \sqrt{g_{ij}\frac{dx^i}{d\lambda}\frac{d\lambda}{dt}\frac{dx^j}{d\lambda}\frac{d\lambda}{dt}}\frac{dt}{d\lambda}d\lambda$$ che lascia invariato l'integrando.}, si ha:
+\begin{equation*}
+    l = \int_{t_0}^{t_1}\sqrt{g_{ij}\frac{dx^i}{dt}\frac{dx^j}{dt}}dt
+\end{equation*}
+
+Effettuiamo la variazione
+\begin{align*}
+    \delta l &= \int_{t_0}^{t_1} \frac{1}{2} \left( g_{ij}\frac{dx^i}{dt}\frac{dx^j}{dt} \right)^{-1/2}\left[ \delta g_{ij}\frac{dx^i}{dt}\frac{dx^j}{dt} + g_{ij}\frac{d\delta x^i}{dt}\frac{dx^j}{dt} + g_{ij}\frac{d\delta x^j}{dt}\frac{dx^i}{dt} \right]dt \\
+    & = \int_{t_0}^{t_1} \frac{1}{2} \left( g_{ij}\frac{dx^i}{dt}\frac{dx^j}{dt} \right)^{-1/2}\left[ \delta g_{ij}\frac{dx^i}{dt}\frac{dx^j}{dt} + 2g_{ij}\frac{d\delta x^i}{dt}\frac{dx^j}{dt} \right]dt\\
+\intertext{A questo punto possiamo fare la scelta, equivalente ad una scelta di gauge, di porre il termine sotto radice pari all'unità, che corrisponde a parametrizzare secondo coordinata curvilinea (ovvero il tempo proprio $\tau$). Questo passaggio può essere fatto solo dopo aver variato $l$.}
+    &= \int_{t_0}^{t_1} \left[ \frac{1}{2}\delta g_{ij}\frac{dx^i}{dt}\frac{dx^j}{dt} + g_{ij}\frac{d\delta x^i}{dt}\frac{dx^j}{dt} \right]dt \\
+\intertext{Applicando la \emph{chain rule} a $\delta g_{ij}$ nonché integrando per parti il secondo termine e considerando che il termine di bordo $\delta x^k |^q_p$ si annulla:}    
+    &=\int_{t_0}^{t_1} \left[ \frac{1}{2}g_{ij,k}\delta x^k\frac{dx^i}{dt}\frac{dx^j}{dt} - \delta x^k \frac{d}{dt}\left(g_{kj}\frac{dx^j}{dt} \right) \right]dt  \\ &= \int_{t_0}^{t_1} \left[ \frac{1}{2}g_{ij,k}\frac{dx^i}{dt}\frac{dx^j}{dt} - \frac{d}{dt}\left(g_{kj}\frac{dx^j}{dt} \right) \right]\delta x^kdt\equiv 0
+\end{align*}
+Otteniamo l'equivalente equazione di Eulero-Lagrange:
+\begin{equation*}
+    \frac{1}{2}g_{ij,k}\frac{dx^i}{dt}\frac{dx^j}{dt} - \frac{d}{dt}\left(g_{kj}\frac{dx^j}{dt} \right) = 0
+\end{equation*}
+Riscriviamola con l'intenzione di far comparire i coefficienti di connessione. Svolgiamo la derivata del prodotto osservando che $g$ è funzione del punto sulla varietà, a sua volta dipendente dal parametro $t$.
+\begin{align*}
+    \frac{d}{dt}g_{kj}= g_{kj,i}\frac{dx^i}{dt} \longrightarrow     \frac{1}{2}g_{ij,k}\frac{dx^i}{dt}\frac{dx^j}{dt} - g_{kj,i}\frac{dx^i}{dt}\frac{dx^j}{dt} - g_{kj}\frac{d^2 x^j}{dt^2} = 0
+\end{align*}
+Dividendo il secondo termine in due somme e rinominando indici:
+\begin{align*}
+    &g_{kj,i}\frac{dx^i}{dt}\frac{dx^j}{dt} = \frac{1}{2}g_{kj,i}\frac{dx^i}{dt}\frac{dx^j}{dt} + \frac{1}{2}g_{ki,j}\frac{dx^j}{dt}\frac{dx^i}{dt} \\
+    &\longrightarrow g_{kj}\frac{d^2x^j}{dt^2}= \frac{1}{2}\left(  g_{ij,k}\frac{dx^i}{dt}\frac{dx^j}{dt} -  g_{kj,i}\frac{dx^i}{dt}\frac{dx^j}{dt} -  g_{ki,j}\frac{dx^j}{dt}\frac{dx^i}{dt} \right)
+\end{align*}
+Moltiplicando per la metrica inversa $g^{lk}$:
+\begin{equation*}
+    \frac{d^2 x^l}{dt^2} + \frac{1}{2}g^{lk}( g_{kj,i} + g_{ki,j} - g_{ij,k} ) \frac{dx^i}{dt}\frac{dx^j}{dt} = 0
+\end{equation*}
+Otteniamo infine, richiamando eq. \ref{eq.connlevicivita}:
+\begin{equation}
+    \frac{d^2 x^l}{dt^2} + \tensor{\Gamma}{^l_{ij}}\frac{dx^i}{dt}\frac{dx^j}{dt} = 0
+    \label{eq.geodetiche}
+\end{equation}
+chiamata \textbf{l'equazione delle geodetiche}. L'applicazione $t \mapsto x(t)$ che soddisfa tale equazione è pertanto una geodetica.
+
+L'equazione delle geodetiche può ulteriormente essere scritta in una forma più compatta. Chiamando $u^i=\frac{dx^i}{dt}$ il vettore tangente alla curva, essa è uguale a
+\begin{equation}
+    \nabla_u u = 0
+\end{equation}
+detta equazione delle geodetiche in parametrizzazione affine. Infatti
+\begin{align*}
+    \nabla_{u^ie_i}(u^je_j) = 0 \iff & u^i \nabla_{e_i}(u^je_j) =u^i( e_i(u^k)e_k + u^j\nabla_{e_i}e_j) \\
+    &=u^i( e_i(u^k) + \tensor{\Gamma}{^k_{ij}}u^j)e_k = 0
+\end{align*}
+Sfruttando $u^ie_i(u^k) = u^i\partial_iu^k = \frac{dx^i}{dt}\frac{\partial u^k}{\partial x^i} = \frac{du^k}{dt}$, si ottiene
+\begin{equation*}
+    u^i( e_i(u^k) + \tensor{\Gamma}{^k_{ij}}u^j) =     \frac{d u^k}{dt} + \tensor{\Gamma}{^k_{ij}}u^iu^j = 0
+\end{equation*}
+che è quanto si voleva far vedere.
+
+Osserviamo che quest'ultima scrittura, $\nabla_u u = 0$, equivale a dire che una geodetica è quella particolare curva cui vettore tangente viene trasportato parallelamente lungo sè stessa. Corrisponde all'idea de \virgolette{la curva più breve possibile} tra due punti.
+
+Nel caso che ci ponessimo in un gauge dove
+\begin{equation*}
+    g_{ij}\frac{dx^i}{dt}\frac{dx^j}{dt} \neq 1
+\end{equation*}
+allora otterremmo
+\begin{equation*}
+    \nabla u = \lambda u
+\end{equation*}
+con $\lambda$ una funzione. Questa è detta equazione delle geodetiche in parametrizzazione non affine.

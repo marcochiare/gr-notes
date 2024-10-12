@@ -1,0 +1,247 @@
+\chapter{Teorie di Chern-Simons per la gravità}\label{para.chern}
+Una teoria di Chern-Simons è una teoria di gauge per spazi a dimensione dispari ($2+1$ o $4+1$ ecc.) che, sviluppata in tempi relativamente recenti, ha importanti applicazioni nel campo della fisica della materia condensata (il quantum Hall effect) o in matematica nella teoria dei nodi invarianti. \'E stato scoperto a partire dal 1982 che una teoria di questo tipo può essere utilizzata per ottenere l'azione di Einstein-Hilbert e quindi di descrivere la gravità per mezzo di una teoria di campo quantistica. Le note consigliate sono \cite{chernsimons}, mentre \cite{tong_gauge} contengono una discussione generale della teoria di gauge.
+\section{Teorie di Chern-Simons non abeliane}
+Consideriamo una lagrangiana in dimensione 3:
+\begin{equation}
+    \mathcal{L}_{CS} = \kappa \epsilon^{\mu\nu\rho} < A_\mu \partial_\nu A_\rho + \frac{2}{3}A_\mu A_\nu A_\rho>
+    \label{eq.lagrangiana_cs}
+\end{equation}
+dove $A_\mu$ è un campo di gauge (o potenziale di gauge o ancora connessione di gauge) che assume valori in un'algebra di Lie $\mathbb{g}$, solitamente semisemplice; spesso è $su(n)$, ma per la gravità ne useremo di differenti. Se la teoria è abeliana allora il termine $A_\mu A_\nu A_\rho$ si annulla quando contratto con $\epsilon^{\mu\nu\rho}$ in quanto i campi commutano e il simbolo di Levi-Civita è antisimmetrico. Nel caso non abeliano (come per la teoria di Yang-Mills):
+\begin{equation}
+    A_\mu = \tensor{A}{_\mu^a}T_a
+    \label{eq.campo_gauge_rispetto_generatore}
+\end{equation}
+dove $T_a$ sono i generatori dell'algebra $\mathbb g$ soddisfacenti il commutatore:
+\begin{equation}
+    [T_a, T_b] = \tensor{f}{_{ab}^c}T_c
+    \label{eq.commutatore_alg_lie}
+\end{equation}
+
+Con \virgolette{$<\cdot>$} indichiamo una forma bilineare non degenere e Ad-invariante su $\mathbb{g}$; se l'algebra di Lie è semisemplice\footnote{Un'algebra di Lie è semisemplice se non possiede ideali abeliani, ovvero sottospazi invarianti che commutano.}, questa forma può essere scelta come la forma di Killing:
+\begin{equation}
+    \mathcal B(A,B) = \Tr{ad_A \circ ad_B}
+\end{equation}
+Qualora l'algebra non sia semisemplice, la forma di Killing può essere degenere\footnote{Un'algebra è semisemplice se e solo se la sua forma di Killing non è degenere. La forma di Killing applicata ai generatori è semplicemente:
+\begin{equation*}
+    \mathcal B(T_a, T_b) = \tensor{f}{_{ac}^d}\tensor{f}{_{bd}^c}
+\end{equation*}
+} e quindi non viene usata. In \cite{chernsimons} viene usata la traccia al posto della generica \virgolette{$<\cdot>$}, quindi la si può leggere in questa maniera.
+
+La variazione della lagrangiana di eq. \ref{eq.lagrangiana_cs} è:
+\begin{equation*}
+    \delta \mathcal L_{CS} = \kappa \epsilon^{\mu\nu\rho} < \delta A_\mu, F_{\nu\rho}>
+\end{equation*}
+dove $F_{\nu\rho}$ è il field-strength non abeliano:
+\begin{equation}
+    F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu]
+    \label{eq.field_strength}
+\end{equation}
+Le equazioni di moto hanno la stessa forma del caso abeliano (in assenza di sorgenti):
+\begin{equation*}
+    \epsilon^{\mu\nu\rho}F_{\nu\rho} = 0 \iff F_{\nu\rho} = 0
+\end{equation*}
+per le quali le soluzioni sono dette di \textbf{puro gauge} o connessioni piatte:
+\begin{equation}
+    A_\mu = g^{-1}\partial_\mu g \ \ g \in G
+    \label{eq.puro_gauge}
+\end{equation}
+\begin{esempio}
+In elettrodinamica, $G=U(1)$ è abeliano e la soluzione di puro gauge è $A_\mu = \partial_\mu \chi$. Quindi $g= e^{i\theta} \in U(1)$:
+\begin{equation*}
+    e^{-i\theta}\partial_\mu e^{i\theta} = i\partial_\mu\theta
+\end{equation*}
+\end{esempio}
+
+Differenze si hanno nel modo in cui la lagrangiana di C.S. si comporta sotto trasformazioni di gauge. La trasformazione di gauge non abeliana $g$ trasforma il campo di gauge secondo:
+\begin{equation}
+    A_\mu \rightarrow A_\mu^g = g^{-1}A_\mu g + g^{-1}\partial_\mu g
+    \label{eq.gauge_transform_cs}
+\end{equation}
+e la lagrangiana eq. \ref{eq.lagrangiana_cs} viene trasformata di conseguenza come:
+\begin{equation}
+    \mathcal L_{CS} \rightarrow \mathcal L_{CS} - \kappa \epsilon^{\mu\nu\rho}\partial_\mu < (\partial_\nu g)g^{-1}A_\rho > - \frac{\kappa}{3}\epsilon^{\mu\nu\rho}< (g^{-1}\partial_\mu g)(g^{-1}\partial_\nu g)(g^{-1}\partial_\rho g)>
+    \label{eq.variazione_lagrangiana_cs_trasform_gauge}
+\end{equation}
+Come nel caso abeliano, si può riconoscere il secondo termine come una derivata totale che può svanire nell'azione sotto idonee condizioni al contorno. Il terzo termine invece appare per il caso non abeliano e viene detto \textbf{winding number density} (densità dell'indice di avvolgimento) dell'elemento del gruppo $g$:
+\begin{equation}
+    W(g) = \frac{1}{24\pi^2}\epsilon^{\mu\nu\rho}< (g^{-1}\partial_\mu g)(g^{-1}\partial_\nu g)(g^{-1}\partial_\rho g)>
+    \label{eq.winding_number_dens}
+\end{equation}
+Con opportune condizioni al contorno, l'integrale di eq. \ref{eq.winding_number_dens} è un intero $N$. Questo fa sì che l'azione di Chern-Simons cambi per una costante additiva sotto trasformazioni di gauge:
+\begin{equation}
+    I_{CS} \rightarrow I_{CS} - 8\pi^2 \kappa N
+    \label{eq.azione_cs_trasform_gauge}
+\end{equation}
+Questo ha importanti conseguenze poiché all'interno di una teoria di campo quantistica appare nell'integrale sui cammini il termine $e^{iI_{CS}}$: per assicurarci che questa ampiezza rimanga gauge invariante, si deve avere che  il parametro di accoppiamento $\kappa$ assuma valori discreti:
+\begin{equation*}
+    \kappa = \frac{n}{4\pi} \ \ n \in \mathbb Z
+\end{equation*}
+Questa è una condizione di quantizzazione analoga a quella di Dirac per il monopolo magnetico.
+
+A scopo informativo, questa teoria è stata scoperta da S. S. Chern e J. Simons nello studio di un approccio combinatorio alla densità di Pontryagin in 4-dim.:
+\begin{equation*}
+    \epsilon^{\mu\nu\rho\sigma}<F_{\mu\nu}F_{\rho\sigma}>
+\end{equation*}
+Notarono che questa potesse essere scritta in termini di una derivata totale:
+\begin{equation*}
+    4\partial_\sigma \left[ \epsilon^{\mu\nu\rho\sigma}<A_\mu \partial_\nu A_\rho + \frac{2}{3}A_\mu A_\nu A_\rho >\right]
+\end{equation*}
+che tuttavia non permetteva di proseguire in un'analisi combinatoria semplice. Poiché parse loro interessante, continuarono lo studio di questo termine che ora definisce la lagrangiana di Chern-Simons, eq. \ref{eq.lagrangiana_cs}.
+
+\section{Gravità 3D come teoria di Chern-Simons}
+Consideriamo uno spazio 3-dim. con $\Lambda < 0$. Come già visto, lo spaziotempo è localmente $AdS_3$ il quale ha come gruppo di isometrie:
+\begin{equation*}
+    SO(2,2) \approx SL(2,\mathbb R) \times \faktor{SL(2,\mathbb R)}{\mathbb Z_2}
+\end{equation*}
+che a livello dell'algebra si traduce in:
+\begin{equation*}
+    so(2,2) \approx sl(2,\mathbb R) \oplus sl(2,\mathbb R) 
+\end{equation*}
+Possiamo rappresentare queste isometrie come trasformazioni di gauge. Diventa ora utile il formalismo di Maurer-Cartan (detto anche \virgolette{del primo ordine}\footnote{Nel formalismo di primo ordine la metrica e i simboli $\Gamma$ sono considerati indipendenti nella variazione dell'azione. Ad esempio con l'azione di Einstein-Hilbert si ottengono le eq. di Einstein variando $g$, mentre $T=0$ variando $\Gamma$. Il concetto non cambia usando la triade e $\omega$: vanno comunque usate come indipendenti.}) sviluppato in \S\ref{para.veilbein}, dove le variabili fondamentali sono la triade $e^a = \tensor{e}{^a_\mu}dx^\mu$ e la connessione di spin $\omega^{ab} = \tensor{\omega}{^{ab}_\mu}dx^\mu$.
+
+Definiamo:
+\begin{align}
+    \omega^a &= \frac{1}{2}\epsilon^{abc}\omega_{bc} \label{eq.cs_omega}\\
+    A^{(\pm)a} &= \omega^a \pm \frac{e^a}{l} \label{eq.cs_A_pm}
+\end{align}
+dove $l$ è una costante necessaria per motivi dimensionali. Come poi si vedrà, sarà legata a $\Lambda$.
+
+Ricordiamo poi che le matrici:
+\begin{equation}
+    \begin{array}{ccc}
+    T_1 = \frac{1}{2}\begin{pmatrix} 0 & 1 \\ -1 & 0\end{pmatrix} & T_2 = \frac{1}{2}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} & T_3 = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+    \end{array}
+\end{equation}
+permettono di generare tramite la mappa esponenziale il gruppo $SL(2,\mathbb R)$ (tuttavia la mappa non è suriettiva sul gruppo e quindi non lo descrivono completamente). Soddisfano:
+\begin{align*}
+    [ T_a, T_b] = \tensor{\epsilon}{_{ab}^c} T_c \\
+    \Tr{T_a T_b} = \frac{1}{2}\eta_{ab}
+\end{align*}
+
+Le connessioni di gauge della teoria di C.S. sono definite da:
+\begin{equation}
+    A^{(\pm)} = A^{(\pm)a} T_a
+    \label{eq.connessione_gauge_cs_gravità3d}
+\end{equation}
+ed assumono valori nell'algebra di Lie $sl(2,\mathbb R)$. L'azione di Einstein-Hilbert con $\Lambda = - \frac{1}{l^2}$ può essere scritta come:
+\begin{align}
+    I_{CS} &= \kappa \int Tr(A^{(+)} \wedge dA^{(+)} + \frac{2}{3}A^{(+)}\wedge A^{(+)} \wedge A^{(+)}) + \nonumber \\ &- \kappa \int Tr(A^{(-)} \wedge dA^{(-)} + \frac{2}{3}A^{(-)}\wedge A^{(-)} \wedge A^{(-)})
+    \label{eq.azione_einhilb_cs}
+\end{align}
+Questa azione è proprio in termini di una lagrangiana di tipo Chern-Simons, eq. \ref{eq.lagrangiana_cs}. Lo scopo di tutti i seguenti calcoli sarà mostrare come questa si riduce all'azione di eq. \ref{eq.azione_einhilb_cosmologica}.
+
+Per primo sostituiamo in eq. \ref{eq.azione_einhilb_cs}, la definizione di eq. \ref{eq.connessione_gauge_cs_gravità3d}:
+\begin{align*}
+    I_{CS} &= \kappa\int\left( A^{(+)a)}\wedge dA^{(+)v}\Tr{T_a T_b} + \frac{2}{3}A^{(+)a}\wedge A^{(+)b}\wedge A^{(+)c}\Tr{T_aT_bT_c}\right) + \\
+    &- \kappa\int\left( A^{(-)a)}\wedge dA^{(-)v}\Tr{T_a T_b} + \frac{2}{3}A^{(-)a}\wedge A^{(-)b}\wedge A^{(-)c}\Tr{T_aT_bT_c}\right)
+\end{align*}      
+Osserviamo per il secondo termine che, essendo il prodotto wedge antisimmetrico, non si commette errore nel fare:
+\begin{equation*}
+    A^{(\pm)a}\wedge A^{(\pm)b}\wedge A^{(\pm)c}\Tr{T_aT_bT_c} =  A^{(\pm)a}\wedge A^{(\pm)b}\wedge A^{(\pm)c}\Tr{T_{[a}T_{b]}T_c}
+\end{equation*}
+e a sua volta:
+\begin{equation*}
+    \Tr{T_{[a}T_{b]}T_c} = \frac{1}{2}\Tr{[T_a, T_b]T_c} = \frac{1}{2}\tensor{\epsilon}{_{ab}^d}\Tr{T_dT_c} = \frac{1}{4}\tensor{\epsilon}{_{ab}^d}\eta_{dc} = \frac{1}{4}\epsilon_{abc}
+\end{equation*}
+così diventa:
+\begin{align*}
+    I_{CS} &= \frac{\kappa}{2} \int\left( A^{(+)a}\wedge dA^{(+)}_a + \frac{2}{3}A^{(+)a}\wedge A^{(+)b}\wedge A^{(+)c}\frac{1}{2}\epsilon_{abc} \right) + \\
+    &- \frac{\kappa}{2} \int\left( A^{(-)a}\wedge dA^{(-)}_a + \frac{2}{3}A^{(-)a}\wedge A^{(-)b}\wedge A^{(-)c}\frac{1}{2}\epsilon_{abc} \right)
+\end{align*}
+Sostituendo eq. \ref{eq.cs_A_pm}:
+\begin{align*}
+    I_{CS} &= \frac{\kappa}{2} \int\left( (\omega^a + \frac{e^a}{l})\wedge (d\omega_a + \frac{de_a}{l}) + \frac{1}{3}\epsilon_{abc} (\omega^a + \frac{e^a}{l})\wedge (\omega^b + \frac{e^b}{l})\wedge (\omega^c + \frac{e^c}{l}) \right) + \\
+    &- \frac{\kappa}{2} \int\left( (\omega^a - \frac{e^a}{l})\wedge (d\omega_a - \frac{de_a}{l}) + \frac{1}{3}\epsilon_{abc}(\omega^a - \frac{e^a}{l})\wedge (\omega^b - \frac{e^b}{l})\wedge (\omega^c - \frac{e^c}{l}) \right)
+\end{align*}
+Svolgendo i prodotti, vari termini si semplificano e rimane:
+\begin{align*}
+    I_{CS} = \frac{\kappa}{2} \int (& 2\omega^a\wedge\frac{de_a}{l} + 2\frac{e^a}{l}\wedge d\omega_a + \frac{1}{3}\epsilon_{abc}(2\omega^a\wedge\omega^b\wedge\frac{e^c}{l} +\\ & + 2\omega^a\wedge\frac{e^b}{l}\wedge \omega^c + 2 \frac{e^a}{l}\wedge \omega^b\wedge\omega^c + 2\frac{e^a}{l}\wedge \frac{e^b}{l}\wedge \frac{e^c}{l}) )
+\end{align*}
+
+Poiché:
+\begin{equation*}
+    \epsilon_{abc}\omega^a \wedge \frac{e^b}{l}\wedge \omega^c = - \epsilon_{abc}\frac{e^b}{l}\wedge\omega^a\wedge\omega^c = - \epsilon_{bac}\frac{e^a}{l}\wedge \omega^b\wedge\omega^c = \epsilon_{abc}\frac{e^a}{l}\wedge\omega^b\wedge\omega^c
+\end{equation*}
+e anche:
+\begin{equation*}
+    \epsilon_{abc}\omega^a\wedge\omega^b\wedge\frac{e^c}{l} = \epsilon_{abc}\frac{e^c}{l}\wedge\omega^a\wedge\omega^b = \epsilon_{bca}\frac{e^a}{l}\wedge\omega^b\wedge\omega^c = \epsilon_{abc}\frac{e^a}{l}\wedge\omega^b\wedge\omega^c
+\end{equation*}
+diversi termini sono uguali. Se calcoliamo invece:
+\begin{align*}
+    d(\frac{e^a}{l}\wedge\omega_a)& = \frac{de^a}{l}\wedge\omega_a - \frac{e^a}{l}\wedge d\omega_a = \\
+    \implies& \omega_a \wedge \frac{de^a}{l} = d(\frac{e^a}{l}\wedge\omega_a) + \frac{e^a}{l}\wedge d\omega_a
+\end{align*}
+Il differenziale totale fornisce un termine di bordo che possiamo eliminare. Allora con tutte queste semplificazioni l'azione diventa:
+\begin{align}
+    I_{CS} &= \frac{\kappa}{2}\int \left[ 4 \frac{e^a}{l}\wedge d\omega_a + \frac{1}{3}\epsilon_{abc}(6\frac{e^a}{l}\wedge\omega^b\wedge\omega^c - \frac{2}{l^3}e^a\wedge e^b\wedge e^c) \right] \nonumber \\
+    &= \frac{\kappa}{l}\int \left[ e^a\wedge(2d\omega_a + \epsilon_{abc}\omega^b \wedge\omega^c) + \frac{1}{3l^2}e^a\wedge e^b\wedge e^c\right] \label{eq.azione_einhilb_cs_intermed}
+\end{align}
+Con questi calcoli l'azione di eq. \ref{eq.azione_einhilb_cs} è stata notevolmente semplificata ed espressa esclusivamente in termini dovuti alla geometria quindi alla gravità. Quello che ora verrà mostrato sarà come il primo termine si riconduce allo scalare di Ricci $R$, mentre il secondo termine alla costante cosmologica $\Lambda$.
+
+Calcoliamo per la 2-forma di curvatura, eq. \ref{eq.maurer_cartan_riemann}, $\epsilon_{abc}\mathcal R^{bc}= \epsilon_{abc}(d\omega^{bc} + \tensor{\omega}{^b_d}\wedge \omega^{dc})$. Noi abbiamo $\omega^a = \frac{1}{2}\epsilon^{abc}\omega_{bc}$ quindi (ricordando che $\epsilon_{ijk}\epsilon^{ilm} =  \delta_j^m\delta_k^l -\delta_j^l\delta_k^m$ nello spazio di Minkowski $3d$):
+\begin{equation*}
+    \epsilon_{dea}\omega^a = \frac{1}{2}\epsilon_{dea}\epsilon^{abc}\omega_{bc} = \frac{1}{2}\omega_{ed} - \frac{1}{2}\omega_{de} = -\omega_{de}
+\end{equation*}
+perciò:
+\begin{align*}
+    \epsilon_{abc}\mathcal R^{bc} &= \epsilon_{abc}(-\tensor{\epsilon}{^{bc}_d}d\omega^d + \tensor{\epsilon}{^b_{dl}}\omega^l\wedge\tensor{\epsilon}{^{dc}_f}\omega^f) \\
+    \intertext{Svolgendo il prodotto e calcolando  $\epsilon_{abc}\tensor{\epsilon}{^{bc}_d} = -2\eta_{ad}$ e $\tensor{\epsilon}{^b_{de}}\tensor{\epsilon}{^{dc}_f} = \eta^{bc}\eta_{ef}  - \delta^b_f \delta^c_e$ diventa:}
+    &= 2\eta_{ad}d\omega^d +\epsilon_{abc}(\eta^{bc}\eta_{ef}  - \delta^b_f \delta^c_e)\omega^e\wedge\omega^f \\
+    &=2d\omega_a + \epsilon_{abc}(-\omega^c\wedge\omega^b)= 2d\omega_a + \epsilon_{abc}\omega^b\wedge\omega^c
+\end{align*}
+che è esattamente il primo termine di eq. \ref{eq.azione_einhilb_cs_intermed}:
+\begin{equation*}
+    I_{CS} = \frac{\kappa}{l}\int \left[ e^a\wedge \epsilon_{abc}\mathcal R^{bc} + \frac{1}{3l^2}\epsilon_{abc}e^a\wedge e^b \wedge e^c \right]
+\end{equation*}
+
+Lavoriamo ora sul secondo termine. Scegliamo $\epsilon^{txy} = -1$ così da avere l'orientazione positiva per $dt\wedge dx\wedge dy$:
+\begin{equation*}
+    \epsilon_{abc}e^a \wedge e^b \wedge e^c = \epsilon_{abc}\tensor{e}{^a_\mu}\tensor{e}{^b_\nu}\tensor{e}{^c_\rho} dx^\mu\wedge dx^\nu\wedge dx^\rho = - \epsilon_{abc}\epsilon^{\mu\nu\rho}\tensor{e}{^a_\mu}\tensor{e}{^b_\nu}\tensor{e}{^c_\rho}  d^3x
+\end{equation*}
+avendo usato $dx^\mu\wedge dx^\nu \wedge dx^\rho = -\epsilon^{\mu\nu\rho}d^3x$. Alcuni dei termini in queste somme sono uguali, poiché gli indici sono tutti contratti. Infatti se svolgiamo:
+\begin{align*}
+\epsilon^{\mu\nu\rho}\tensor{e}{^a_\mu}\tensor{e}{^b_\nu}\tensor{e}{^c_\rho} &= - \tensor{e}{^a_t}\tensor{e}{^b_x}\tensor{e}{^c_y} - \tensor{e}{^a_x}\tensor{e}{^b_y}\tensor{e}{^c_t} - \tensor{e}{^a_y}\tensor{e}{^b_t}\tensor{e}{^c_x} + \\ &+ \tensor{e}{^a_t}\tensor{e}{^b_y}\tensor{e}{^c_x} + \tensor{e}{^a_y}\tensor{e}{^b_x}\tensor{e}{^c_t} + \tensor{e}{^a_x}\tensor{e}{^b_t}\tensor{e}{^c_y} \end{align*}
+e ad esempio:
+\begin{equation*}
+    \epsilon_{abc}\tensor{e}{^a_x}\tensor{e}{^b_y}\tensor{e}{^c_t} = \epsilon_{bca}\tensor{e}{^b_x}\tensor{e}{^c_y}\tensor{e}{^a_t} = \epsilon_{abc}\tensor{e}{^a_t}\tensor{e}{^b_x}\tensor{e}{^c_y}
+\end{equation*}
+Il primo e secondo termine sono uguali. Si può ripetere per vedere che:
+\begin{equation}
+    \epsilon_{abc} e^a\wedge e^b \wedge e^c = 3! \epsilon_{abc}\tensor{e}{^a_t}\tensor{e}{^b_x}\tensor{e}{^c_y} d^3x = 3! \sqrt{-g}d^3x
+    \label{eq.eee_cs}
+\end{equation}
+
+Rielaboriamo il primo termine usando eq. \ref{eq.2forma_curvatura}:
+\begin{equation*}
+    \epsilon_{abc} e^a \wedge \mathcal R^{bc} = \epsilon_{abc}e^a\wedge \frac{1}{2}\tensor{\mathcal R}{^{bc}_{de}}e^d\wedge e^e = \frac{1}{2}\epsilon_{abc}\tensor{\mathcal R}{^{bc}_{de}} e^a\wedge e^d\wedge e^e
+\end{equation*}
+usando per l'orientazione scelta:
+\begin{align*}
+    e^a \wedge e^d \wedge e^e &= - \epsilon^{ade}e^0\wedge e^1 \wedge e^2 = - \epsilon^{ade}\frac{1}{3!}\epsilon_{fgh}e^f \wedge e^g \wedge e^h \overset{\ref{eq.eee_cs}}{=} - \epsilon^{ade}\frac{1}{3!}3!\sqrt{-g}d^3x \\ &= - \epsilon^{ade}\sqrt{-g}d^3x     
+\end{align*}
+allora:
+\begin{align*}
+    \epsilon_{abc} e^a \wedge \mathcal R^{bc} &= \frac{1}{2}\epsilon_{abc}\tensor{\mathcal R}{^{bc}_{de}}(-\epsilon^{ade})\sqrt{-g}d^3x = -\frac{1}{2}(\delta^d_b\delta^e_c - \delta^e_b\delta^d_c)\tensor{\mathcal R}{^{bc}_{de}}\sqrt{-g}d^3x \\
+    &= \frac{1}{2}(\tensor{\mathcal R}{^{bc}_{cb}} - \tensor{\mathcal R}{^{bc}_{bc}})\sqrt{-g}d^3x = R\sqrt{-g}d^3x
+\end{align*}
+
+Abbiamo infine:
+\begin{equation*}
+    I_{CS} = \frac{\kappa}{l}\int\left[ R + \frac{1}{3l^2}3!\right]\sqrt{-g}d^3x = \frac{\kappa}{l}\int\left[R -2 \Lambda\right] d^3x
+\end{equation*}
+dove si è definita $\Lambda =  - \frac{1}{l^2}$. Si è riottenuta l'azione di Einstein-Hilbert se leghiamo la costante di gravitazione $G$ alla costante di accoppiamento di Chern-Simons $\kappa$ con:
+\begin{equation}
+    \frac{1}{16\pi G} = \frac{\kappa}{l} \iff \kappa = \frac{l}{16\pi G}
+    \label{eq.cost_accopp_cs_grav3d}
+\end{equation}
+
+Finiamo chiedendoci se è possibile descrive in una teoria di Chern-Simons uno spaziotempo di de Sitter: per fare ciò serve $l \mapsto il$ con la conseguenza che $A^{(\pm)a}$ di eq. \ref{eq.cs_A_pm} sono quantità complesse. Come conseguenza bisogna considerare la complessificazione del gruppo di isometrie $SL(2,\mathbb R)$ ovvero $SL(2,\mathbb C)$, la quale algebra $sl(2,\mathbb C) \approx so(3,1)$:
+\begin{align*}
+    A^a = \omega^a + i\frac{e^a}{l} && \Bar{A}^a = \omega^a - i\frac{e^a}{l}
+\end{align*}
+e la rispettiva azione è decomposta come:
+\begin{equation*}
+    I_{CS}(\Lambda > 0) = I_{CS}[A] + I_{CS}[\Bar{A}]
+\end{equation*}
+
+Per $\Lambda = 0$ serve come gruppo di isometrie, il gruppo di Poincarè in $(2+1)$-dim. i.e. $ISO(2,1)$ il quale non è semisemplice e la forma di Killing è degenere. In questo caso si deve usare un'altra forma bilineare, non degenere e Ad-invariante.

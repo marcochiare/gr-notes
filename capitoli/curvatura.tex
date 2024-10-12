@@ -1,0 +1,656 @@
+\chapter{Curvatura}
+Il concetto di curvatura è abbastanza chiaro per quanto riguarda superfici bidimensionali immerse in spazi tridimensionali (certo, manca da definire cosa si intende per curvatura, ma l'idea è chiara). Questo tipo di curvatura è definita \textbf{estrinseca}, cioè facente riferimento all'immersione in uno spazio di dimensione superiore. Introdurremo un concetto di curvatura di tipo \textbf{intrinseco}, necessario a poter descrivere uno spaziotempo curvo, ma senza dover dipendere da una dimensione superiore, seguendo la metodologia che si è ricercata fino ad ora. Una dimensione superiore, oltre a complicare i calcoli, non è detta essere verificabile né tanto meno può avere una effettiva utilità.
+
+Il concetto di trasporto parallelo è il punto di partenza per la definizione di curvatura. A tal fine non sarà necessario introdurre una metrica. 
+Consideriamo una curva chiusa nel piano e un punto su di essa; trasportiamo parallelamente lungo la curva un vettore tangente in quel punto. In questo caso il vettore tornerà in sé stesso. Consideriamo invece una 2-sfera e una curva formata da tre segmenti ortogonali appartenenti a geodetiche (es. due meridiani e un parallelo); se trasportiamo parallelamente un vettore tangente, esso tornerà nel punto ruotato di $\frac{\pi}{2}$. Risulta da qui evidente perché il trasporto parallelo sia il punto di partenza per la descrizione della curvatura.
+Osserviamo infine che il fatto che il vettore non torni in sé stesso è legato alla non commutabilità delle derivate covarianti.
+
+\section{Tensore di Riemann}
+Da ora in poi utilizzeremo la notazione con indici greci per sommare sulle coordinate spaziotemporali (0,1,2 \dots ), mentre latini per le sole spaziali (1,2,3 \dots).
+\begin{definizione}
+Sia $\omega$ una 1-forma, si definisce \textbf{tensore di Riemann} il tensore di tipo $\binom{1}{3}$ definito
+\begin{equation*}
+    \tensor{R}{^\sigma_{\rho\mu\nu}} \omega_\sigma = - [\nabla_\mu, \nabla_\nu]\omega_\rho
+\end{equation*}
+\end{definizione}
+
+A partire da questa definizione e sfruttando le proprietà della derivata covariante -- in particolare la regola di Leibniz e il comportamento di derivata ordinaria con funzioni -- possiamo ricavare l'espressione del tensore per un vettore tangente $v$:
+\begin{equation*}
+    \tensor{R}{^\rho_{\sigma\mu\nu}}v^\sigma = [\nabla_\mu, \nabla_\nu]v^\rho
+\end{equation*}
+
+Infatti sia $f\in \mathcal{F}(X)$, allora
+\begin{align*}
+    (\nabla_\mu \nabla_\nu - \nabla_\nu \nabla_\mu) f &= 
+        \nabla_\mu \partial_\nu f - \nabla_\nu\partial_\mu f = \partial_\mu\partial_\nu f -\tensor{\Gamma}{^\rho_{\mu\nu}}\partial_\rho f - \partial_\nu\partial_\mu f + \tensor{\Gamma}{^\rho_{\nu\mu}} \partial_\rho f \\
+        &=0
+\end{align*}
+avendo usato l'uguaglianza delle derivate miste e la simmetria di $\Gamma$. Sfruttiamo questo calcolo per scrivere
+\begin{align*}
+    0 &= (\nabla_\mu \nabla_\nu - \nabla_\nu \nabla_\mu)(v^\rho\omega_\rho) = \nabla_\mu (\omega_\rho \nabla_\nu v^\rho + v^\rho\nabla_\nu \omega_\rho) - \nabla_\nu( \omega_\rho \nabla_\mu v^\rho + v^\rho\nabla_\mu \omega_\rho) \\
+    &= (\nabla_\mu\omega_\rho)\nabla_\nu v^\rho + \omega_\rho\nabla_\mu\nabla_\nu v^\rho + (\nabla_\mu v^\rho)\nabla_\nu \omega_\rho + v^\rho \nabla_\mu\nabla_\nu \omega_\rho + \\
+    &- (\nabla_\nu \omega_\rho)\nabla_\mu v^\rho - \omega_\rho\nabla_\nu\nabla_\mu v^\rho - (\nabla_\nu v^\rho)\nabla_\mu\omega_\rho - v^\rho \nabla_\nu\nabla_\mu\omega_\rho\\
+    &=\omega_\rho( \nabla_\mu \nabla_\nu - \nabla_\nu \nabla_\mu)v^\rho + v^\rho(\nabla_\mu \nabla_\nu - \nabla_\nu \nabla_\mu)\omega_\rho  \\
+    &= \omega_\rho[\nabla_\mu,\nabla_\nu]v^\rho + v^\rho[\nabla_\mu,\nabla_\nu]\omega_\rho = \omega_\rho( [\nabla_\mu,\nabla_\nu]v^\rho - \tensor{R}{^\rho_{\sigma\mu\nu}}v^\sigma) \ \ \forall \omega_\rho
+\end{align*}
+
+Possiamo generalizzare la definizione del tensore di Riemann utilizzando un tensore di tipo $\binom{0}{2}$
+\begin{equation}
+    [\nabla_\mu, \nabla_\nu] t_{\rho\lambda} = -    \tensor{R}{^\sigma_{\rho\mu\nu}} t_{\sigma\lambda} -     \tensor{R}{^\sigma_{\lambda\mu\nu}} t_{\rho\sigma}
+    \label{eq.riemann_generaliz}
+\end{equation}
+basta infatti considerare la 1-forma $t_{\rho\lambda}v^\lambda$ per la quale vale la definizione del Riemann e applicare la regola di Leibniz, visto che è anche nota la scrittura del tensore di Riemann sui vettori.
+Ancora più in generale per un tensore $\binom{r}{s}$ ci saranno $r+s$ termini $R$ con segno $+$ per indice alto e $-$ per indice  basso.
+
+Calcoliamo le componenti del tensore di Riemann.
+\begin{align*}
+    (\nabla_\mu \nabla_\nu - \nabla_\nu \nabla_\mu)\omega_\rho &= \nabla_\mu(\partial_\nu\omega_\rho - \tensor{\Gamma}{^\sigma_{\nu\rho}}\omega_\sigma) - \nabla_\nu(\partial_\mu \omega_\rho - \tensor{\Gamma}{^\sigma_{\mu\rho}}\omega_\sigma) \\
+    &= \partial_\mu(\partial_\nu\omega_\rho - \tensor{\Gamma}{^\sigma_{\nu\rho}}\omega_\sigma) - \tensor{\Gamma}{^\lambda_{\mu\nu}}(\partial_\lambda\omega_\rho - \tensor{\Gamma}{^\sigma_{\lambda\rho}}\omega_\sigma )
+    - \tensor{\Gamma}{^\lambda_{\mu\rho}}(\partial_\nu\omega_\lambda - \tensor{\Gamma}{^\sigma_{\nu\lambda}}\omega_\sigma) +\\
+    &- \partial_\nu(\partial_\mu \omega_\rho - \tensor{\Gamma}{^\sigma_{\mu\rho}}\omega_\sigma) + \tensor{\Gamma}{^\lambda_{\nu\mu}}(\partial_\lambda\omega_\rho - \tensor{\Gamma}{^\sigma_{\lambda\rho}}\omega_\sigma) + \tensor{\Gamma}{^\lambda_{\nu\rho}}(\partial_\mu\omega_\lambda - \tensor{\Gamma}{^\sigma_{\mu\lambda}}\omega_\sigma) \\
+    &= -(\partial_\mu\tensor{\Gamma}{^\sigma_{\nu\rho}})\omega_\sigma + (\partial_\nu\tensor{\Gamma}{^\sigma_{\mu\rho}})\omega_\sigma + \tensor{\Gamma}{^\lambda_{\mu\rho}} \tensor{\Gamma}{^\sigma_{\nu\lambda}}\omega_\sigma -\tensor{\Gamma}{^\lambda_{\nu\rho}} \tensor{\Gamma}{^\sigma_{\mu\lambda}}\omega_\sigma \\
+    & \equiv - \tensor{R}{^\sigma_{\rho\mu\nu}}\omega_\sigma
+\end{align*}
+Pertanto otteniamo che:
+\begin{equation}
+\tensor{R}{^\sigma_{\rho\mu\nu}} = \partial_\mu\tensor{\Gamma}{^\sigma_{\nu\rho}}- \partial_\nu\tensor{\Gamma}{^\sigma_{\mu\rho}} +\tensor{\Gamma}{^\lambda_{\nu\rho}} \tensor{\Gamma}{^\sigma_{\mu\lambda}} - \tensor{\Gamma}{^\lambda_{\mu\rho}} \tensor{\Gamma}{^\sigma_{\nu\lambda}}
+\label{eq.riemcompon}
+\end{equation}
+
+Le principali proprietà:
+\begin{enumerate}
+    \item $R_{\rho\mu\nu\lambda} = - R_{\mu\rho\nu\lambda}$ (antisimmetrico con la permutazione dei primi due indici)
+    \item $R_{\rho\mu\nu\lambda} = - R_{\rho\mu\lambda\nu}$ (antisimmetrico con la permutazione degli ultimi due indici)
+    \item $R_{\rho\mu\nu\lambda} = R_{\nu\lambda\rho\mu}$ (simmetrico con lo scambio delle coppie di indici)
+    \item $R_{\mu[\rho\nu\lambda]} = 0$ detta \textit{1a identità di Bianchi}
+    \item $\tensor{R}{^\sigma_{\lambda[\nu\rho;\mu]}} = 0$ detta \textit{2a identità di Bianchi}
+\end{enumerate}
+Qui di seguito si riportano le dimostrazioni o i riferimenti a queste proprietà:
+\begin{enumerate}
+    \item Mostriamo per un qualsiasi $v$:
+    \begin{equation*}
+        [\nabla_\mu,\nabla_\nu]v^\rho = \tensor{R}{^\rho_{\sigma\mu\nu}}v^\sigma \implies g_{\lambda\rho} [\nabla_\mu,\nabla_\nu]v^\rho = \tensor{R}{^\rho_{\sigma\mu\nu}}v^\sigma g_{\lambda\rho}
+    \end{equation*}
+    Poiché la connessione è metrica, possiamo spostare la metrica $g$ portandola all'interno delle derivate covarianti:
+    \begin{equation*}
+        [\nabla_\mu,\nabla_\nu]  g_{\lambda\rho} v^\rho =  [\nabla_\mu,\nabla_\nu] v_\lambda =  \tensor{R}{_{\lambda\sigma\mu\nu}}v^\sigma = \tensor{R}{^\sigma_{\lambda\mu\nu}}v_\sigma  = - \tensor{R}{_{\sigma\lambda\mu\nu}}v^\sigma 
+    \end{equation*}
+    \item segue da definizione del tensore di Riemann e dalle proprietà dei commutatori. completare
+    \item vedi \cite{wald}
+    \item vedi \cite{wald}
+    \item Riscrivendo eq. \ref{eq.riemann_generaliz} come:
+    \begin{equation*}
+        (\nabla_\mu\nabla_\nu - \nabla_\nu \nabla_\mu) \nabla_\rho \omega_\lambda = - \tensor{R}{^\sigma_{\rho\mu\nu}}\nabla_\sigma \omega_\lambda - \tensor{R}{^\sigma_{\lambda\mu\nu}}\nabla_\rho\omega_\sigma
+    \end{equation*}
+    Si ha d'altra parte:
+    \begin{equation*}
+        \nabla_\mu(\nabla_\nu\nabla_\rho \omega_\lambda - \nabla_\rho\nabla_\nu\omega_\lambda) = \nabla_\mu (-\tensor{R}{^\sigma_{\lambda\nu\rho}}\omega_\sigma) = - \omega_\sigma\nabla_\mu\tensor{R}{^\sigma_{\lambda\nu\rho}} - \tensor{R}{^\sigma_{\lambda\nu\rho}}\nabla_\mu\omega_\sigma
+    \end{equation*}
+    Antisimmetrizzando queste ultime due equazioni in $\mu,\nu,\rho$, allora i membri a sinistra diventano uguali a quelli di destra:
+    \begin{equation*}
+        \tensor{R}{^\sigma_{[\rho\mu\nu]}} \nabla_\sigma\omega_\lambda + \tensor{R}{^\sigma_{\lambda[\mu\nu}}\nabla_{\rho]}\omega_\sigma = \omega_\sigma\nabla_{[\mu} \tensor{R}{^\sigma_{|\lambda|\nu\rho]}}+ \tensor{R}{^\sigma_{\lambda[\nu\rho}}\nabla_{\mu]}\omega_\sigma
+    \end{equation*}
+    Sfruttando la prima di identità di Bianchi, $\tensor{R}{^\sigma_{[\rho\mu\nu]}}=0$, mentre un altro termine si cancella perché $[\mu\nu\rho]$ e $[\nu\rho\mu]$ sono una permutazione pari quindi uguali. Si ottiene pertanto $\forall \omega_\sigma$:
+    \begin{equation*}
+        \omega_\sigma \nabla_{[\mu} \tensor{R}{^\sigma_{|\lambda|\nu\rho]}} = 0 
+    \end{equation*}
+    Potendo quindi concludere che:
+    \begin{equation*}
+        \nabla_{[\mu} \tensor{R}{^\sigma_{|\lambda|\nu\rho]}} = 0 = \tensor{R}{^\sigma_{\lambda[\nu\rho;\mu]}}
+    \end{equation*}
+    cioè la tesi.
+\end{enumerate}
+
+La prima identità di Bianchi è, esplicitamente:
+\begin{equation*}
+    R_{\mu\rho\nu\lambda} + R_{\mu\nu\lambda\rho} + R_{\mu\lambda\rho\nu} - R_{\mu\rho\lambda\nu} - R_{\mu\nu\rho\lambda} - R_{\mu\lambda\nu\rho} = 0
+\end{equation*}
+Sfruttando quindi le proprietà di antisimmetria degli indici, gli ultimi tre termini risultato uguali ai primi tre, cambiando il segno e allora la prima identità di Bianchi risulta riscrivibile come:
+\begin{equation}
+    R_{\mu\rho\nu\lambda} + R_{\mu\nu\lambda\rho} + R_{\mu\lambda\rho\nu} = 0
+    \label{eq.bianchi_prima_rifatta}
+\end{equation}
+
+Infine il numero di componenti indipendenti del tensore di Riemann in dimensione $n$ è determinato da (vedi \cite{wald}):
+\begin{equation*}
+    \frac{1}{12}n^2(n^2-1)
+\end{equation*}
+di queste, $\frac{1}{2}n(n-1)$ possono essere rappresentate dalle componenti del tensore di Ricci.
+\section{Tensore di Ricci, curvatura e tensore di Einstein}
+Utilizziamo il tensore di Riemann per introdurre ulteriori oggetti che ci serviranno per descrivere la curvatura.
+
+\begin{definizione}
+Definiamo il \textbf{tensore di Ricci}
+\begin{equation*}
+    R_{\mu\nu} = \tensor{R}{^\lambda_{\mu\lambda\nu}}
+\end{equation*}
+\end{definizione}
+Esso corrisponde alla traccia del tensore di Riemann calcolata sul terzo indice. Tale tensore è simmetrico, $R_{\mu\nu}=R_{\nu\mu}$, infatti:
+\begin{align*}
+    \tensor{R}{^\lambda_{\mu\rho\nu}} = g^{\lambda\sigma} R_{\sigma\mu\rho\nu} \overset{\text{prop. }3)}{=} g^{\lambda\sigma} R_{\rho\nu\sigma\mu} = g^{\lambda\sigma}g_{\rho\epsilon} \tensor{R}{^\epsilon_{\nu\sigma\mu}} 
+\end{align*}
+Imponiamo $\lambda = \rho$:
+\begin{align*}
+    R_{\mu\nu}= \tensor{R}{^\lambda_{\mu\lambda\nu}} = g^{\lambda\sigma}g_{\lambda\epsilon} \tensor{R}{^\epsilon_{\nu\sigma\mu}} = \tensor{\delta}{^\sigma_\epsilon} \tensor{R}{^\epsilon_{\nu\sigma\mu}} =\tensor{R}{^\sigma_{\nu\sigma\mu}} = R_{\nu\mu}
+\end{align*}
+A livello di notazione lo distinguiamo per l'uso di due indici, mentre in ambito matematico si tende ad usare il simbolo $Ric$.
+
+Per componenti e facendo uso di eq. \ref{eq.riemcompon}, si scrive il Ricci come:
+\begin{equation}
+    R_{\mu\nu}= \partial_\sigma\tensor{\Gamma}{^\sigma_{\nu\mu}}- \partial_\nu\tensor{\Gamma}{^\sigma_{\sigma\mu}} +\tensor{\Gamma}{^\lambda_{\nu\mu}} \tensor{\Gamma}{^\sigma_{\sigma\lambda}} - \tensor{\Gamma}{^\lambda_{\sigma\mu}} \tensor{\Gamma}{^\sigma_{\nu\lambda}}
+    \label{eq.riccicomponenti}
+\end{equation}
+\begin{definizione}
+Definiamo lo \textbf{scalare di curvatura}
+\begin{equation*}
+    R = \tensor{R}{^\nu_\nu}
+\end{equation*}
+vale a dire la traccia del tensore di Ricci.
+\end{definizione}
+
+A partire dal Ricci, si determina da:
+\begin{equation}
+    R = g^{\mu\nu}\left[
+    \partial_\sigma\tensor{\Gamma}{^\sigma_{\nu\mu}}- \partial_\nu\tensor{\Gamma}{^\sigma_{\sigma\mu}} +\tensor{\Gamma}{^\lambda_{\nu\mu}} \tensor{\Gamma}{^\sigma_{\sigma\lambda}} - \tensor{\Gamma}{^\lambda_{\sigma\mu}} \tensor{\Gamma}{^\sigma_{\nu\lambda}}
+    \right]
+    \label{eq.scalareRicci}
+\end{equation}
+\begin{esempio}
+    Per un toro bidimensionale (raggio $a$ del \virgolette{buco} e $b$ del \virgolette{canotto}) immerso in $\mathbb{R}^3$ tramite:
+    \begin{equation*}
+        \left\{\begin{array}{l}
+            x =(a+b\cos\phi)\cos\psi\\
+            y =(a+b\cos\phi)\sin\psi\\
+            z =b\sin\phi\\
+        \end{array}\right.
+    \end{equation*}
+    si determina la metrica immersa $ds^2 = (a+b\cos\phi)^2d\psi^2 + b^2d\phi$ con la quale si calcola lo scalare di curvatura:
+    \begin{equation*}
+        R= \frac{2\cos\phi}{b(a+b\cos\phi)}
+    \end{equation*}
+\end{esempio}
+
+Si può dimostrare che tutte le varietà bidimensionali hanno metrica che può essere scritta in forma conformemente piatta, cioè del tipo:
+\begin{equation*}
+    ds^2 = \Omega(x,y)(dx^2+dy^2)
+\end{equation*}
+in tale metrica, la curvatura scalare viene definita dalla formula:
+\begin{equation}
+    R =- \Omega^{-1}(\partial^2_x + \partial^2_y)\log\Omega
+    \label{eq.curvatura_conforme}
+\end{equation}
+Questa può essere ottenuta prendendo eq. \ref{eq.scalareRicci} e sfruttando in essa eq. \ref{eq.traccia_christoffel}; i calcoli vengono ulteriormente semplificati osservando che $\tensor{\Gamma}{^y_{yy}}= - \tensor{\Gamma}{^y_{xx}} = \frac{1}{2}\Omega^{-1}\partial_y\Omega = \frac{1}{2}\partial_y\log\Omega$ e $\tensor{\Gamma}{^x_{xx}}= - \tensor{\Gamma}{^x_{yy}}= \frac{1}{2}\Omega^{-1}\partial_x\Omega = \frac{1}{2}\partial_x\log\Omega$. Svolgendo i calcoli si ottiene la formula per la curvatura scalare.
+\begin{definizione}
+Definiamo il \textbf{tensore di Einstein}
+\begin{equation*}
+    G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu}
+\end{equation*}
+dove $g_{\mu\nu}$ è il tensore metrico.
+\end{definizione}
+
+Mostriamo che vale:
+\begin{equation*}
+    \nabla G = 0 \iff \tensor{G}{^\rho_{\mu;\rho}} = 0
+\end{equation*}
+A tal fine partiamo dalla seconda identità di Bianchi. Esplicitamente:
+\begin{align*}
+    0&=   \frac{1}{3!}(\tensor{R}{^\sigma_{\lambda\nu\rho;\mu}} + \tensor{R}{^\sigma_{\lambda\mu\nu;\rho}} + \tensor{R}{^\sigma_{\lambda\rho\mu;\nu}} - \tensor{R}{^\sigma_{\lambda\nu\mu;\rho}} - \tensor{R}{^\sigma_{\lambda\mu\rho;\nu}} - \tensor{R}{^\sigma_{\lambda\rho\nu;\mu}}) \\
+\intertext{Usando le proprietà 1, 2 di $R$:}
+    &= \frac{1}{3!}(
+    \tensor{R}{^\sigma_{\lambda\nu\rho;\mu}} + \tensor{R}{^\sigma_{\lambda\mu\nu;\rho}} + \tensor{R}{^\sigma_{\lambda\rho\mu;\nu}} + \tensor{R}{^\sigma_{\lambda\mu\nu;\rho}} + \tensor{R}{^\sigma_{\lambda\rho\mu;\nu}} + \tensor{R}{^\sigma_{\lambda\nu\rho;\mu}}) \\
+    &\implies 
+    \tensor{R}{^\sigma_{\lambda\nu\rho;\mu}} +
+    \tensor{R}{^\sigma_{\lambda\mu\nu;\rho}} +
+    \tensor{R}{^\sigma_{\lambda\rho\mu;\nu}} = 0
+\end{align*}
+Calcoliamo la traccia ponendo $\nu=\sigma$ e scambiamo per avere la somma saturata con l'indice in terza posizione:
+\begin{equation*}
+    \tensor{R}{^\sigma_{\lambda\sigma\rho;\mu}} +
+    \tensor{R}{^\sigma_{\lambda\mu\sigma;\rho}} +
+    \tensor{R}{^\sigma_{\lambda\rho\mu;\sigma}} = 
+    \tensor{R}{^\sigma_{\lambda\sigma\rho;\mu}} -
+    \tensor{R}{^\sigma_{\lambda\sigma\mu;\rho}} +
+    \tensor{R}{^\sigma_{\lambda\rho\mu;\sigma}} = 0
+\end{equation*}
+Quindi richiamando la definizione del tensore di Ricci:
+\begin{equation*}
+    R_{\lambda\rho;\mu}  - R_{\lambda\mu;\rho} +     \tensor{R}{^\sigma_{\lambda\rho\mu;\sigma}} = 0
+\end{equation*}
+A questo punto moltiplichiamo per $g^{\lambda\rho}$ ed eseguiamo il calcolo della componente della derivata covariante, sfruttando la metricità della connessione.
+\begin{align*}
+   0 &= \left( g^{\lambda\rho} R_{\lambda\rho} \right)_{;\mu} -
+    \left( g^{\lambda\rho} R_{\lambda\mu} \right)_{;\rho} +
+    \left( g^{\lambda\rho} \tensor{R}{^\sigma_{\lambda\rho\mu;\sigma}} \right)_{;\sigma} \\
+\intertext{Alzando correttamente gli indici del Ricci, si ottiene lo scalare curvatura e pertanto}
+    &= R_{;\mu} - \tensor{R}{^\rho_{\mu;\rho}} + \tensor{R}{^{\sigma\rho}_{\rho\mu;\sigma}} = 
+    R_{;\mu} - \tensor{R}{^\rho_{\mu;\rho}} - \tensor{R}{^{\rho\sigma}_{\rho\mu;\sigma}} \\
+    &= R_{;\mu}  - \tensor{R}{^\rho_{\mu;\rho}} - \tensor{R}{^\sigma_{\mu;\sigma}} = R_{;\mu}  - 2 \tensor{R}{^\rho_{\mu;\rho}} \\
+    &\implies R_{;\mu} = 2 \tensor{R}{^\rho_{\mu;\rho}}
+\end{align*}
+Dunque possiamo mostrare quanto detto:
+\begin{align*}
+    \tensor{G}{^\rho_{\mu;\rho}} &= \left( \tensor{R}{^\rho_\mu} - \frac{1}{2}R \tensor{g}{^\rho_\mu} \right)_{;\rho} = \tensor{R}{^\rho_{\mu;\rho}} - \frac{1}{2} R_{;\rho} \tensor{g}{^\rho_\mu} - \frac{1}{2} R \tensor{g}{^\rho_{\mu;\rho}} \\
+\intertext{Si sfrutta nuovamente la metricità nel terzo termine e il risultato precedente}
+    &= \tensor{R}{^\rho_{\mu;\rho}} - \frac{1}{2} R_{;\rho} \tensor{g}{^\rho_\mu} =  \tensor{R}{^\rho_{\mu;\rho}} -  \tensor{R}{^\sigma_{\rho;\sigma}} \tensor{g}{^\rho_\mu} = \tensor{R}{^\rho_{\mu;\rho}} - \tensor{R}{^\sigma_{\mu;\sigma}} = 0
+\end{align*}
+
+\section{Tensore di Weyl}
+\begin{definizione}
+    Definiamo il \textbf{tensore di Weyl}:
+    \begin{equation}
+        C_{\mu\nu\rho\sigma} = R_{\mu\nu\rho\sigma} - \frac{2}{n-2}\left( g_{\mu[\rho} R_{\sigma]\nu} - g_{\nu[\rho} R_{\sigma]\mu}\right) + \frac{2}{(n-1)(n-2)} R g_{\mu[\rho} g_{\sigma]\nu}
+        \label{eq.tensore_weyl}
+    \end{equation}
+\end{definizione}
+In dimensione 3 il tensore di Weyl è identicamente nullo; infatti il numero di componenti indipendenti del Riemann è pari a quelle determinate dal Ricci, pertanto il Ricci descrive completamente il tensore di curvatura e quello di Weyl è nullo. In dimensione $n>3$, le componenti del Riemann non descritte dal Ricci, sono descritte dal tensore di Weyl qui sopra.
+Se il tensore di Weyl si annulla in dimensione $\geq 4$ , allora la metrica è localmente conformemente piatta, ovvero esiste un sistema di coordinate locali dove il tensore metrico è proporzionale ad un tensore costante. Il tensore di Weyl possiede le stesse simmetrie sugli indici del tensore di Riemann con in più la proprietà di essere traceless, nel senso che svanisce per una qualsiasi contrazione di una coppia di indici. Come il tensore di Riemann, il tensore di Weyl esprime gli effetti delle forze mareali subite da un corpo in moto lungo una geodetica (vedi dopo l'equazione della deviazione geodetica), senza tuttavia possedere informazioni sulla deformazione dei volumi del corpo\footnote{Questo non l'abbiamo mostrato.}
+\begin{definizione}
+    Si definisce il \textbf{tensore di Schouten}:
+    \begin{equation}
+        L_{\mu\nu} = \frac{2}{n-2}\left( R_{\mu\nu} - \frac{R}{2(n-1)}g_{\mu\nu} \right)
+        \label{eq.tensore_schouten}
+    \end{equation}
+\end{definizione}
+In una varietà Ricci-piatta, il tensore di Schouten è nullo, mentre in una a curvatura costante $L_{\mu\nu} = \lambda g_{\mu\nu}$, $\lambda \in \mathbb R$.
+
+Tramite queste due definizioni, il tensore di Riemann può essere decomposto nella seguente maniera:
+\begin{equation}
+    R_{\mu\nu\rho\sigma} = C_{\mu\nu\rho\sigma} + 2 \left(g_{\mu[\rho} L_{\sigma]\nu} - g_{\nu[\rho} L_{\sigma]\mu}\right)
+    \label{eq.decomposizione_riemann_weyl}
+\end{equation}
+Questa è una riscrittura del tensore di Riemann in termini di una parte simmetrica a traccia nulla, il tensore di Weyl, e una parte con traccia, il tensore di Schouten. Questa scomposizione è possibile in quanto, per le proprietà degli indici del Riemann, il tensore definisce un endomorfismo simmetrico sullo spazio delle 2-forme (come sarà mostrato in \S\ref{para.cosmo}), dunque determina una matrice simmetrica che può essere decomposta in tale modo. Nelle varietà Ricci-piatte, essendo nullo lo Schouten, allora il tensore di Riemann coincide con Weyl. Qualora il tensore di Weyl fosse identicamente nullo, allora il tensore di Riemann risulta determinato dallo Schouten, a sua volta dipendente dal Ricci e dalla metrica.
+
+\begin{definizione}
+    Definiamo il \textbf{riscalamento di Weyl}, la trasformazione per il tensore metrico:
+    \begin{equation}
+        g_{\mu\nu} \mapsto \Tilde{g}_{\mu\nu} = e^{2\Omega(x)}g_{\mu\nu}
+        \label{eq.riscalam_weyl}
+    \end{equation}
+\end{definizione}
+Il tensore di Weyl ha la proprietà di essere invariante sotto questa trasformazione:
+\begin{equation*}
+    \Tilde{C}_{\mu\nu\rho\sigma} = C_{\mu\nu\rho\sigma}
+\end{equation*}
+Mentre gli altri tensori di curvatura non sono invarianti sotto trasformazioni conformi, il tensore di Weyl è costruito in modo tale da essere invariante.
+
+\section{Equazione della deviazione geodetica}
+Cerchiamo di comprendere la relazione che lega la tendenza delle geodetiche ad avvicinarsi o allontanarsi tra di loro alla curvatura della varietà. Questo costituisce un ulteriore modo per caratterizzare una curvatura.
+
+Consideriamo una famiglia di geodetiche $\gamma_s(t)$ tali che, $\forall s \in \mathbb{R}$, la curva è con parametro affine $t$. Il parametro $s$ permette lo spostamento in una differente geodetica. Definiamo $T$ il vettore tangente alla curva:
+\begin{equation*}
+    T=\frac{\partial}{\partial t} \implies \nabla_T T^\mu = 0
+\end{equation*}
+e similmente il vettore dello spostamento ad una geodetica vicina:
+\begin{equation*}
+    X=\frac{\partial}{\partial s}
+\end{equation*}
+
+Dimostriamo che esiste sempre una riparametrizzazione $t \mapsto t' = b(s)t + c(s)$ con la quale si può sempre ottenere l'ortogonalità tra $X, T$, i.e. $X^\mu T_\mu = 0$ per $t=0$ e $\nabla_X(T^\mu T_\mu) = 0$. Osserviamo che ciò implica che $T^\mu T_\mu$ sia indipendente da $t$ ed $s$ poiché:\footnote{Stiamo sfruttando $\nabla_T(T^\mu T_\mu) = (\nabla_T T^\mu)T_\mu + T^\mu(\nabla_T T_\mu) = T_\mu \nabla_T T^\mu + g_{\mu\nu}T^\mu \nabla_T( g^{\mu\nu}T_\mu) = T_\mu \nabla_T T^\mu + T_\nu \nabla_T T^\nu$}
+\begin{equation*}
+    \nabla_T (T^\mu T_\mu) = 2 T_\mu \nabla_T T^\mu = 0
+\end{equation*}
+
+Mostriamo che una tale riparametrizzazione esiste scrivendo la trasformazione inversa:
+\begin{equation*}
+    t = \frac{t' - c(s')}{b(s')} \ ,  \ s'=s
+\end{equation*}
+e usiamola per calcolare i vettori $X', T'$ corrispondenti:
+\begin{equation*}
+    T' = \frac{\partial}{\partial t'} = \frac{\partial t}{\partial t'} \frac{\partial}{\partial t} + \frac{\partial s}{\partial t'} \frac{\partial}{\partial s} = \frac{1}{b}\partial_t = \frac{1}{b} T \implies T= b T'
+\end{equation*}
+\begin{equation*}
+    X' = \frac{\partial}{\partial s'} = \frac{\partial t}{\partial s'} \frac{\partial}{\partial s} + \frac{\partial s}{\partial s'} \frac{\partial}{\partial s} =  \partial_s + \frac{\partial t}{\partial s'} \partial_t = X + \frac{\partial t}{\partial s'} T \implies X' = X + \frac{\partial t}{\partial s'} T
+\end{equation*}
+allora calcoliamo il prodotto scalare:
+\begin{equation*}
+    < X', T' > = < X + \frac{\partial t}{\partial s'} T , b^{-1} T > = b^{-1}\frac{\partial t}{\partial s'} <T,T> + b^{-1}<X, T >
+\end{equation*}
+quindi calcoliamo la derivata (l'indice primato di $b, c$ indica la derivazione rispetto $s'$) e imponiamo l'ortogonalità a $t'=0$:
+\begin{align*}
+    \frac{cb'-bc'}{b^2}<T,T>|_{t'=0} + <X, T>|_{t'=0} = 0 \\
+    \implies \frac{c'(s')b(s') -c(s')b'(s')}{b^2(s')} = \frac{<X,T>}{<T,T>}\big|_{t'=0}
+\end{align*}
+Imponiamo $\nabla_{X'}(<T',T'>) = 0$. Poiché l'elemento che si deriva è una funzione, vale la proprietà che la derivata covariante coincida con la usuale derivata:
+\begin{equation*}
+    \frac{\partial}{\partial s'} <T', T'> = \frac{\partial}{\partial s'} (b^{-2} <T,T> ) = 0
+\end{equation*}
+Il termine tra parentesi è solo funzione di $s'$ ed essendo a derivata nulla, è costante. Senza perdita di generalità, a meno di un riscalamento, lo poniamo uguale ad uno:
+\begin{equation*}
+    \frac{1}{b^2}<T,T> = \textrm{cost.} = 1 \implies b^2= <T,T>
+\end{equation*}
+Osserviamo, richiamando la definizione di $t(t')$:
+\begin{equation*}
+    <T, T>|_{t'=0} =    <T, T>|_{t=-c/b} =    <T, T>|_{t} \ \ \forall t
+\end{equation*}
+cioè indipendente da $t$, per quanto appena mostrato. Sfruttiamo dunque $ b^2= <T,T>$, allora si ottiene:
+\begin{equation*}
+    c'(s')b - b'c = <X, T>|_{t'=0}
+\end{equation*}
+ovvero una equazione differenziale lineare del primo ordine in $c(s')$, ben risolvibile. In questo modo abbiamo mostrato che esiste sempre una tale riparametrizzazione con le condizioni volute.
+
+Sapendo che si possono avere le condizioni di ortogonalità tra $X, T$ a $t=0$ e $T_\mu T^\mu = \textrm{cost.}$ lungo $X$, andiamo avanti con il ragionamento. Vale la relazione $[X,T]=[\partial_s, \partial_t]=0$. Questo implica, usando la torsione nulla e eq. \ref{eq.commutnabla}:
+\begin{equation}
+    X^\mu\nabla_\mu T^\nu = T^\mu\nabla_\mu X^\nu \label{eq.formuuladerivgeod}
+\end{equation}
+Dunque sfruttando quest'ultima e il fatto che, essendo $T$ in una geodetica il vettore tangente, $\nabla_T T=0$:
+\begin{align*}
+    \nabla_T(X^\mu T_\mu) &=  (\nabla_T X^\mu)T_\mu +  X^\mu\nabla_T(T_\mu) =  (\nabla_{T^\nu{\partial_\nu}} X^\mu)T_\mu = T^\nu (\nabla_\nu X^\mu) T_\mu \\
+    &= X^\nu(\nabla_\nu T^\mu) T_\mu = \frac{1}{2} X^\nu(\nabla_\nu T^\mu T_\mu) = \frac{1}{2} \nabla_X( T^\mu T_\mu) = 0
+\end{align*}
+per la prima proprietà della derivata covariante generale (funzione costante e vettore tangente di funzione costante è nullo). In tal modo $X^\mu T_\mu$ è costante lungo ogni geodetica e poiché è nullo per $t=0$, lo è per ogni $t$.
+\begin{definizione}
+Definiamo
+\begin{equation*}
+    v^\mu = T^\nu \nabla_\nu X^\mu 
+\end{equation*}
+la \textbf{velocità relativa di una geodetica} rispetto una infinitesimamente vicina.
+Definiamo
+\begin{equation*}
+    a^\mu = T^\nu \nabla_\nu v^\mu
+\end{equation*}
+la \textbf{accelerazione relativa di una geodetica} rispetto una infinitesimamente vicina.
+\end{definizione}
+
+Mostriamo come l'accelerazione sia legata al tensore di Riemann. Partendo dalla sua definizione:
+\begin{align*}
+    a^\mu &= T^\nu\nabla_\nu (T^\lambda \nabla_\lambda X^\mu) \overset{(\ref{eq.formuuladerivgeod})}{=} T^\nu \nabla_\nu (X^\lambda \nabla_\lambda T^\mu )
+    =(T^\nu\nabla_\nu X^\lambda)(\nabla_\lambda T^\mu) + T^\nu X^\lambda\nabla_\nu \nabla_\lambda T^\mu \\ &= X^\nu\nabla_\nu T^\lambda \nabla_\lambda T^\mu + T^\nu X^\lambda( \nabla_\lambda \nabla_\nu T^\mu + \tensor{R}{^\mu_{\sigma\nu\lambda}}T^\sigma) \\
+    &= X^\nu\nabla_\nu T^\lambda \nabla_\lambda T^\mu + T^\lambda X^\nu( \nabla_\nu \nabla_\lambda T^\mu + \tensor{R}{^\mu_{\sigma\lambda\nu}}T^\sigma)
+    = X^\nu\nabla_\nu (T^\lambda\nabla_\lambda T^\mu) + \tensor{R}{^\mu_{\sigma\lambda\nu}}T^\lambda X^\nu T^\sigma\\
+    &= X^\nu \nabla_\nu \nabla_T T^\mu + \tensor{R}{^\mu_{\sigma\lambda\nu}}T^\lambda X^\nu T^\sigma
+\end{align*}
+il primo termine è nullo poiché geodetica e otteniamo pertanto:
+\begin{equation} 
+    a^\mu = \tensor{R}{^\mu_{\sigma\lambda\nu}} T^\sigma T^\lambda X^\nu
+    \label{eq.deviazionegeodesica}
+\end{equation}
+è detta \textbf{equazione della deviazione geodesica}. Questa ci dice che se il tensore di Riemann è nonnullo allora le geodetiche accelerano una verso l'altra (o via dall'altra) all'interno dello spazio, o alternativamente, due geodetiche inizialmente parallele, non rimangono più parallele. \'E così stabilito un legame tra la curvatura dello spazio e la famiglia delle geodetiche su di esso.
+
+Questa accelerazione che si ha tra geodetiche, e quindi la relativa forza, è di tipo fittizio, dovuta quindi alla curvatura dello spazio. Si parla infatti di forze di marea.
+
+\section{Equazioni di struttura di Maurer-Cartan}
+Il formalismo \virgolette{vielbein} introdotto in \S\ref{para.veilbein} risulta particolarmente utile per calcolare i tensori di curvatura e la torsione.
+Per primo notiamo che in generale:
+\begin{itemize}
+    \item $\tensor{X}{_\mu^a}$ può essere inteso come una 1-forma $\tensor{X}{_\mu^a}dx^\mu$ che prende valori nello spazio vettoriale dell'indice $a$.
+    \item $\tensor{A}{_{\mu\nu}^a_b}$ , se antisimmetrico in $\mu,\nu$, può essere inteso come una 2-forma $\frac{1}{2}\tensor{A}{_{\mu\nu}^a_b}dx^\mu \wedge dx^\nu$ che assume valori nello spazio tensoriale $\binom{1}{1}$ sugli indici $a, b$.
+\end{itemize}
+Se facessimo la derivata esterna come:
+\begin{equation*}
+    \tensor{dX}{_{\mu\nu}^a} = \partial_\mu \tensor{X}{_\nu^a} - \partial_\nu\tensor{X}{_\mu^a}
+\end{equation*}
+non trasformerebbe come un vettore sotto trasformazioni di Lorentz locali. La derivata esterna nella forma:
+\begin{equation}
+    \tensor{dX}{_{\mu\nu}^a} + \tensor{(\omega \wedge X)}{_{\mu\nu}^a} = \partial_\mu \tensor{X}{_\nu^a} - \partial_\nu\tensor{X}{_\mu^a} + \tensor{\omega}{_\mu^a_b}\tensor{X}{_\nu^b} - \tensor{\omega}{_\nu^a_b}\tensor{X}{_\mu^b}
+    \label{eq.deriv_esterna_indici_latini_greci}
+\end{equation}
+trasforma correttamente.
+
+Possiamo in questo modo vedere la torsione $\tensor{T}{_{\mu\nu}^\lambda} = \tensor{\Gamma}{^\lambda_{\mu\nu}} - \tensor{\Gamma}{^\lambda_{\nu\mu}}$ come una 2-forma antisimmetrica negli indici $\mu,\nu$ che trasforma:
+\begin{equation*}
+    \tensor{T}{_{\mu\nu}^a} = \tensor{e}{^a_\lambda} \tensor{T}{_{\mu\nu}^\lambda}
+\end{equation*}
+e il tensore di Riemann $\tensor{R}{^\alpha_{\beta\mu\nu}}$ , anch'esso antisimmetrico in $\mu,\nu$, che trasforma come:
+\begin{equation*}
+    \tensor{\mathcal{R}}{^a_{b\mu\nu}} = \tensor{e}{^a_\alpha}\tensor{e}{^\beta_b}\tensor{R}{^\alpha_{\beta\mu\nu}}
+\end{equation*}
+
+Scrivendo:
+\begin{align}
+    e^a &= \tensor{e}{^a_\mu}dx^\mu \\
+    \tensor{\omega}{^a_b} &= \tensor{\omega}{_\mu^a_b}dx^\mu
+\end{align}
+Si definiscono in questo modo la \textbf{2-forma di torsione}:
+\begin{equation}
+    T^a = \frac{1}{2}\tensor{T}{_{\mu\nu}^a}dx^\mu \wedge dx^\nu
+    \label{eq.2forma_torsione}
+\end{equation}
+e la \textbf{2-forma di curvatura}:
+\begin{equation}
+    \tensor{\mathcal R}{^a_b} = \frac{1}{2}\tensor{\mathcal R}{^a_{b\mu\nu}}dx^\mu \wedge dx^\nu
+    \label{eq.2forma_curvatura}
+\end{equation}
+Le relazioni che definiscono questi due tensori in termini di base generica e connessione di spin sono dette \textbf{equazioni di struttura di Maurer-Cartan}:
+\begin{align}
+    T^a &= de^a + \tensor{\omega}{^a_b}\wedge e^b \label{eq.maurer_cartan_torsione} \\
+    \tensor{\mathcal R}{^a_b} &= d\tensor{\omega}{^a_b} + \tensor{\omega}{^a_c}\wedge\tensor{\omega}{^c_b} \label{eq.maurer_cartan_riemann}
+\end{align}
+e sono equivalenti alle altre definizioni note.
+
+Vediamo l'equivalenza con la definizione della torsione, usando eq. \ref{eq.deriv_esterna_indici_latini_greci}-\ref{eq.2forma_torsione}:
+\begin{align*}
+    \tensor{T}{_{\mu\nu}^\lambda} &= \tensor{e}{^\lambda_a}\tensor{T}{_{\mu\nu}^a} =\tensor{e}{^\lambda_a}(\partial_\mu \tensor{e}{^a_\nu} - \partial_\nu \tensor{e}{^a_\mu} + \tensor{\omega}{_\mu^a_b}\tensor{e}{^b_\nu} - \tensor{\omega}{_\nu^a_b}\tensor{e}{^b_\mu} )\\
+    &= \tensor{\Gamma}{^\lambda_{\mu\nu}} - \tensor{\Gamma}{^\lambda_{\nu\mu}}
+\end{align*}
+
+La prima identità di Bianchi si può determinare da eq. \ref{eq.maurer_cartan_torsione}:
+\begin{equation*}
+    dT^a = dde^a + d(\tensor{\omega}{^a_b}\wedge e^b) = d\tensor{\omega}{^a_b}\wedge e^b - \tensor{\omega}{^a_b}\wedge d e^b
+\end{equation*}
+Avendo usato le proprietà della derivata esterna. Se usiamo ora sul primo termine eq. \ref{eq.maurer_cartan_riemann} e sul secondo eq. \ref{eq.maurer_cartan_torsione}:
+\begin{equation*}
+    dT^A + \tensor{\omega}{^a_b}\wedge T^b = \tensor{\mathcal R}{^a_b}\wedge e^b + \tensor{\omega}{^a_b}\wedge \tensor{\omega}{^b_c}\wedge e^c -\tensor{\omega}{^a_c}\wedge \tensor{\omega}{^c_b}\wedge e^b
+\end{equation*}
+Si trova che la prima Bianchi è scrivibile come:
+\begin{equation}
+    DT^a = \tensor{\mathcal R}{^a_b}\wedge e^b
+    \label{eq.prima_bianchi_connessione_spin}
+\end{equation}
+con $D$ la derivata esterna nella connessione di spin, eq. \ref{eq.deriv_esterna_indici_latini_greci}.
+Ritroviamo l'identità di Bianchi nota se imponiamo che $T^a = 0$, quindi senza torsione. SI avraà $\tensor{\mathcal R}{^a_b}\wedge e^b = 0$ che esplicitamente, tramite eq. \ref{eq.2forma_curvatura} e riscrivendo $e^b = \tensor{e}{^b_\lambda}dx^\lambda$:
+\begin{equation*}
+    \frac{1}{2}\tensor{\mathcal R}{^a_{b\mu\nu}} \tensor{e}{^b_\lambda} dx^\mu \wedge dx^\nu \wedge dx^\lambda = 0
+\end{equation*}
+Poiché il triplo prodotto wedge è antisimmetrico così come il Riemann, non si compie errore nello riscrivere:
+\begin{equation*}
+    \frac{1}{2}\tensor{\mathcal R}{^a_{[\lambda\mu\nu]}} dx^\mu \wedge dx^\nu \wedge dx^\lambda = 0
+\end{equation*}
+ovvero $\tensor{\mathcal R}{^a_{[\lambda\mu\nu]}} = 0 \iff \tensor{R}{^\rho_{[\lambda \mu\nu]}} = 0$, la forma nota della 1a Bianchi.
+
+\begin{esempio}
+Sia la metrica sfericamente simmetrica:
+    \begin{equation*}
+        ds^2 = - f(r) dt^2 + h(r)dr^2 + r^2(d\theta^2 + \sin^2\theta d\phi^2)
+    \end{equation*}
+come già visto si deducono:
+    \begin{equation*}
+        \begin{array}{cccc}
+            \hat{\theta}^{(0)} = \sqrt{f}dt & \hat{\theta}^{(1)} = \sqrt{h}dr & \hat{\theta}^{(2)} = rd\theta & \hat{\theta}^{(3)} = r\sin\theta d\phi
+        \end{array}
+    \end{equation*}
+Siccome $\hat{\theta}^{(a)}$  in una base delle coordinate sono $\tensor{e}{^a_\mu}$ possiamo scrivere $e^a$ invece di $\hat{\theta}^{(a)}$. Si calcolano allora:
+\begin{equation*}
+    d e^0 = \frac{f'}{2\sqrt{f}}dr\wedge dt = \frac{f'}{2\sqrt{f}} \frac{e^1}{\sqrt{h}}\wedge \frac{e^0}{\sqrt{f}} = \frac{f'}{2f\sqrt{h}}e^1 \wedge e^0
+\end{equation*}
+Se paragoniamo a $de^0 + \tensor{\omega}{^0_b}\wedge e^b = 0$ da eq. \ref{eq.maurer_cartan_torsione}, si trova:
+\begin{equation*}
+    \tensor{\omega}{^0_1} = \frac{f'}{2f\sqrt{h}}e^0
+\end{equation*}
+Similmente si effettua per gli altri termini:
+\begin{align*}
+d e^1 &= 0 \\
+d e^2 &= dr\wedge d\theta = \frac{e^1}{\sqrt{h}}\wedge \frac{e^2}{r}
+\end{align*}
+Confrontata:
+\begin{equation*}
+    \tensor{\omega}{^2_1} = \frac{1}{r\sqrt{h}}e^2
+\end{equation*}
+\begin{align*}
+    de^3 &= \sin\theta ddr\wedge d\phi + r\cos\theta d\theta \wedge d\phi \\
+     &= \sin\theta \frac{e^1}{\sqrt{h}} \wedge \frac{e^3}{r\sin\theta} + r\cos\theta \frac{e^2}{r}\wedge\frac{e^3}{r\sin\theta}
+\end{align*}
+che confrontata ancora:
+\begin{align*}
+        \tensor{\omega}{^3_1} = \frac{1}{r\sqrt{h}}e^3 && \tensor{\omega}{^3_2}= \frac{\cot \theta}{r}e^2
+\end{align*}
+Così sono calcolati velocemente i coefficienti della connessione di spin. Le componenti del Riemann $\tensor{\mathcal R}{^a_{b\mu\nu}}$ vengono dunque trovate facendo $d\tensor{\omega}{^a_b} + \tensor{\omega}{^a_c}\wedge\tensor{\omega}{^c_b}$.
+\end{esempio}
+
+
+
+\section{Vettori e Tensori di Killing}\label{para.killing}
+Consideriamo il diffeomorfismo:
+\begin{equation*}
+    x^\mu \mapsto x'^\mu = x^\mu + \xi^\mu(x)
+\end{equation*}
+con $\xi^\mu$ infinitesimo, nel senso che rappresenta una perturbazione di $x$, e sarà considerato in termine lineare. Ci interessa capire come cambia la metrica sotto questa trasformazione di coordinate; in particolare se la metrica rimane invariata è presente una simmetria. L'obiettivo sarà quindi determinare questa simmetria.
+
+Dobbiamo calcolare $\delta g_{\mu\nu} = g'_{\mu\nu}(x) - g_{\mu\nu}(x)$, sapendo che nelle due mappe vale (in quanto la lunghezza è indipendente dalle coordinate):
+\begin{equation*}
+    g'_{\mu\nu}(x') dx'^\mu dx'^\nu = g_{\mu\nu}(x) dx^\mu dx^\nu
+\end{equation*}
+Partiamo proprio da questa:
+\begin{align*}
+  g'_{\mu\nu}(x') dx'^\mu dx'^\nu &=  g'_{\mu\nu}(x')(dx^\mu + \tensor{\xi}{^\mu_{,\lambda}}dx^\lambda)(dx^\nu + \tensor{\xi}{^\nu_{,\sigma}}dx^\sigma) \\
+    &=  g'_{\mu\nu}(x')dx^\mu dx^\nu +  g'_{\mu\nu}(x')dx^\mu \tensor{\xi}{^\nu_{,\sigma}}dx^\sigma 
+    + g'_{\mu\nu}(x')dx^\nu \tensor{\xi}{^\mu_{,\lambda}}dx^\lambda + o(\xi^2)\\
+\intertext{Eseguiamo scambio $\sigma \rightarrow \nu, \nu \rightarrow \lambda$ sul secondo addendo e $\lambda \rightarrow \mu, \mu \rightarrow \lambda$  sul terzo:}
+    &= g'_{\mu\nu}(x')dx^\mu dx^\nu + g'_{\mu\lambda}(x') \tensor{\xi}{^\lambda_{,\nu}} dx^\mu dx^\nu + g'_{\lambda\nu}(x') \tensor{\xi}{^\lambda_{,\mu}} dx^\mu dx^\nu + o(\xi^2)
+\end{align*}
+Otteniamo eguagliandola con l'altro termine:
+\begin{equation*}
+    g_{\mu\nu}(x) = g'_{\mu\nu}(x') + g'_{\mu\lambda}(x') \tensor{\xi}{^\lambda_{,\nu}} + g'_{\lambda\nu}(x') \tensor{\xi}{^\lambda_{,\mu}}
+\end{equation*}
+Sviluppiamo in serie di Taylor il tensore metrico primato nell'intorno di $x$:
+\begin{equation*}
+    g'_{\mu\nu}(x') = g'_{\mu\nu}(x) + \frac{\partial g'_{\mu\nu}}{\partial x'^\lambda}\Big|_x (\underbrace{x'^\lambda - x^\lambda}_{\xi^\lambda}) + o(\xi^2) = g'_{\mu\nu}(x) + g'_{\mu\nu , \lambda}(x) \xi^\lambda + o(\xi^2)
+\end{equation*}
+quindi sostituendo nella precedente:
+\begin{equation*}
+    g_{\mu\nu}(x) = g'_{\mu\nu}(x) + g'_{\mu\lambda}(x) \tensor{\xi}{^\lambda_{,\nu}} + g'_{\lambda\nu}(x) \tensor{\xi}{^\lambda_{,\mu}} + g'_{\mu\nu , \lambda}(x) \xi^\lambda + o(\xi^2)
+\end{equation*}
+Osserviamo che da quest'ultima vale:
+\begin{align*}
+    g_{\mu\nu, \lambda}(x) &= g'_{\mu\nu, \lambda}(x) + o(\xi) \\
+    g'_{\mu\nu}(x) &= g_{\mu\nu}(x) + o(\xi)
+\end{align*}
+in quanto al primo ordine in $\xi$; l'aggiunta di $\xi$ che compare nell'equazione rende queste ultime due compatibili con l'approssimazione in $o(\xi^2)$. Pertanto otteniamo tutto in funzione della coordinata $x$:
+\begin{equation*}
+    g_{\mu\nu}(x) = g'_{\mu\nu}(x) + g_{\mu\lambda}(x) \tensor{\xi}{^\lambda_{,\nu}} + g_{\lambda\nu}(x) \tensor{\xi}{^\lambda_{,\mu}} + g_{\mu\nu , \lambda}(x) \xi^\lambda + o(\xi^2)
+\end{equation*}
+che ci permette ora di calcolare:
+\begin{equation*}
+    \delta g_{\mu\nu} = - g_{\mu\lambda} \tensor{\xi}{^\lambda_{,\nu}} - g_{\lambda\nu} \tensor{\xi}{^\lambda_{,\mu}} -  g_{\mu\nu , \lambda} \xi^\lambda
+\end{equation*}
+Proseguiamo riscrivendo i termini tramite Leibniz:
+\begin{align*}
+    - g_{\mu\lambda}\tensor{\xi}{^\lambda_{,\nu}} &= -\partial_\nu( g_{\mu\lambda}\xi^\lambda) + g_{\mu\lambda,\nu}\xi^\lambda\\
+    - g_{\lambda\nu}\tensor{\xi}{^\lambda_{,\mu}} &= -\partial_\mu( g_{\lambda\nu}\xi^\lambda) + g_{\lambda\nu,\mu}\xi^\lambda
+\end{align*}
+Nel calcolo delle derivate della metrica, facciamo comparire i simboli di Christoffel
+\begin{align*}
+    \delta g_{\mu\nu} &= - g_{\mu\nu , \lambda}\xi^\lambda  - \partial_\nu( g_{\mu\lambda}\xi^\lambda) + g_{\mu\lambda,\nu}\xi^\lambda - \partial_\mu( g_{\lambda\nu}\xi^\lambda) + g_{\lambda\nu,\mu}\xi^\lambda \\
+    &= - (\tensor{\Gamma}{^\eta_{\lambda\mu}}g_{\eta\nu} + \tensor{\Gamma}{^\eta_{\lambda\nu}}g_{\eta\mu})\xi^\lambda  - \xi_{\mu,\nu} +
+        (\tensor{\Gamma}{^\eta_{\nu\mu}}g_{\eta\lambda} + \tensor{\Gamma}{^\eta_{\nu\lambda}}g_{\eta\mu})\xi^\lambda - \xi_{\nu,\mu} +
+        (\tensor{\Gamma}{^\eta_{\mu\lambda}}g_{\eta\nu} + \tensor{\Gamma}{^\eta_{\mu\nu}}g_{\eta\lambda})\xi^\lambda \\
+    &= - \Gamma_{\nu\lambda\mu}\xi^\lambda - \Gamma_{\mu\lambda\nu}\xi^\lambda - \xi_{\mu,\nu} +\Gamma_{\lambda\nu\mu}\xi^\lambda +\Gamma_{\mu\nu\lambda}\xi^\lambda - \xi_{\nu,\mu} + \Gamma_{\eta\mu\lambda}\xi^\lambda + \Gamma_{\lambda\mu\nu}\xi^\lambda \\
+    &= - (\partial_\mu \xi_\nu - \tensor{\Gamma}{^\lambda_{\mu\nu}}\xi_\lambda) - (\partial_\nu \xi_\mu - \tensor{\Gamma}{^\lambda_{\nu\mu}}\xi_\lambda)
+\end{align*}
+dove si è fatto uso di $\Gamma_{\lambda\nu\mu}\xi^\lambda = g_{\alpha\lambda}\tensor{\Gamma}{^\alpha_{\nu\mu}}\xi^\lambda= \tensor{\Gamma}{^\alpha_{\nu\mu}}\xi_\alpha$ e quindi rinominando $\alpha \leftrightarrow \lambda$.
+
+    Si ottiene infine:
+\begin{equation}
+    \delta g_{\mu\nu} = - \nabla_\mu \xi_\nu - \nabla_\nu \xi_\mu
+\end{equation}
+con la quale possiamo richiedere che rimanga invariata la metrica, $\delta g_{\mu\nu} = 0$ ovvero:
+\begin{equation}
+    \nabla_\mu \xi_\nu + \nabla_\nu \xi_\mu = 0
+    \label{eq.killing}
+\end{equation}
+I vettori $\xi$ che soddisfano tale equazione sono detti \textbf{vettori di Killing} e determinano le simmetrie nella varietà (e di conseguenza nello spaziotempo della GR). Eq. \ref{eq.killing} può anche essere scritta, facendo uso dell'operatore di simmetrizzazione, come:
+\begin{equation*}
+    \nabla_{(\nu}\xi_{\mu)} = 0
+\end{equation*}
+
+I vettori di Killing sono legati al tensore di Riemann tramite \textbf{l'identità di Killing}:
+\begin{equation}
+    \nabla_\mu \nabla_\nu \xi_\rho = \tensor{R}{^\sigma_{\mu\nu\rho}}\xi_\sigma
+    \label{eq.identità_killing}
+\end{equation}
+Infatti partendo dalla definizione del Riemann e usando eq. \ref{eq.killing}:
+\begin{equation*}
+    [\nabla_\mu,\nabla_\nu]\xi_\rho = \nabla_\mu\nabla_\nu\xi_\rho - \nabla_\nu\nabla_\mu\xi_\rho = \nabla_\mu\nabla_\nu\xi_\rho + \nabla_\nu\nabla_\rho\xi_\mu = - \tensor{R}{^\sigma_{\rho\mu\nu}}\xi_\sigma   
+\end{equation*}
+Utilizziamo l'identità di Bianchi con le proprietà di scambio degli indici, eq. \ref{eq.bianchi_prima_rifatta}, per la sostituzione:
+\begin{equation*}
+     - \tensor{R}{^\sigma_{\rho\mu\nu}} = \tensor{R}{^\sigma_{\mu\nu\rho}} + \tensor{R}{^\sigma_{\nu\rho\mu}}
+\end{equation*}
+così da avere
+\begin{equation*}
+    \nabla_\mu\nabla_\nu\xi_\rho + \nabla_\nu\nabla_\rho\xi_\mu =  \tensor{R}{^\sigma_{\mu\nu\rho}}\xi_\sigma + \tensor{R}{^\sigma_{\nu\rho\mu}}\xi_\sigma
+\end{equation*}
+Osservando che l'ordine degli indici è lo stesso, termine a termine, si ha il risultato.
+
+Riportiamo ora un lemma molto utile ai nostri scopi:
+\begin{lemma}\label{teo.killing}
+Sia una varietà (pseudo-)riemanniana di dimensione $n$. Allora ci sono al massimo
+\begin{equation*}
+    \frac{1}{2}n(n+1)
+\end{equation*}
+vettori di Killing.
+Ci sono esattamente $\frac{1}{2}n(n+1)$ vettori di Killing se e solo se lo spazio è a curvatura costante cioè
+\begin{equation}
+    R_{\mu\nu\rho\sigma} = \lambda(g_{\mu\rho}g_{\nu\sigma} - g_{\mu\sigma}g_{\nu\rho} )
+    \label{eq.riemann_curvatura_costante}
+\end{equation}
+con $\lambda =$ cost.
+\end{lemma}
+
+Si può dimostrare (vedi \S\ref{para.curvacost}) che
+\begin{equation}
+    \lambda = \frac{R}{n(n-1)}
+    \label{eq.costvettorikillinglambda}
+\end{equation}
+dove $R$ è lo scalare curvatura, costante e indipendente dal punto.
+
+Infine abbiamo un importante risultato che lega i vettori di Killing alle geodetiche. Sia $\xi$ un vettore di Killing e $\gamma$ una geodetica con vettore tangente $u$, allora
+\begin{equation}
+    u \cdot \xi = u^\mu \xi_\mu = \textrm{cost. lungo la geodetica}
+    \label{eq.killgeodetiche}
+\end{equation}
+Questo vale a dire che il prodotto scalare tra il vettore di Killing e quello tangente è una costante del moto.
+
+Dimostriamolo. Basta mostrare che la derivata covariante sia nulla:
+\begin{align*}
+    \nabla_u (u^\mu \xi_\mu) &= (\nabla_u u^\mu)\xi_\mu + u^\mu \nabla_u \xi_\mu = u^\mu \nabla_u \xi_\mu = u^\mu u^\nu \nabla_\nu \xi_\mu \overset{eq. \ref{eq.killing}}{=} - u^\mu u^\nu \nabla_\mu \xi_\nu = -u^\nu \nabla_u \xi_\nu = 0
+\end{align*}
+dove ci siamo posti nella parametrizzazione affine.
+
+\begin{definizione}
+Chiamiamo un campo vettoriale su una varietà (pseudo-)riemanniana che preserva la metrica un \textbf{campo vettoriale di Killing}.
+\end{definizione}
+Una definizione analoga a quella appena fornita viene data nella forma: 
+\begin{definizione}
+Se il gruppo di diffeomorfismi (locali) ad un parametro $\phi_t$ generati dal campo vettoriale $K$ è un gruppo di isometrie (per ogni  $t$, la trasformazione $\phi_t$ è isometria), allora $K$ viene detto campo vettoriale di Killing.
+\end{definizione}
+
+La definizione completa fa uso della \textbf{derivata di Lie}\footnote{In particolare chiamato $X$ il campo vettoriale di Killing con metrica della varietà $g$, allora rispetta $\mathcal{L}_X g=0$}, un campo tensoriale che permette di calcolare la variazione di un campo tensoriale (nel nostro caso la metrica) lungo il flusso di un altro campo tensoriale (nel nostro caso il campo di Killing).
+
+Si può mostrare che dati $r$ campi vettoriali di Killing linearmente indipendenti, dove $r$ segue il precedente lemma \ref{teo.killing}, questi formino un'algebra di Lie di dimensione $r$ su numeri reali; il gruppo locale di diffeomorfismi generati da questi campi vettoriali, è un gruppo di Lie di isometrie sulla varietà. Ovviamente il gruppo completo di isometrie sulla varietà può comprendere altre isometrie discrete che non sono generate dai campi di Killing (ad esempio riflessioni, corrispondenti a parti del gruppo sconnesse dall'identità dove si definisce l'algebra).
+
+\begin{definizione}
+Chiamiamo \textbf{tensore di Killing} il tensore $K_{\mu_1\dots\mu_m}$ completamente simmetrico tale che
+\begin{equation*}
+    \nabla_{(\nu}K_{\mu_1\dots\mu_m)} = 0
+\end{equation*}
+\end{definizione}
+Risulta evidente che i vettori di Killing sono i tensori con $m=1$.
+Si ha quindi la generalizzazione del risultato ottenuto con i vettori; detta $\gamma$ una curva geodetica con vettore tangente $u$, allora
+\begin{equation*}
+    K_{\mu_1\dots\mu_m} u^{\mu_1}\dots u^{\mu_m} = \textrm{cost. lungo la geodetica}
+\end{equation*}
+
+La dimostrazione è analoga, ma formalmente più complicata, del caso prima visto; si dimostra che sia costante mostrando che è nulla la derivata covariante, facendo uso della regola di Leibniz iterata e usando il fatto che $u^{\mu_i}$ sono tangenti a geodetica per ottenere:
+\begin{equation*}
+    \nabla_u(  K_{\mu_1\dots\mu_m} u^{\mu_1}\dots u^{\mu_m}) = u^{\mu_1}\dots u^{\mu_m}\nabla_u K_{\mu_1\dots \mu_m} = u^{\mu_1}\dots u^{\mu_m} u^\nu \nabla_\nu K_{\mu_1\dots \mu_m} 
+\end{equation*}
+Sfruttando la definizione del tensore di Killing e il fatto che sia completamente simmetrico (così che molte permutazioni dei suoi indici siano uguali) si può fare la sostituzione:
+\begin{equation*}
+    \nabla_\nu K_{\mu_1\dots\mu_m} = - \nabla_{\mu_1} K_{\nu\mu_2\dots \mu_m} - \nabla_{\mu_2} K_{\nu\mu_1\mu_3 \dots \mu_m} - \dots - \nabla_{\mu_m} K_{\nu\mu_1\dots\mu_{m-1}}
+\end{equation*}
+A questo punto si ha un diverso indice saturato come direzione della derivata covariante, ma che permette comunque di avere il vettore tangente $u$ grazie ai termini $ u^{\mu_1}\dots u^{\mu_m} u^\nu$. Così si ha:
+\begin{align*}
+    u^{\mu_1}\dots u^{\mu_m} u^\nu \nabla_\nu K_{\mu_1\dots \mu_m} &= - u^\nu u^{\mu_2}\dots u^{\mu_m} \nabla_u K_{\nu\mu_2\dots\mu_m} - \dots - u^\nu u^{\mu_1}\dots u^{\mu_{m-1}} \nabla_u K_{\nu\mu_1\dots\mu_{m-1}} \\
+    &= -m( u^{\mu_1} \dots u^{\mu_m} \nabla_u K_{\mu_1\dots\mu_m})= 0
+\end{align*}
+cioè la tesi, dopo aver rinominato gli indici.

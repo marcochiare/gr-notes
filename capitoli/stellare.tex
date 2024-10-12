@@ -1,0 +1,131 @@
+\chapter{Equazioni di struttura stellare}
+La soluzione di Schwarzschild descrive lo spaziotempo esterno ad una distribuzione statica, non rotante e sferica di materia. Le equazioni di Einstein possono tuttavia essere risolte in questa stessa configurazione per ottenere la metrica interna alla distribuzione di materia. Le equazioni che si ottengono sono pertanto di importante interesse astrofisico per comprendere la struttura delle stelle e altri oggetti compatti.
+
+La metrica statica e a simmetria sferica più generale la possiamo scrivere nella forma:
+\begin{equation}
+    ds^2 = -e^{2a(r)}dt^2 + e^{2b(r)}dr^2 + r^2(d\theta^2 \sin^2\theta d\phi^2)
+    \label{eq.metrica_statica_generale_exp}
+\end{equation}
+da cui:
+\begin{equation*}
+    \begin{array}{cccc}
+        e^0 = e^adt & e^1 = e^b dr & e^2 = rd\theta & e^3 = r\sin\theta d\phi
+    \end{array}
+\end{equation*}
+
+Poiché vogliamo descrivere l'interno della distribuzione di materia e non il vuoto, dobbiamo assumere un tensore energia-impulso. Prendiamo il fluido perfetto che, con l'ipotesi di isotropia ben compatibile con la simmetria del sistema, ha la forma:
+\begin{equation*}
+    T_{ab} = diag(\rho, p, p, p)
+\end{equation*}
+
+Le equazioni di Einstein diverse da zero sono:
+\begin{align}
+    G_{00} &= \frac{1}{r^2} - e^{-2b}\left(\frac{1}{r^2} - \frac{2b'}{r}\right) = 8\pi G \rho \label{eq.g00_stellare} \\
+    G_{11} &= -\frac{1}{r^2}+e^{-2b}\left(\frac{1}{r^2} + \frac{2a'}{r}\right) = 8\pi G p \label{eq.g_11_stellare}\\
+    G_{22} &= e^{-2b}\left(a'^2 -a'b' + a'' +\frac{a' - b'}{r}\right) = 8\pi G p \label{eq.g22_stellare}\\
+    G_{33} &= G_{22}
+\end{align}
+Se definiamo $u = re^{-2b}$, allora la sua derivata è:
+\begin{equation}
+    \frac{u'}{r^2} = e^{-2b}\left( \frac{1}{r^2} - \frac{2b'}{r}\right)
+    \label{eq.u_stellare}
+\end{equation}
+che è esattamente il termine da sostituire in eq. \ref{eq.g00_stellare} quando viene riscritta in termini di $u$:
+\begin{equation*}
+    u' = 1 - 8\pi G \rho r^2 \implies u = r- 2GM(r)
+\end{equation*}
+dove $M(r) = 4\pi \int_0^r \rho(r')r'^2dr'$ è la massa totale contenuta entro un raggio $r$.
+Così si ottiene in termini di $b(r)$:
+\begin{equation}
+    e^{-2b} = \frac{u}{r} = 1 - \frac{2GM(r)}{r}
+    \label{eq.expb_stellare}
+\end{equation}
+Osserviamo che è quasi il termine di Schwarzschild, ma con massa variabile.
+Se sommiamo $G_{00} + G_{11}$;
+\begin{equation*}
+    \frac{2}{r}e^{-2b}(a'+b') = 8\pi G (\rho + p)
+\end{equation*}
+che integrata su $r$ con la condizione al contorno $a(\infty) = - b(\infty)$:
+\begin{equation}
+    a = - b + 4\pi G\int_{\infty}^r e^{2b(r')}r'(\rho + p) dr'
+    \label{eq.a_stellare}
+\end{equation}
+Di fatto questo integrale non è fino ad infinito, ma fino al raggio della stella poiché dopo vi è il vuoto e $\rho = p = 0$. A questo punto se $\rho, p$ risultassero note, il campo gravitazionale sarebbe determinato.
+
+Risolviamo eq. \ref{eq.g_11_stellare} per $a'$ e poi deriviamo rispetto $r$:
+\begin{equation*}
+    a'' =2b'e^{2b}(4\pi Gpr + \frac{1}{2r}) + e^{2b}\left(4\pi G(p'r + p) - \frac{1}{2r^2}\right) + \frac{1}{2r^2} 
+\end{equation*}
+Dunque se la sostituiamo in eq. \ref{eq.g22_stellare}:
+\begin{equation*}
+    e^{-2b}\left(a'^2 -a'b' + \frac{1}{2r^2} + \frac{a' - b'}{r}\right) + 2b'\left(4\pi Gpr + \frac{1}{2r}\right) + 4\pi G p' r - \frac{1}{2r^2} = 4\pi Gp
+\end{equation*}
+Usando eq. \ref{eq.g00_stellare} per eliminare $e^{-2b}(\frac{1}{2r^2} - \frac{b'}{r}) - \frac{1}{2r^2}$ e eq. \ref{eq.g_11_stellare} per eliminare $4\pi G pr + \frac{1}{2r}$:
+\begin{equation*}
+    e^{-2b}(a' + b')(a' + \frac{1}{r}) +4\pi Gp'r= 4\pi G(p + \rho)
+\end{equation*}
+Usando infine eq. \ref{eq.a_stellare} per riscrivere $e^{-2b}(a'+b')$ in funzione di $(\rho + p)r$, si ottiene:
+\begin{equation}
+    a' = - \frac{p'}{\rho + p}
+    \label{eq.a_primo_stellare}
+\end{equation}
+Osserviamo che questa equazione si potrebbe ottenere dalla legge di conservazione $\nabla_\mu T^{\mu\nu} = 0$.
+
+D'altro canto se usiamo eq. \ref{eq.g_11_stellare} per isolare $a'$ e sostituiamo eq. \ref{eq.expb_stellare} si ottiene:
+\begin{equation*}
+    a' = \frac{1}{1- \frac{2GM(r)}{r}}\left( 4\pi Gpr + \frac{1}{2r}\right) - \frac{1}{2r}
+\end{equation*}
+che confrontata con il risultato precedente, eq. \ref{eq.a_primo_stellare} ci permette di ricavare:
+\begin{equation}
+    p' = - \frac{G(\rho + p)(M(r) + 4\pi r^3 p)}{r^2\left(1 - \frac{2GM(r)}{r}\right)}
+    \label{eq.tov}
+\end{equation}
+Questa è \textbf{l'equazione di Tolman-Oppenheimer-Volkov} (TOV). Si può notare come al raggio $R$ della stella, la pressione sia nulla, mentre al di fuori di essa valga la metrica di Schwarzschild con massa $M(R) = 4\pi \int_0^R \rho(r')r'^2dr'$. L'equazione TOV generalizza nel caso della relatività generale, l'equazione newtoniana dell'equilibrio idrostatico;
+\begin{equation*}
+    p' = - \frac{GM(r)}{r^2}\rho
+\end{equation*}
+Si può notare come sia presente un termine di pressione $p$ dovuto al fatto che la pressione stessa agisce come sorgente del campo gravitazionale all'interno del tensore energia-impulso. Siccome poi la gravità agisce anche sul termine $p$, si ha la sostituzione $\rho \mapsto \rho + p$. La forza gravitazionale aumenta più velocemente di $\frac{1}{r^2}$ e quindi viene sostituita dal termine $r^{-2}(1- \frac{2GM(r)}{r})^{-1}$.
+
+Queste modifiche determinano un limite superiore alla massa di oggetti compatti come le stelle di neutroni. Assumiamo una equazione di stato $p=p(\rho)$. Consideriamo il fluido come incomprimibile, $\rho = \cost$, così:
+\begin{equation*}
+    M(r) = \frac{4}{3}\pi \rho r^3
+\end{equation*}
+\begin{equation*}
+    e^{-2b} = 1 - \frac{8\pi G}{3}\rho r^2
+\end{equation*}
+
+In questo caso l'eq. \ref{eq.tov} diventa:
+\begin{equation*}
+    p' = - \frac{4\pi G r(\rho +p)(\frac{\rho}{3}+p)}{1 - 8\pi G\rho r^2/3}
+\end{equation*}
+Può essere risolta con separazione delle variabili:
+\begin{equation*}
+     -\frac{dp}{(\rho + p)(\rho/3 +p)} = \frac{4\pi G rdr}{1 - 8\pi G\rho r^2/3}
+\end{equation*}
+e usando anche:
+\begin{equation*}
+    -\frac{dp}{(\rho + p)(\rho/3 + p)} = \frac{3}{2\rho} \left( \frac{dp}{\rho + p} - \frac{dp}{\rho/3+p}\right)
+\end{equation*}
+si ottiene il risultato generale:
+\begin{equation*}
+    p(r) = \rho \frac{C/3 -(1-8\pi G\rho r^2/3)^{1/2}}{(1 - 8\pi G\rho r^2/3)^{1/2} - C}
+\end{equation*}
+Usando la condizione al contorno $p(R) = 0$ allora la pressione in funzione del raggio è:
+\begin{equation}
+    p(r) = \rho \frac{(1-8\pi G\rho R^2/3)^{1/2} - (1-8\pi G\rho r^2/3)^{1/2}}{(1-8\pi G\rho r^2/3)^{1/2}- 3(1-8\pi G\rho R^2/3)^{1/2}}
+    \label{eq.p_incomprim_stellare}
+\end{equation}
+Questa presenta una divergenza per $r^2 = - \frac{3}{\pi G \rho} + 9R^2$ che giace tra $(0,R)$ se:
+\begin{equation*}
+    \frac{1}{3\pi G\rho} < R^2 < \frac{3}{8\pi G \rho}
+\end{equation*}
+Se $R^2 < \frac{1}{3\pi G\rho}$ invece non c'è alcuna divergenza. Se usiamo la massa del caso incomprimibile, $M(R)= \frac{4}{3}\pi \rho R^3$ allora questo caso limite si ha con:
+\begin{equation*}
+    R= \frac{9}{8}R_S
+\end{equation*}
+dove $R_S$ è il raggio di Schwarzschild. In questa maniera si ha un limite superiore alla massa:
+\begin{equation}
+    M = \frac{4}{3}\pi\rho R^3 < \frac{4}{3}\pi \rho \left(\frac{1}{3\pi G\rho}\right)^{3/2} = \frac{4}{9}(3\pi G^3\rho)^{-1/2}
+    \label{eq.limite_tov}
+\end{equation}
+Questo è il limite della massa dovuto a TOV.

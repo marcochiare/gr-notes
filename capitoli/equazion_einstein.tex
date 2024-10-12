@@ -1,0 +1,445 @@
+\chapter{Equazioni di Einstein della relatività generale}
+\section{Tensore Energia-Momento}
+Per descrivere le distribuzioni continue di materia, si usa in relatività ristretta il \textbf{tensore energia-momento} $T_{\mu\nu}$ definito:
+\begin{itemize}
+    \item $T^{00}$ è la densità di energia
+    \item $T^{0i}=T^{i0}$ è la densità della quantità di moto
+    \item $T^{ij}=-S^{ij}$ con $S$ tensore degli sforzi 
+\end{itemize}
+La conservazione del tensore energia-momento per un sistema isolato è espressa da:
+\begin{equation*}
+    \partial_\mu T^{\mu\nu} = 0
+\end{equation*}
+Invece per un sistema non isolato, dove è presente una densità di forza $k^\nu$, si scrive:
+\begin{equation*}
+    \partial_\mu T^{\mu\nu} = k^\nu
+\end{equation*}
+
+\subsection{Tensore energia-momento nella teoria dei campi}
+All'interno di una teoria di campo dove è definita una densità di lagrangiana $\mathcal{L}(\phi, \partial \phi)$, dipendente dal campo $\phi$ (con componenti $\phi_n$) e dalle sue derivate, il teorema di Noether ci permette di affermare che qualora $\mathcal{L}$ goda di una simmetria continua (i.e. sia invariante per mezzo di trasformazioni del campo dipendenti da un parametro continuo $\alpha$) e soddisfi le equazioni del moto, allora vi è una corrente:
+\begin{equation*}
+    J_\mu = \sum_n \frac{\partial \mathcal{L}}{\partial (\partial_\mu \phi_n)}\frac{\delta \phi_n}{\delta \alpha}
+\end{equation*}
+associata alla simmetria che si conserva. Segue la presenza di una carica totale conservata:
+\begin{equation*}
+    Q = \int d^3 x J_0
+\end{equation*}
+
+Consideriamo invece una trasformazione che coinvolge i punti dello spaziotempo, non i soli campi; la simmetria globale dovuta all'invarianza per traslazioni spaziotemporali, ovvero il fatto che la fisica in un punto $x$ rimanga la stessa di un punto diverso $y$. Come vedremo questa sarà una simmetria dell'azione più che della lagrangiana.
+
+Leghiamo pertanto i due punti per mezzo di una traslazione $y^\nu = x^\nu - \xi^\nu$, con $\xi^\nu$ un quadrivettore costante; i campi scalari trasformano secondo $\phi(x) \rightarrow \phi(x+\xi)$. Ragionando in termini di trasformazioni infinitesime:
+\begin{equation*}
+    \phi(x) \rightarrow \phi(x+\xi) = \phi(x) + \xi^\nu \partial_\nu \phi(x) + \dots 
+\end{equation*}
+Una teoria invariante sotto traslazioni globali gode di questa sostituzione.
+Le trasformazioni per i campi (scalari, tensoriali, spinoriali \dots ) risultano:
+\begin{equation*}
+    \begin{array}{ccc}
+        \frac{\delta \phi}{\delta \xi^\nu} = \partial_\nu \phi & & \frac{\delta \mathcal{L}}{\delta \xi^\nu} = \partial_\nu \mathcal{L}
+    \end{array}
+\end{equation*}
+Poiché è una derivata totale si ha
+\begin{equation*}
+    \delta S = \int d^4 x \delta \mathcal{L} = \xi^\nu \int d^4 x \partial_\nu \mathcal{L} = 0
+\end{equation*}
+a riprova di quanto detto sulla simmetria dell'azione.
+
+Variando la lagrangiana e usando le equazioni del moto si ottiene:
+\begin{equation*}
+    \frac{\delta \mathcal{L}}{\delta \xi^\nu} = \partial_\mu \left( \sum_n \frac{\partial \mathcal{L}}{\partial (\partial_\mu \phi_n)}\frac{\delta \phi_n}{\delta \xi^\nu} \right) = \partial_\nu\mathcal{L}
+\end{equation*}
+ovvero la conservazione della quantità:
+\begin{equation*}
+    \partial_\mu \left( \sum_n \frac{\partial \mathcal{L}}{\partial (\partial_\mu \phi_n)}\frac{\delta \phi_n}{\delta \xi^\nu}  - g_{\mu\nu}\mathcal{L}\right)
+\end{equation*}
+
+Le quattro simmetrie producono quattro correnti per ogni indice $\nu$ ottenendo pertanto il tensore:
+\begin{equation}
+    T_{\mu\nu} = \sum_n \frac{\partial \mathcal{L}}{\partial (\partial_\mu \phi_n)}\frac{\delta \phi_n}{\delta \xi^\nu}  - g_{\mu\nu}\mathcal{L}
+    \label{eq.tensore_enimpulso_teocampi}
+\end{equation}
+\section{Relazione geometria-distribuzione di massa: equazioni di Einstein}
+Si ricerca l'equazione che permette di descrivere come la geometria dello spaziotempo cambi, e in particolare come essa curvi, in presenza di distribuzioni di massa. Per fare questo eseguiremo un confronto euristico con la gravitazione newtoniana, per dedurre l'equazione che dovrà poi essere verificata (come avvenne storicamente attraverso i \virgolette{test classici} della teoria).
+
+Consideriamo nella teoria newtoniana due particelle \virgolette{vicine}, cioè con vettore separazione $\bm{y}$ infinitesimo. Detto $\phi$ il potenziale gravitazionale newtoniano, si ha che vale l'equazione per la loro accelerazione relativa (o accelerazione di marea, si tende anche usare):
+\begin{equation}
+    \bm{a} = -(\bm{y}\cdot \nabla) \nabla\phi
+    \label{eq.accrelativanewton}
+\end{equation}
+Infatti detta $\bm{x}$ la posizione di una particella, per l'altra si ha $\bm{x} + \bm{y}$ e valgono le equazioni del moto newtoniane:
+\begin{equation*}
+    \left\{\begin{array}{l}
+        \frac{d^2 x^i}{dt^2} = - \partial_i \phi (\bm{x}) \\
+         \frac{d^2 (x^i+ y^i)}{dt^2} = - \partial_i \phi (\bm{x}+\bm{y})
+    \end{array}\right.
+\end{equation*}
+Poiché $\bm{y}$ è infinitesimo, sviluppiamo:
+\begin{equation*}
+    - \partial_i \phi (\bm{x}+\bm{y}) \approx - \partial_i \phi (\bm{x}) -\partial_j \partial_i \phi(\bm{x}) y^j
+\end{equation*}
+che sostituita ci fornisce
+\begin{equation*}
+    \frac{d^2 y^i}{dt^2} = - y^j \partial_j \partial_i \phi(\bm{x})
+\end{equation*}
+a dimostrare l'equazione iniziale.
+
+In relatività generale si considera invece che i corpi, per il principio di minima azione, si muovono lungo geodetiche ben determinate in uno spaziotempo di forma generica da eq. \ref{eq.geodetiche}, con un comportamento di accelerazione relativa descritta dall'equazione della deviazione geodetica, eq. \ref{eq.deviazionegeodesica}:
+\begin{equation*}
+    a^\mu =\tensor{R}{^\mu_{\sigma\lambda\nu}}v^\sigma v^\lambda y^\nu
+    \label{eq.accrelativaGR}
+\end{equation*}
+Confrontandola con eq. \ref{eq.accrelativanewton} (resa \virgolette{covariante} rendendo $i\rightarrow \mu$), abbiamo il suggerimento che valga la corrispondenza:
+\begin{equation}
+    \tensor{R}{^\mu_{\sigma\lambda\mu}}v^\sigma v^\lambda \Longleftrightarrow -\partial_\mu \partial^\mu \phi
+    \label{eq.primacorrispondenzaGR}
+\end{equation}
+
+D'altra parte sappiamo che nella gravitazione newtoniana, vale l'equazione di Poisson:
+\begin{equation}
+    \nabla^2 \phi = 4\pi G \rho \overset{G=1}{=} 4 \pi \rho
+    \label{eq.poissonnewton}
+\end{equation}
+per descrivere il legame tra la densità di massa (e quindi energia) e il campo gravitazionale. In relatività generale si sfrutta invece il tensore di energia-impulso $T$ per descrivere una distribuzione di continua di energia-materia; un osservatore con quadrivelocità $v$ misura la densità di energia\footnote{In un sistema in quiete $v^\sigma = (1,0,0,0)$ e allora $\rho = T_{00}$}:
+\begin{equation}
+    \rho = T_{\sigma\lambda}v^\sigma v^\lambda
+    \label{eq.rhomisurata}
+\end{equation}
+Osservando $\partial_\mu \partial^\mu \phi =  \nabla^2 \phi$ e sostituendo l'equazione qui sopra in eq. \ref{eq.poissonnewton} facendo poi uso della precedente corrispondenza dedotta eq. \ref{eq.primacorrispondenzaGR}, otteniamo:
+\begin{equation*}
+    - \nabla^2 \phi = - 4\pi \rho = - 4 \pi T_{\sigma\lambda}v^\sigma v^\lambda = - \partial_\mu \partial^\mu \phi \Longleftrightarrow \tensor{R}{^\mu_{\sigma\lambda\mu}} = - R_{\sigma\lambda}
+\end{equation*}
+Tutto ciò ci suggerisce l'equazione:
+\begin{equation}
+    R_{\sigma\lambda} = 4 \pi T_{\sigma\lambda}
+    \label{eq.GReqipotesi}
+\end{equation}
+che mette in relazione il tensore di Ricci con il tensore energia-impulso. Questa equazione fu la prima postulata da Einstein per legare la geometria dello spaziotempo alla distribuzione di materia; tuttavia è stata presto abbandonata per essere poi corretta, in quanto afflitta da un importante problema.
+
+Considerando infatti la conservazione dell'energia-impulso con eq. \ref{eq.GReqipotesi}:
+\begin{equation*}
+    \nabla_\mu T^{\mu\nu} = (4\pi)^{-1}\nabla_\mu R^{\mu\nu} = 0
+\end{equation*}
+D'altra parte sapendo che in generale il tensore $G_{\mu\nu}= R_{\mu\nu} -\frac{1}{2}Rg_{\mu\nu}$ è a derivata covariante nulla (con $g_{\mu\nu}$ covariantemente costante):
+\begin{equation*}
+    \nabla_\mu G^{\mu\nu} = \nabla_\mu R^{\mu\nu} - \frac{1}{2}g^{\mu\nu} \nabla_\mu R = - \frac{1}{2}g^{\mu\nu} \nabla_\mu R = 0
+\end{equation*}
+Abbiamo l'importante conseguenza che $\nabla_\mu R = 0 \iff R=$ cost. , sarebbe a dire che $T=\tensor{T}{^\mu_\mu}=$ cost. in tutto l'universo che è una condizione sulla distribuzione di materia assolutamente non fisica (oltretutto è ora noto che l'universo è in espansione quindi è ancora più assurdo).
+
+Per eliminare questo conflitto tra l'identità di Bianchi (che ci permise di scrivere $\nabla_\mu G^{\mu\nu} =0$) e la conservazione di energia-impulso, si considera invece quella che è l'effettiva \textbf{equazione di Einstein per la relatività generale}:
+\begin{equation}
+    G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu} = 8 \pi T_{\mu\nu}
+    \label{eq.GRequazioneeinstein}
+\end{equation}
+oppure, riportando tutte le costanti poste in precedenza uguali a uno:
+\begin{equation}
+     G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu} = \frac{8 \pi G}{c^4} T_{\mu\nu}
+\end{equation}
+
+Infatti non c'è più conflitto e si può dire che l'identità di Bianchi implica la conservazione dell'energia-momento:
+\begin{equation*}
+    \nabla_\mu G^{\mu\nu} = 0 = 8\pi \nabla_\mu T^{\mu\nu}
+\end{equation*}
+
+Calcoliamo la traccia di eq. \ref{eq.GRequazioneeinstein}:
+\begin{equation*}
+    R-\frac{1}{2}R \cdot 4 = 8 \pi T \implies R= -8 \pi T
+\end{equation*}
+Sostituendo questo termine in eq. \ref{eq.GRequazioneeinstein}:
+\begin{equation}
+    R_{\mu\nu}= 8\pi \left( T_{\mu\nu} - \frac{1}{2}g_{\mu\nu} T \right)
+    \label{eq.GRRicci}
+\end{equation}
+Permette di determinare il tensore di Ricci a partire dall'energia-impulso. Sfruttiamo questa equazione dedotta da eq. \ref{eq.GRequazioneeinstein} per mostrare che le equazioni di Einstein conducono alle stesse condizioni viste nella deduzione euristica.
+
+In situazioni dove la teoria newtoniana è applicabile, l'energia della materia misurata da un osservatore in buona approssimazione solidale alla massa misurata (quindi in quiete con esso), è molto più grande degli sforzi materiali e pertanto possiamo approssimare:
+\begin{equation*}
+    T = \tensor{T}{^\mu_\mu} \approx \tensor{T}{^0_0} = - \rho \overset{eq. \ref{eq.rhomisurata}}{=} - T_{\sigma\lambda}v^\sigma v^\lambda
+\end{equation*}
+Moltiplicando eq. \ref{eq.GRRicci} per $v^\mu v^\nu$ e poi sostituendo questa sopra (dove ricordiamo valere $g_{\mu\nu}v^\mu v^\nu = -1$) si ottiene:
+\begin{align*}
+    R_{\mu\nu}v^\mu v^\nu &= 8\pi T_{\mu\nu} v^\mu v^\nu -4\pi g_{\mu\nu} v^\mu v^\nu T = 8\pi T_{\mu\nu} v^\mu v^\nu - 4\pi  T_{\sigma\lambda} v^\sigma v^\lambda \\
+    &= 4 \pi T_{\mu\nu}v^\mu v^\nu \\
+    &\implies R_{\mu\nu} = 4 \pi T_{\mu\nu}
+\end{align*}
+Abbiamo ricavato l'eq. \ref{eq.GReqipotesi} dedotta nel ragionamento iniziale, ma che non era compatibile a partire dalle equazioni di Einstein.
+
+Riassumendo si può dire che in relatività generale lo spaziotempo è descritto da una varietà differenziabile munita di metrica $g$ lorentziana. La curvatura della metrica è legata alla distribuzione di materia dalle equazioni di Einstein, eq. \ref{eq.GRequazioneeinstein}. I corpi si muovono in tale spaziotempo lungo geodetiche descritte da eq. \ref{eq.geodetiche}, dove i simboli di Christoffel sono determinati dalla metrica stessa secondo eq. \ref{eq.connlevicivita}. Tutto questo è esprimibile nella citazione:
+
+\begin{displayquote}
+    Lo spaziotempo dice alla materia come muoversi; la materia dice allo spaziotempo come curvarsi.
+    \textit{(John Archibald Wheeler)}
+\end{displayquote}
+
+
+\section{Gravità linearizzata}\label{para.gravlineare}
+Con gravità linearizzata intendiamo descrivere quelle situazioni in cui non è presente una particolarmente intensa distribuzione di massa da rendere considerevolmente curvo lo spazio (es. un buco nero o altri corpi super massicci.). Siamo quindi in una condizione di debole gravità: è il caso che permette la descrizione del nostro sistema solare, dove lo spazio è \virgolette{quasi piatto}. Questo viene tradotto matematicamente col descrivere una metrica della relatività generale $g$ che si discosti dalla metrica di Minkowski $\eta$ per un fattore perturbativo infinitesimo, $h$\footnote{Affinché venga mantenuta la simmetria della metrica $g$, anche tale fattore perturbativo deve essere simmetrico sotto scambio di indici. Inoltre supporremo si comporti \virgolette{bene} con le derivate seconde, così che le miste siano uguali. Pertanto vale $h_{\mu\nu,\alpha\beta}=h_{\nu\mu,\alpha\beta}=h_{\mu\nu,\beta\alpha}=h_{\nu\mu,\beta\alpha}$}:
+\begin{equation}
+    g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}
+    \label{eq.metricalineare}
+\end{equation}
+Segue
+\begin{equation*}
+    g^{\mu\nu}= \eta^{\mu\nu} -h^{\mu\nu}
+\end{equation*}
+Infatti
+\begin{align*}
+    g^{\mu\nu}g_{\nu\alpha} &= (\eta^{\mu\nu} - h^{\mu\nu})(\eta_{\nu\alpha} +h_{\nu\alpha}) =\tensor{\delta}{^\mu_\alpha} + \eta^{\mu\nu}h_{\nu\alpha} -\eta_{\nu\alpha}h^{\mu\nu} + o(h^2) \\
+    &= \tensor{\delta}{^\mu_\alpha} + \tensor{h}{^\mu_\alpha} - \tensor{h}{^\mu_\alpha} +o(h^2) = \tensor{\delta}{^\mu_\alpha}
+\end{align*}
+In particolare per alzare e abbassare gli indici verrà utilizzata la metrica di Minkowski, così per preservare la linearità in $h$.
+
+Nota la metrica, calcoliamo tutte le quantità di interesse, sempre approssimando al primo ordine. Per i coefficienti di connessione, eq. \ref{eq.connlevicivita} (ricordando che $\eta$ ha elementi costanti):
+\begin{align}
+    \tensor{\Gamma}{^\mu_{\nu\rho}} &= \frac{1}{2}g^{\mu\lambda}( g_{\rho\lambda,\nu} + g_{\lambda\nu,\rho} - g_{\nu\rho,\lambda} ) = \frac{1}{2}g^{\mu\lambda}( h_{\rho\lambda,\nu} + h_{\lambda\nu,\rho} - h_{\nu\rho,\lambda}) \nonumber \\
+    &\approx \frac{1}{2}\eta^{\mu\lambda}(h_{\rho\lambda,\nu} + h_{\lambda\nu,\rho} - h_{\nu\rho,\lambda})  \label{eq.gammalineare}
+\end{align}
+
+Per il tensore di Riemann, eq. \ref{eq.riemcompon}, basta calcolare le sole derivate perché gli altri termini non risulterebbero lineari in $h$:
+\begin{align*}
+    \tensor{R}{^\alpha_{\mu\beta\nu}} &= \partial_\beta \tensor{\Gamma}{^\alpha_{\nu\mu}} - \partial_\nu\tensor{\Gamma}{^\alpha_{\beta\mu}} + o(h^2) \\ &\approx \frac{1}{2}\eta^{\alpha\lambda}(h_{\mu\lambda,\nu\beta} + h_{\lambda\nu,\mu\beta} - h_{\nu\mu,\lambda\beta}) - \frac{1}{2}\eta^{\alpha\lambda}(h_{\mu\lambda,\beta\nu} + h_{\lambda\beta,\mu\nu} - h_{\beta\mu,\lambda\nu}) \\
+    &= \frac{1}{2}( \tensor{h}{^\alpha_{\nu,\mu\beta}} - \tensor{h}{_{\nu\mu,}^\alpha_\beta} + \tensor{h}{_{\beta\mu,}^\alpha_\nu} - \tensor{h}{^\alpha_{\beta,\mu\nu}} )
+\end{align*}
+Dunque si abbassa l'indice usando $\eta$ per mantenere la linearità:
+\begin{align*}
+    R_{\alpha\mu\beta\nu} \approx \eta_{\alpha\sigma}\tensor{R}{^\sigma_{\mu\beta\nu}} = \frac{1}{2}(h_{\alpha\nu,\mu\beta} + h_{\beta\mu,\alpha\nu} - h_{\nu\mu,\alpha\beta} - h_{\alpha\beta,\mu\nu} )
+\end{align*}
+
+Calcoliamo il tensore di Ricci come sua traccia:
+\begin{equation*}
+    R_{\mu\nu}=\tensor{R}{^\alpha_{\mu\alpha\nu}}=\frac{1}{2}(\tensor{h}{^\alpha_{\nu,\mu\alpha}} + \tensor{h}{_{\alpha\mu,}^\alpha_\nu} - \tensor{h}{_{\nu\mu,}^\alpha_\alpha} - \tensor{h}{^\alpha_{\alpha,\mu\nu}})
+\end{equation*}
+E lo scalare curvatura:
+\begin{equation*}
+    R= R^\nu_\nu = \frac{1}{2}(\tensor{h}{^\alpha_{\nu,}^\nu_\alpha} + \tensor{h}{_\alpha^\nu_,^\alpha_\nu} - \tensor{h}{_\nu^\nu _{,} ^\alpha_\alpha} - \tensor{h}{^\alpha_{\alpha,}^\nu_\nu}) = \tensor{h}{^\alpha_\nu_,^\nu_\alpha} - \tensor{h}{^\alpha_{\alpha,}^\nu_\nu}
+\end{equation*}
+\begin{definizione}
+Definiamo il tensore
+\begin{equation}
+    \Bar{h}_{\alpha\beta}= h_{\alpha\beta} -\frac{1}{2}\eta_{\alpha\beta}\tensor{h}{^\sigma_\sigma}
+    \label{eq.hbarra}
+\end{equation}
+detto \textbf{trace inverted}.
+\end{definizione}
+Questo tensore ci sarà utile per la riscrittura del tensore di Einstein e per ulteriori applicazioni. Segue:
+\begin{equation*}
+    \tensor{\Bar{h}}{^\beta_\beta} =\tensor{h}{^\beta_\beta} -\frac{1}{2}\tensor{\eta}{^\beta_\beta}\tensor{h}{^\sigma_\sigma} = \tensor{h}{^\beta_\beta} -2\tensor{h}{^\beta_\beta} = - \tensor{h}{^\beta_\beta}
+\end{equation*}
+da cui si deduce il motivo di tale nome. Da questa è immediato riscrivere $h$ in funzione di $\Bar{h}$:
+\begin{align*}
+    \Bar{h}_{\alpha\beta} &= h_{\alpha\beta} + \frac{1}{2}\eta_{\alpha\beta}\tensor{\Bar{h}}{^\sigma_\sigma} \\
+    &\implies h_{\alpha\beta}= \Bar{h}_{\alpha\beta} -\frac{1}{2}\eta_{\alpha\beta}\tensor{\Bar{h}}{^\sigma_\sigma}
+\end{align*}
+
+Calcoliamo il tensore di Einstein facendo uso di quanto precedentemente calcolato (si ricorda che $R\propto h$):
+\begin{align*}
+    G_{\mu\nu} &= R_{\mu\nu} -\frac{1}{2}R g_{\mu\nu} \approx R_{\mu\nu} - \frac{1}{2}R\eta_{\mu\nu} \\
+    &=\frac{1}{2}( \tensor{h}{^\beta_{\nu,\mu\beta}} + \tensor{h}{_{\mu\beta,\nu}^\beta} - \tensor{h}{_{\mu\nu,}^\beta_\beta} -\tensor{h}{^\beta_{\beta,\mu\nu}}) -\frac{1}{2}\eta_{\mu\nu}( \tensor{h}{^\beta_{\rho,}^\rho_\beta} -\tensor{h}{^\rho_{\rho,}^\beta_\beta} )
+\end{align*}
+Facciamo ora uso di eq. \ref{eq.hbarra} per riscriverlo (dopo aver abbassato a dovere gli indici necessari e svolgendo tutti i calcoli molto tediosi):
+\begin{align*}
+    G_{\mu\nu} &= \frac{1}{2} (\tensor{\Bar{h}}{^\beta_{\nu,\mu\beta}} + \tensor{\Bar{h}}{_{\mu\beta,\nu}^\beta} - \tensor{\Bar{h}}{_{\mu\nu,}^\beta_\beta} - \eta_{\mu\nu}\tensor{\Bar{h}}{^\beta_{\rho,}^\rho_\beta} ) 
+\end{align*}
+
+Usando il gauge di Lorenz (vedi \S\ref{para.gaugeGR}), possiamo ottenere tale tensore riscritto semplicemente come\footnote{L'operatore di d'Alembert definito $\square = \frac{1}{c^2}\frac{\partial^2}{\partial t^2}-\Delta$ si scrive come $\partial_\mu \partial^\mu$ avendo definito $\partial_\mu = (\frac{1}{c}\frac{\partial}{\partial t}, \nabla )$ nella metrica della relatività ristretta o gravità linearizzata. In relatività generale si usa la definizione $\Box = g^{\mu\nu}\nabla_\mu\nabla_\nu$}:
+\begin{equation}
+    G_{\mu\nu} = -\frac{1}{2}\square\Bar{h}_{\mu\nu}
+    \label{eq.Glinearizlorenz}
+\end{equation}
+Imponendo l'equazione di campo, eq. \ref{eq.GRequazioneeinstein}:
+\begin{equation*}
+    G_{\mu\nu} = -\frac{1}{2}\square\Bar{h}_{\mu\nu} = 8\pi T_{\mu\nu}
+\end{equation*}
+otteniamo infine che le equazioni di Einstein linearizzate sono riscrivibili come:
+\begin{equation}
+    \square\Bar{h}_{\mu\nu} = -16\pi T_{\mu\nu}
+    \label{eq.GRpaulifierz}
+\end{equation}
+chiamate \textbf{equazioni di Pauli-Fierz}.\footnote{Osserviamo l'analogia con l'elettrodinamica dove si ottiene $\square A^\nu = 4\pi j^\nu$}
+\subsection{Trasformazioni di gauge in relatività generale}\label{para.gaugeGR}
+Anche in relatività generale si può introdurre una certa arbitrarietà sulla scelta di determinate quantità, che permette di ottenere una descrizione equivalente, ma ottimizzata ai diversi scopi. Mentre in elettrodinamica l'arbitrarietà ricade sulla scelta dei potenziali che lascino immutati le entità fisiche che sono i due campi $\bm{E}$, $\bm{B}$, in relatività generale dovremo ottenere che la \emph{fisica non dipenda dalla scelta delle coordinate}. Pertanto con trasformazioni di gauge, intenderemo trasformazioni di coordinate del tipo:
+\begin{equation*}
+    x^\mu \mapsto x'^\mu = x^\mu + \xi^\mu(x)
+\end{equation*}
+con $\xi$ infinitesimo. Qualora questo termine non dipenda dal punto, otterremo una trasformazione rigida del sistema di coordinate. Applichiamo queste trasformazioni poi al caso di debole gravità. Sotto una tale trasformazione, il tensore metrico trasforma come un tipico tensore $\binom{0}{2}$:
+\begin{equation*}
+    g_{\mu\nu} \mapsto g'_{\mu\nu} = g_{\alpha\beta} \frac{\partial x^\alpha}{\partial x'^\mu} \frac{\partial x^\beta}{\partial x'^\nu}
+\end{equation*}
+dove lo jacobiano si ricava facilmente: $\frac{\partial x'^\mu}{\partial x^\alpha} = \tensor{\delta}{^\mu_\alpha} +\partial_\alpha \xi^\mu$. Mentre il suo inverso risulta
+\begin{equation*}
+    \frac{\partial x^\alpha}{\partial x'^\mu} = \tensor{\delta}{^\alpha_\mu} - \partial_\mu \xi^\alpha
+\end{equation*}
+Infatti:
+\begin{align*}
+    \frac{\partial x'^\mu}{\partial x^\alpha} \frac{\partial x^\alpha}{\partial x'^\nu} &= (\tensor{\delta}{^\mu_\alpha} +\partial_\alpha \xi^\mu)(\tensor{\delta}{^\alpha_\nu} -\partial_\nu \xi^\alpha)
+    = \tensor{\delta}{^\mu_\alpha}\tensor{\delta}{^\alpha_\nu} - \tensor{\delta}{^\mu_\alpha}\partial_\nu \xi^\alpha + \tensor{\delta}{^\alpha_\nu}\partial_\alpha \xi^\mu +o(\xi^2)\\
+    &= \tensor{\delta}{^\mu_\nu} - \partial_\nu \xi^\mu + \partial_\nu \xi^\mu = \tensor{\delta}{^\mu_\nu}
+\end{align*}
+
+Quindi calcoliamo esplicitamente il tensore metrico trasformato:
+\begin{align*}
+    g'_{\mu\nu} &= (\tensor{\delta}{^\alpha_\mu} - \partial_\mu \xi^\alpha)(\tensor{\delta}{^\beta_\nu} - \partial_\nu \xi^\beta)g_{\alpha\beta} = g_{\mu\nu} -\partial_\mu\xi^\alpha \tensor{\delta}{^\beta_\nu}g_{\alpha\beta} - \tensor{\delta}{^\alpha_\mu}\partial_\nu \xi^\beta g_{\alpha\beta} +o(\xi^2) \\
+    &= g_{\mu\nu} -\partial_\mu \xi^\alpha g_{\alpha\nu} -\partial_\nu \xi^\beta g_{\mu\beta} +o(\xi^2)
+\end{align*}
+Introducendo la perturbazione
+\begin{equation*}
+    \eta_{\mu\nu} + h'_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}  -\partial_\mu \xi^\alpha (\eta_{\alpha\nu} +h_{\alpha\nu} )-\partial_\nu \xi^\beta (\eta_{\mu\beta}+ h_{\mu\beta}) +o(\xi^2)
+\end{equation*}
+Otteniamo mantenendo i soli termini al primo ordine:
+\begin{equation}
+    h'_{\mu\nu} = h_{\mu\nu} - \partial_\mu \xi_\nu - \partial_\nu \xi_\mu 
+    \label{eq.h_perturbato_primoordine}
+\end{equation}
+
+Esprimendo in funzione di $\Bar{h}$, eq. \ref{eq.hbarra}:
+\begin{align*}
+    \Bar{h'}_{\mu\nu} &= h'_{\mu\nu} -\frac{1}{2}\eta_{\mu\nu} \tensor{(h')}{_\sigma^\sigma} = h_{\mu\nu} -\partial_\mu \xi_\nu - \partial_\nu \xi_\mu - \frac{1}{2}\eta_{\mu\nu}(\tensor{h}{^\sigma_\sigma} - 2\partial_\sigma \xi^\sigma ) \\
+    &= \Bar{h}_{\mu\nu} -\partial_\mu \xi_\nu - \partial_\nu \xi_\mu +\eta_{\mu\nu} \partial_\sigma \xi^\sigma
+\end{align*}
+
+\begin{definizione}
+Definiamo il \textbf{gauge di Lorenz} per la relatività generale come
+\begin{equation}
+    \partial^\mu \Bar{h}_{\mu\nu} = 0
+    \label{eq.gaugelorenzgr}
+\end{equation}
+\end{definizione}
+La sua definizione è del tutto analoga al gauge dell'elettrodinamica $\partial_\mu A^\mu = \partial^\mu A_\mu = 0$.
+Tale trasformazione è sempre ottenibile, infatti supponiamo $\partial^\mu \Bar{h}_{\mu\nu} \neq 0$ e imponiamo invece che sia nullo:
+\begin{align*}
+    \partial^\mu \Bar{h'}_{\mu\nu} = 0 &= \partial^\mu (\Bar{h}_{\mu\nu} - \partial_\mu \xi_\nu - \partial_\nu \xi_\mu + \eta_{\mu\nu} \partial_\sigma \xi^\sigma )
+    =\partial^\mu \Bar{h}_{\mu\nu} - \square\xi_\nu - \partial^\mu\partial_\nu \xi_\mu + \partial_\nu \partial_\sigma\xi^\sigma \\
+    &= \partial^\mu \Bar{h}_{\mu\nu} - \square\xi_\nu \iff \square \xi_\nu = \partial^\mu \Bar{h}_{\mu\nu}
+\end{align*}
+Quest'ultima è una equazione differenziale a derivate parziali che ammette sempre soluzione.
+
+\subsection{Soluzioni all'equazione di Pauli-Fierz}
+La soluzione dell'equazione di Pauli-Fierz, che non è altro una equazione d'onda non omogenea, può essere ottenuta tramite il metodo generale delle funzioni di Green.
+
+La funzione di Green è una distribuzione che permette di determinare, agendo sul problema puntiforme, la soluzione particolare di una equazione non omogenea del tipo $A\phi = \psi$, dove $\phi, \psi$ sono funzioni dello spazio di Schwartz (funzioni lisce) e $A$ un operatore lineare continuo su questo spazio. Nel nostro caso $\Bar{h}_{\mu\nu}, T_{\mu\nu}$ sono le componenti di un campo tensoriale e pertanto sono delle funzioni che supporremo in tale spazio, mentre $A=\square$, l'operatore d'alembertiano.
+
+Per risolvere il caso specifico dell'equazione di Pauli-Fierz, la funzione di Green $\mathcal{G}_{\mu\nu}(x)$ è tale da soddisfare, assegnato $T_{\mu\nu}(x)$:
+\begin{equation*}
+    \square \mathcal{G}_{\mu\nu}(x) = -16\pi\delta^4(x) \eta_{\mu\nu}
+\end{equation*}
+dove $\delta^4$ è la distribuzione di Dirac 4-dimensionale.
+Tramite prodotto di convoluzione, ci permette di determinare $\Bar{h}$, infatti:
+\begin{equation*}
+    \Bar{h}_{\mu\nu} = \int d^4x' \mathcal{G}_{\mu\nu}(x-x') \tensor{T}{^\rho_\nu}(x')
+\end{equation*}
+Così che applicando l'operatore $\square$:
+\begin{equation*}
+    \square \Bar{h}_{\mu\nu} = \int d^4x' \square\mathcal{G}_{\mu\rho}(x-x') \tensor{T}{^\rho_\nu}(x') = -16\pi \int d^4x'\delta^4(x-x')\eta_{\mu\rho}\tensor{T}{^\rho_\nu}(x') = -16\pi T_{\mu\nu}(x)
+\end{equation*}
+Pertanto per determinare la soluzione, c'è la necessità di determinare $\mathcal{G}$, e tale metodo dipenderà dal tipo di problema affrontato.
+
+Consideriamo una situazione dove la materia che genera l'onda sia localizzata in una regione di spazio detta $\Sigma$ e che abbia un tensore energia-impulso dipendente dal tempo $T_{\mu\nu}(\bm{x},t)$.
+La metrica che è soluzione di eq. \ref{eq.GRpaulifierz} al di fuori di $\Sigma$ è quella ottenuta dalla funzione di Green (già nota in elettromagnetismo):
+\begin{align}
+     \Bar{h}_{\mu\nu}(\bm{x},t) = 4\int_\Sigma d^3x' \frac{T_{\mu\nu}(\bm{x}', t_r)}{| \bm{x} - \bm{x}'|} && t_r = t - | \bm{x} - \bm{x}'|
+\end{align}
+Tale soluzione rispetta il gauge eq. \ref{eq.gaugelorenzgr} se si conserva il tensore energia-impulso, $\partial^\mu T_{\mu\nu} = 0$. Questa soluzione descrive gli effetti gravitazionali in un punto $\bm{x}$ al tempo $t$ dovuti alla materia posta in $\bm{x}'$ in un tempo precedente $t_r$, considerando il tempo che impiega questa influenza a propagarsi tra i due punti $\bm{x}$, $\bm{x}'$ alla velocità della luce.
+\subsection{Onde gravitazionali nel vuoto}\label{para.vacuum_gw}
+Consideriamo il caso in cui non è presente una sorgente, $T_{\mu\nu} = 0$; l'equazione si riduce all'equazione delle onde:
+\begin{equation}
+    \square \Bar{h}_{\mu\nu} = 0
+    \label{eq.pauli-fierz_vuoto}
+\end{equation}
+che rappresenta la previsione delle onde gravitazionali da parte della relatività generale. Come soluzione c'è per esempio l'onda piana monocromatica:
+\begin{equation*}
+    \Bar{h}_{\mu\nu} = e_{\mu\nu} e^{ik_\mu x^\mu}
+\end{equation*}
+dove $k_\mu = (\omega,\bm{k})$ è il vettore d'onda, mentre $e_{\mu\nu}$ è il tensore della polarizzazione, simmetrico e costante.
+L'introduzione di questo \emph{ansatz} nell'equazione delle onde comporta che:
+\begin{equation*}
+    k_\mu k^\mu = 0
+\end{equation*}
+ovvero $\omega = \pm | \bm{k} |$. Ciò ci dice che le onde gravitazionali propagano alla velocità della luce. Sfruttando la linearità dell'eq. \ref{eq.pauli-fierz_vuoto}, si ottiene la soluzione generale come sovrapposizione di onde come quella dell'ansatz.
+
+Senza condizioni imposte, il tensore di polarizzazione $e_{\mu\nu}$ possiede 10 componenti indipendenti (è simmetrico). Imponendo in primis la condizione di gauge eq. \ref{eq.gaugelorenzgr} alla soluzione monocromatica otteniamo:
+\begin{equation*}
+    k^\mu e_{\mu\nu} = 0 
+\end{equation*}
+Ciò ci dice che la polarizzazione è trasversa alla direzione di propagazione (come in elettrodinamica); essendo l'indice $\nu$ libero, otteniamo che la condizione di gauge comporta 4 dipendenze sugli elementi di $e_{\mu\nu}$.
+
+I calcoli perturbativi eseguiti in \S\ref{para.gaugeGR} hanno comportato al primo ordine eq. \ref{eq.h_perturbato_primoordine}. Se ci fermiamo al secondo ordine il risultato sulla trasformazione di $h$ risulta:
+\begin{equation*}
+    \Bar{h}_{\mu\nu} \rightarrow \Bar{h}_{\mu\nu} - \partial_\mu \xi_\nu - \partial_\nu \xi_\mu + \partial^\rho \xi_\rho \eta_{\mu\nu}
+\end{equation*}
+Questa trasformazione rispetta la condizione $\partial^\mu \Bar{h}_{\mu\nu} = 0$ se
+\begin{equation*}
+    \square \xi_\nu = 0
+\end{equation*}
+Se prendiamo $\xi_\mu = \lambda_\mu e^{ik_\rho x^\rho}$, otteniamo la seguente trasformazione del tensore di polarizzazione:
+\begin{equation*}
+    e_{\mu\nu} \rightarrow e_{\mu\nu} + i(-k_\mu \lambda_\nu - k_\nu\lambda_\mu + k^\rho \lambda_\rho \eta_{\mu\nu})
+\end{equation*}
+Matrici di polarizzazione che differiscono per questa quantità descrivono pertanto la stessa onda gravitazionale. Possiamo quindi scegliere di prendere i valori $\lambda_\mu$ tali che:
+\begin{align*}
+    e_{0\mu} = 0 && \tensor{e}{^\mu_\mu}=0
+\end{align*}
+
+Queste condizioni definiscono il \textbf{transverse traceless gauge}. L'ultima equazione fornisce altre 4 restrizioni al tensore di polarizzazione così che $e_{\mu\nu}$ possiede 2 sole componenti indipendenti.
+\section{Limite newtoniano della relatività generale}\label{para.limitenewton}
+Affinché la teoria appena sviluppata possa essere valida, deve potersi ricondurre sotto determinate condizioni, alla teoria newtoniana della gravitazione. Vedremo come l'equazione di Pauli-Fierz ci ricondurrà all'equazione di Poisson gravitazionale, mentre l'equazione delle geodetiche ci porterà al secondo principio della dinamica. Vediamo prima le condizioni da porre affinché si possa tornare al caso newtoniano.
+
+La teoria newtoniana deve essere ritrovata considerando:
+\begin{itemize}
+    \item Debole gravità.
+    \item Moto relativo tra le sorgenti (distribuzioni di massa) non relativistico i.e. $v \ll c$. Questa condizione implica $T_{ti} \approx 0$.
+    \item Sforzi materiali sono molto più piccoli della densità di materia. Questa condizione implica $T_{ii} \approx 0$.
+\end{itemize}
+In queste condizioni il tensore energia-impulso si riduce a $T_{\mu\nu}=T_{tt}$.
+Poiché le sorgenti si muovono lentamente, la geometria dello spaziotempo cambia poco col tempo e pertanto si possono trascurare le derivate temporali.
+
+Applichiamo queste condizioni all'equazione di Pauli-Fierz, eq. \ref{eq.GRpaulifierz}, in quanto siamo in condizione di debole gravità.
+L'operatore di d'Alembert si riduce al solo laplaciano per via della condizione sulle derivate temporali prima detta. Esplicitando le varie componenti:
+\begin{equation*}
+    \begin{array}{ccc}
+    \Delta\Bar{h}_{ij} = 0 ,& \Delta\Bar{h}_{it} = 0 ,& \Delta \Bar{h}_{tt} = -16\pi T_{tt}=-16\pi\rho
+    \end{array}
+\end{equation*}
+L'unica soluzione per la prima equazione, tale che non diverga, è: 
+\begin{equation*}
+    \Bar{h}_{ij}= \textrm{cost.}
+\end{equation*}
+Possiamo tranquillamente assumere $\Bar{h}_{ij}=0$ in quanto possiamo ricondurci a questa tramite un'opportuna trasformazione di gauge che preservi il gauge di Lorenz. Analogamente si determina  $\Bar{h}_{it}=0$.
+
+Rimane da risolvere la terza equazione, nella quale proseguiremo coi calcoli esplicitando questa volta la costante di gravitazione di Newton $G$: $\Delta\Bar{h}_{tt}=-16\pi G \rho$.
+Ponendo:
+\begin{equation}
+    \phi = -\frac{1}{4}\Bar{h}_{tt}
+    \label{eq.legamepotenziale_phi_e_h}
+\end{equation}
+otteniamo
+\begin{equation*}
+    \Delta \phi = 4\pi G\rho
+\end{equation*}
+Dall'equazione di Pauli-Fierz si riottiene l'equazione di Poisson.
+
+Verifichiamo ora come dall'equazione delle geodetiche si riottengono le equazioni del moto di Newton.
+Consideriamo un corpo test (cioè che non perturba la geometria) nello spaziotempo curvo con metrica data da eq. \ref{eq.metricalineare}, che si muove percorrendo la geodetica data da eq. \ref{eq.geodetiche}, e parametrizzata con il tempo proprio $\tau$:
+\begin{equation*}
+    \frac{d^2 x^\mu}{d\tau^2} + \tensor{\Gamma}{^\mu_{\rho\sigma}}\frac{d x^\rho}{d\tau} \frac{d x^\sigma}{d\tau} = 0
+\end{equation*}
+Poiché $v \ll c$, allora $\frac{d x^\mu}{d\tau}= (1,0,0,0)$ e si può anche approssimare $\tau \approx t$. Introducendo queste approssimazioni otteniamo:
+\begin{equation*}
+    \frac{d^2 x^\mu}{dt^2} = - \tensor{\Gamma}{^\mu_{tt}}
+\end{equation*}
+Tramite eq. \ref{eq.gammalineare} possiamo calcolarli, sfruttando l'indipendenza da derivata temporale:
+\begin{equation*}
+    \tensor{\Gamma}{^\mu_{tt}} = \frac{1}{2}\eta^{\mu\alpha}( h_{t\alpha,t} + h_{\alpha t, t} - h_{tt,\alpha} ) \approx \frac{1}{2}\eta^{\mu\alpha}(-h_{tt,\alpha})
+\end{equation*}
+Quindi
+\begin{equation*}
+    \frac{d^2 x^j}{dt^2} = +\frac{1}{2}\eta^{j\alpha}\partial_\alpha h_{tt} = \frac{1}{2}\partial_j h_{tt}
+\end{equation*}
+Riscrivendo $h$ in funzione di $\Bar{h}$, e usando le prime due soluzioni determinate sopra:
+\begin{equation*}
+    h_{tt} = \Bar{h}_{tt} - \frac{1}{2}\eta_{tt}\tensor{\Bar{h}}{^\sigma_\sigma}= \Bar{h}_{tt} - \frac{1}{2}(\tensor{\Bar{h}}{^t_t}+\tensor{\Bar{h}}{^j_j})
+    = \frac{1}{2}\Bar{h}_{tt} = \frac{1}{2}(-4\phi) = -2\phi
+\end{equation*}
+Otteniamo infine
+\begin{equation*}
+    \frac{d^2 x^j}{dt^2} = \frac{1}{2}\partial_j h_{tt} = -\partial_j \phi
+\end{equation*}
+ovvero l'equazione del moto newtoniana.

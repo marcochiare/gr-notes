@@ -1,0 +1,213 @@
+\chapter{Integrali di Komar}
+Vogliamo definire quali sono le cariche conservate per uno spaziotempo al quale sono associate delle simmetrie; ciò equivale a studiare i campi vettoriali di Killing. Una delle possibilità è tramite gli integrali di Komar.
+
+\section{Integrali di Komar}
+Sia $V \subseteq \Sigma$, dove $\Sigma$ è una ipersuperficie di tipo spazio (ad esempio $t=\cost$ in Schwarzschild) e sia $\partial V$ il bordo di $V$. Ad ogni campo vettoriale di Killing $\xi$ possiamo associare \textbf{l'integrale di Komar} $Q_\xi(V)$ definito:
+\begin{equation}
+    Q_\xi(V) = \frac{c}{16\pi G}\oint_{\partial V}dS_{\mu\nu}\nabla^\mu \xi^\nu
+    \label{eq.integrale_komar}
+\end{equation}
+dove $c=\cost$, mentre $dS_{\mu\nu}$ è la misura orientata sul bordo $\partial V$. Se si usa il teorema di Gauss, eq. \ref{eq.integrale_komar} diventa:
+\begin{equation}
+    Q_\xi(V) = \frac{c}{8\pi G}\int_V dS_\mu \nabla_\nu\nabla^\mu \xi^\nu
+    \label{eq.integrale_komar_gauss}
+\end{equation}
+
+Da eq. \ref{eq.identità_killing}, facendone la traccia si ottiene:
+\begin{equation*}
+    \nabla_\nu \nabla_\mu \xi^\nu = R_{\mu\nu}\xi^\nu
+\end{equation*}
+Così, sostituendo in eq. \ref{eq.integrale_komar_gauss} si ha;
+\begin{equation*}
+    Q_\xi(V) = \frac{c}{8\pi G}\int_V dS_\mu \tensor{R}{^\mu_\nu}\xi^\nu
+\end{equation*}
+Dalle equazioni di Einstein abbiamo che:
+\begin{align*}
+    R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = 8\pi G T_{\mu\nu} &\implies R= - 8\pi G T \\
+    &\implies R_{\mu\nu} = 8\pi G(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu})
+\end{align*}
+così diventa:
+\begin{equation*}
+    Q_\xi(V) = c\int_V dS_\mu \left( \tensor{T}{^\mu_\nu}\xi^\nu - \frac{1}{2}T\xi^\mu \right)
+\end{equation*}
+che possiamo riscrivere in termini di una quadricorrente $J^\mu(\xi)$ nella forma:
+\begin{equation*}
+    J^\mu(\xi) = c\left( \tensor{T}{^\mu_\nu}\xi^\nu - \frac{1}{2}T\xi^\mu \right)
+\end{equation*}
+e l'integrale di Komar è effettivamente la sua carica:
+\begin{equation}
+    Q_\xi (V) = \int_V dS_\mu J^\mu(\xi)
+    \label{eq.integrale_komar_corrente}
+\end{equation}
+\begin{lemma}
+La corrente $J^\mu(\xi)$ è una corrente conservata, ovvero $\nabla_\mu J^\mu(\xi) =0$.
+\end{lemma}
+\begin{proof}
+Esplicitamente:
+\begin{equation*}
+    \nabla_\mu J^\mu = c\left( (\nabla_\mu \tensor{T}{^\mu_\nu})\xi^\nu + \tensor{T}{^\mu_\nu}\nabla_\mu \xi^\nu - \frac{1}{2}\xi^\mu \nabla_\mu T - \frac{T}{2}\nabla_\mu \xi^\mu \right)
+\end{equation*}
+Il termine $\nabla_\mu \tensor{T}{^\mu_\nu} = 0$ per la conservazione del tensore energia-impulso. Il termine $T_{\mu\nu}\nabla^\mu\xi^\nu = 0$ poiché è la contrazione di un tensore simmetrico $T_{\mu\nu}$ con una quantità che soddisfa Killing, eq. \ref{eq.killing} dunque antisimmetrica.
+Per il terzo termine:
+\begin{equation*}
+    \xi^\mu \nabla_\mu T = \xi^\mu \partial_\mu T = - \frac{\xi^\mu}{8\pi G}\partial_\mu R
+\end{equation*}
+Se introduciamo delle coordinate in cui $\xi = \frac{\partial}{\partial \alpha}$ ovvero dove $\xi$ è una delle coordinate, allora la metrica non dipenderà da $\alpha$, $\frac{\partial g_{\mu\nu}}{\partial \alpha}=0$, e quindi neanche $R$. Perciò anche questo termine deve essere nullo.
+Il quarto termine è a sua volta nullo poiché $\xi$ è di Killing i.e. $\nabla_\mu\xi_\nu = - \nabla_\nu\xi_\mu$, e allora $\nabla^\mu\xi_\mu = 0$.
+\end{proof}
+
+\section{Energia}
+Come primo esempio particolare vediamo la carica associata al campo vettoriale di Killing delle traslazioni temporali: questa carica è l'energia.
+\begin{equation}
+    E(V) = - \frac{1}{8\pi G}\oint_{\partial V} dS_{\mu\nu}\nabla^\mu K^\nu 
+    \label{eq.komar_energia}
+\end{equation}
+la costante $c = -2$ viene fissata col seguente ragionamento:
+Consideriamo una metrica $g_{\mu\nu} \rightarrow \eta_{\mu\nu}$ per una certa $r\rightarrow +\infty$ in modo tale che:
+ \begin{equation*}
+     h_{\mu\nu} = g_{\mu\nu} - \eta_{\mu\nu} = o(\frac{1}{r})
+ \end{equation*}
+Allora possiamo linearizzare le equazioni di Einstein vicino $r = + \infty$ e considerare una sorgente come polvere statica ($\dot\rho = 0$) e debole così che sia descritta da:
+ \begin{equation*}
+     T_{\mu\nu} = diag (\rho, 0,0,0)
+ \end{equation*}
+In questo modo, riprendendo la definizione dell'energia ed usando le equazioni di Einstein con il teorema di Gauss:
+ \begin{equation*}
+     E(V) = \int_{t=\cost} dV T_{00} = \int \rho dV = -\frac{1}{8\pi G}\oint dS_{\mu\nu}\nabla^\mu K^\nu
+ \end{equation*}
+Leghiamola all'integrale di Komar di eq. \ref{eq.integrale_komar_corrente}; per $V =\{ t= \cost\}$ si ha che $dS_\mu = n_\mu dV$\footnote{Usiamo qui $dS^0 = dV$ e quindi $dS_0 = -dV$} con $n_\mu$ un vettore normale. Allora:
+ \begin{align*}
+     dS_\mu(\tensor{T}{^\mu_\nu}K^\nu - \frac{1}{2}TK^\mu) &= dS_0( \tensor{T}{^0_0}K^0 - \frac{1}{2}TK^0) = dS_0(-\rho K^0 + \frac{1}{2}\rho K^0) \\
+     &= - dS_0 \rho \frac{K^0}{2} = -dV (-\rho\frac{K^0}{2})= \frac{\rho}{2}dV
+ \end{align*}
+ Dunque
+ \begin{equation*}
+     Q_K(V) = \int_V dS_\mu J^\mu = c \int \frac{\rho}{2}dV = \frac{c}{2}\int \rho dV = \frac{c}{2}E(V)
+ \end{equation*}
+ In questo modo si ottiene il valore della costante.
+
+Vediamo $E(V)$ applicato alla metrica di Schwarzschild; per semplicità riscriviamo $N=\sqrt{1 - \frac{2Gm}{r}}$. Rimaniamo nella regione $r> 2m$ e consideriamo $V = \Sigma_t = \{t=\cost\}$; il suo bordo $\partial V$ è la 2-sfera corrispondente all'intersezione con $r= \cost$.
+Il vettore normale a $V$ è:
+\begin{equation*}
+    u= N^{-1}\partial_t
+\end{equation*}
+ed è di tipo tempo, $<u,u> = -1$. Il vettore normale a $\partial V$ è invece:
+\begin{equation*}
+    v = N\partial_r
+\end{equation*}
+Questo è infatti di tipo spazio, $<v,v> = 1$ ed è ortogonale alla 2-sfera, $<v,\partial_\phi> = 0$, $<v, \partial_\theta > = 0$.
+La misura orientata su $\partial V$ è:
+\begin{equation*}
+    dS^{\mu\nu} = (v^\mu u^\nu - u^\mu v^\nu)\sqrt{\sigma}d\phi d\theta
+\end{equation*}
+dove $\sigma$ è il determinante della metrica indotta sulla 2-sfera:
+\begin{equation*}
+    d\sigma^2 = r^2(d\theta^2 + \sin^2\theta d\phi^2) \implies \sqrt{\sigma} = r^2\sin\theta
+\end{equation*}
+Quindi la misura orientata è:
+\begin{equation*}
+    dS^{rt} = (v^ru^t - u^r v^t)\sqrt{\sigma} d\theta d\phi = \sqrt{\sigma}d\theta d\phi = - dS^{tr}
+\end{equation*}
+e l'integrale dell'energia:
+\begin{equation*}
+    E = - \frac{1}{8\pi G}\int_0^\pi d\theta \int_0^{2\pi}d\phi \sqrt{\sigma}\nabla_r K_t 2
+\end{equation*}
+Il fattore 2 arriva dal fatto che $\nabla_r K_t = - \nabla_t K_r$ e $dS^{rt} = - dS^{tr}$. Si calcola esplicitamente:
+\begin{align*}
+    \nabla_r K_t &= \partial_r K_t - \tensor{\Gamma}{^\rho_{rt}}K_\rho \\
+    &= \partial_r K_t - \Gamma_{\rho r t}K^\rho = \partial_r K_t - \Gamma_{trt}
+\end{align*}
+dove:
+\begin{equation*}
+    \partial_r K_t = \partial_r(g_{tt}K^t) = \partial_r g_{tt}
+\end{equation*}
+mentre il simbolo di Christoffel, secondo eq. \ref{eq.connlevicivita}:
+\begin{equation*}
+    \Gamma_{trt} = \frac{1}{2}(g_{tt,r} + g_{tr,t} - g_{rt,t}) = \frac{1}{2}\partial_r g_{tt}
+\end{equation*}
+Dunque:
+\begin{equation*}
+    \nabla_r K_t = \frac{1}{2}\partial_r g_{tt}= - \frac{Gm}{r^2}
+\end{equation*}
+
+Per concludere si ricava:
+\begin{equation*}
+    E = - \frac{1}{4\pi G}\int_0^\pi d\theta \int_0^{2\pi}d\phi r^2\sin\theta(- \frac{Gm}{r^2}) = m 
+\end{equation*}
+Per Schwarzschild si ottiene che l'energia non dipende dal raggio $r$, poiché tra diversi raggi è presente il vuoto: in casi come de Sitter, dove c'è la costante cosmologica, tra diversi raggi c'è questa componente di densità di energia da considerare ad esempio.
+\section{Momento angolare}
+L'integrale di Komar associato al vettore di Killing $\xi = m = \partial_\phi$ è:
+\begin{equation}
+    J(V) = \frac{1}{16\pi G} \oint_{\partial V} dS_{\mu\nu}\nabla^\mu m^\nu
+    \label{eq.komar_mom_angolare}
+\end{equation}
+dove la costante è fissata $c=1$. Vediamo da dove deriva. Usiamo Gauss:
+\begin{align*}
+    J(V) &= \frac{1}{8\pi G} \int_V dS_\mu \nabla_\nu \nabla^\mu m^\nu = \frac{1}{8\pi G}\int_V dS_\mu \tensor{R}{^\mu_\nu}m^\nu \\
+    &= \int_V dS_\mu (\tensor{T}{^\mu_\nu} - \frac{T}{2}\tensor{\delta}{^\mu_\nu})m^\nu = \int_V dS_\mu J^\mu
+\end{align*}
+dove abbiamo definito la corrente come $J^\mu = \tensor{T}{^\mu_\nu}m^\nu - \frac{T}{2}m^\mu$. Se scegliamo l'ipersuperficie $V$ su $ \Sigma_t = \{t=\cost\}$ e $m=\partial_\phi$ allora $dS_\mu m^\mu =0$ ($g_{\mu\nu} \approx \eta_{\mu\nu}$, poiché altrimenti, usando soluzioni come Kerr, il vettore normale è $n= \partial_t + \omega \partial_\phi$ e non solo $\partial_t$). Perciò rimane solo $\tensor{T}{^\mu_\nu}m^\nu$, usando $dS_0 = dV$ e lo sviluppo in coordinate cartesiane $m= x^1\partial_2 - x^2\partial_1$:
+\begin{equation*}
+J = \int_V dV \tensor{T}{^0_\nu}m^\nu = \int_V dV( \tensor{T}{^0_2}x^1 - \tensor{T}{^0_1}x^2) = \epsilon_{3ik}\int_V dV x^i T^{k0}
+\end{equation*}
+Questo corrisponde alla terza componente del momento angolare di un campo con tensore $T_{\mu\nu}$ nello spaziotempo di Minkowski. Così è verificato che $c=1$ è corretto. Passare per il limite di campo debole è una procedura abbastanza tipica per determinare la costante $c$.
+
+Calcoliamo $J(V)$ per la soluzione di Kerr e consideriamo la metrica nella forma di ADM, eq. \ref{eq.metrica_kerr_adm}. Il vettore normale alla ipersuperficie $\Sigma_t$ è:
+\begin{equation*}
+    u = N^{-1}(\partial_t + \omega \partial_\phi)
+\end{equation*}
+poiché verifica facilmente che $<u,u> = -1$ e $<u, \partial_i> =0$ per $i=r, \theta,\phi$. Il bordo $\partial V$ corrisponde all'intersezione con $\Sigma_t$ per $r=\cost$ ed ha come vettore normale:
+\begin{equation*}
+    v = \frac{\sqrt{\Delta}}{\rho}\partial_r
+\end{equation*}
+e infatti verifica $<v,v> = 1$, $<v, \partial_i> = 0$ con $i= \theta,\phi$.
+La misura orientata su $\partial V$ è:
+\begin{equation*}
+    dS^{\mu\nu} = (v^\mu u^\nu - u^\mu v^\nu)\sqrt{\sigma}d\theta d\phi
+\end{equation*}
+dove la metrica indotta su $\partial V$ è:
+\begin{equation*}
+    d\sigma^2 = \rho^2d\theta^2 + \frac{\Sigma^2 \sin^2\theta}{\rho^2}d\phi^2 \implies \sqrt{\sigma} = \Sigma \sin \theta
+\end{equation*}
+Possiamo quindi calcolare, usando come passaggio intermedio la proprietà di Killing eq. \ref{eq.killing}:
+\begin{equation*}
+    (v^\mu u^\nu - u^\mu v^\nu )\nabla_\mu m_\nu = v^\mu u^\nu \nabla_\mu m_\nu - u^\mu v^\nu \nabla_\mu m_\nu = - 2u^\mu v^\nu \nabla_\mu m_\nu
+\end{equation*}
+Quindi l'integrale eq. \ref{eq.komar_mom_angolare}:
+\begin{equation*}
+    J(V) = -\frac{2}{16\pi G}\int_0^{\pi}d\theta \int_0^{2\pi}d\phi \Sigma \sin\theta u^\mu v^\nu g_{\nu\rho}\nabla_\mu m^\rho
+\end{equation*}
+Poiché la derivata covariante si riduce a:
+\begin{equation*}
+    \nabla_\mu m^\rho = \partial_\mu m^\rho + \tensor{\Gamma}{^\rho_{\mu\sigma}}m^\sigma = \tensor{\Gamma}{^\rho_{\mu\phi}}
+\end{equation*}
+l'integrale diventa:
+\begin{align*}
+    J(V) &= - \frac{1}{4 G}\int_0^\pi d\theta \Sigma \sin \theta u^\mu v^\nu \tensor{\Gamma}{^\rho_{\mu\phi}} \\
+    &= - \frac{1}{4 G}\int_0^\pi d\theta \Sigma\sin\theta \left(u^tv^r \Gamma_{rt\phi} + u^\phi v^r \Gamma_{r\phi\phi} \right) \\
+    &= - \frac{1}{4G} \int_0^\pi d\theta \Sigma\sin\theta\left(\frac{\sqrt{\Delta}}{N\rho}\Gamma_{rt\phi} + \frac{\omega\sqrt{\Delta}}{N\rho}\Gamma_{r\phi\phi} \right)
+\end{align*}
+Da eq. \ref{eq.connlevicivita} si calcolano:
+\begin{align*}
+    \Gamma_{rt\phi} &= - \frac{1}{2}\partial_r\left( \frac{-\omega\Sigma^2\sin^2\theta}{\rho^2}\right) \\
+    \Gamma_{r\phi\phi} &= - \frac{1}{2}\partial_r\left( \frac{\Sigma^2\sin^2\theta}{\rho^2}\right)
+\end{align*}
+Questi termini dipendono da $r$, ma siccome ci troviamo dove $r=\cost$, si ottiene lo stesso se si sviluppa per $r\rightarrow +\infty$. Facendo le sostituzioni e calcolando le derivate parziali, si ottiene che in questo limite:
+\begin{align*}
+    \Gamma_{rt\phi} &\sim -\frac{ma\sin^2\theta}{r^2} \\
+    \Gamma_{r\phi\phi} &\sim -r\sin^2\theta  
+\end{align*}
+Mentre i loro prefattori che appaiono nell'integrale:
+\begin{align*}
+    \frac{\sqrt{\Delta}}{N\rho} &\sim 1 \\
+    \frac{\omega\sqrt{\Delta}}{N\rho} &\sim \frac{2ma}{r^3}
+\end{align*}
+Così, considerando che $\Sigma \sim r^2$ e che $\int_0^\pi \sin^3\theta d\theta = \frac{4}{3}$, si ottiene:
+\begin{equation*}
+    J = -\frac{1}{4G}\int_0^\pi d\theta \sin\theta\Sigma(-\frac{3ma\sin^2\theta}{r^2}) = \frac{3ma}{4G}\int_0^\pi d\theta \sin^3\theta = \frac{ma}{G}
+\end{equation*}
+Il momento angolare per il buco nero di Kerr è pertanto:
+\begin{equation*}
+    J = \frac{ma}{G}
+\end{equation*}
+In questo modo è giustificata la formula che è stata utilizzata in tutta la precedente trattazione.

@@ -1,0 +1,381 @@
+\chapter{Tensori}
+I tensori sono oggetti che generalizzano il concetto di vettore e covettore, in quanto come si vedrà sono dotati di proprietà miste.
+\begin{definizione}
+Siano $V$ e $V^*$ uno spazio vettoriale e il suo duale.
+Un \textbf{tensore} del tipo $\binom{r}{s}$ è un'applicazione multilineare:
+\begin{equation*}
+    T : \underbrace{V^* \times \dots \times V^*}_\text{r volte} \times \underbrace{V \times \dots \times V}_\text{s volte} \rightarrow \mathbb{R}
+\end{equation*}
+\end{definizione}
+Essi sono quindi dei funzionali sullo spazio ottenuto dal prodotto cartesiano tra $V^*$ e $V$ $r$ volte e $s$ volte.
+L'insieme dei tensori forma lo spazio vettoriale $V^r_s$
+
+
+\begin{definizione}
+Siano $V, \ W$ due spazi vettoriali su campo $\mathbb{K}$. Il \textbf{prodotto tensoriale} $V \otimes W$ è uno spazio vettoriale che consiste di somme finite
+\begin{equation*}
+    v_1 \otimes w_1 + v_2 \otimes w_2 + \dots
+\end{equation*}
+dove valgono le regole:
+\begin{itemize}
+    \item $(v_1 + v_2)\otimes w = v_1 \otimes w + v_2 \otimes w$
+    \item $v\otimes (w_1 + w_2)= v \otimes w_1 + v \otimes w_2$
+    \item $(cv)\otimes w= v\otimes (cw) = c ( v \otimes w) $
+\end{itemize}
+\end{definizione}
+
+\begin{esempio}
+Siano $v \in \mathbb{C}^n$ e $w\in \mathbb{C}^m$. Allora
+\begin{equation*}
+    v \otimes w =
+    \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix} \otimes     \begin{pmatrix} b_1 \\ \vdots \\ b_m \end{pmatrix} = 
+    \begin{pmatrix}
+    a_1 \begin{pmatrix}
+        b_1 \\
+        \vdots\\
+        b_m
+        \end{pmatrix} \\
+    \vdots \\
+    a_n \begin{pmatrix}
+        b_1 \\
+        \vdots\\
+        b_m
+        \end{pmatrix}
+    \end{pmatrix} =
+    \begin{pmatrix}
+    a_1 b_1 \\ \vdots \\ a_1 b_m \\ \vdots \\ a_n b_1 \\ \vdots \\ a_n b_m
+    \end{pmatrix}
+\end{equation*}
+\end{esempio}
+
+
+Una base per lo spazio dei tensori $V^r_s$ è data da:
+\begin{equation}
+    e_{j_1} \otimes \dots \otimes e_{j_r} \otimes \theta^{i_1} \otimes \dots \otimes \theta^{i_s}
+\end{equation}
+nella quale il generico tensore è descrivibile come:
+\begin{equation}
+    T = \tensor{T}{^{j_1 \dots j_r}_{i_1 \dots i_s}} e_{j_1} \otimes \dots \otimes e_{j_r} \otimes \theta^{i_1} \otimes \dots \otimes \theta^{i_s}
+\end{equation}
+Gli elementi $\tensor{T}{^{j_1 \dots j_r}_{i_1 \dots i_s}}$ sono le componenti del tensore nella base scelta. Vediamo ora l'applicazione di un tensore sugli elementi $v \in V, \ u \in V^*$.
+Chiamiamo $T(u_1, \dots, u_r, v_1, \dots, v_s) \equiv T$, allora:
+\begin{align*}
+    T &= \tensor{T}{^{j_1 \dots j_r}_{i_1 \dots i_s}} e_{j_1} \otimes \dots \otimes e_{j_r} \otimes \theta^{i_1} \otimes \dots \otimes \theta^{i_s} (u_1, \dots, u_r, v_1, \dots, v_s) \\
+    &= \tensor{T}{^{j_1 \dots j_r}_{i_1 \dots i_s}} e_{j_1}(u_1) \otimes \dots \otimes e_{j_r}(u_r) \otimes \theta^{i_1}(v_1) \otimes \dots \otimes \theta^{i_s}(v_s)\\
+    &= \tensor{T}{^{j_1 \dots j_r}_{i_1 \dots i_s}} u_{(1) j_1} \dots u_{(r)j_r} v_{(1)}^{i_1}\dots v_{(s)}^{i_s}
+\end{align*}
+dove $u_{(r)j_r}$ è la $j_r$-esima componente covariante del covettore $u_r$, mentre $ v_{(s)}^{i_s}$ è la $i_s$-esima componente controvariante del vettore $v_s$.
+
+\begin{definizione}
+Chiamiamo \textbf{campo tensoriale} sulla varietà $X$ la funzione:
+\begin{equation*}
+    T : X \rightarrow (TX)^r_s
+\end{equation*}
+che associa ad ogni $p \in X$ un tensore definito sullo spazio tangente nel punto. Le sue componenti, al pari delle componenti di un campo vettoriale di cui è la generalizzazione, sono delle funzioni.\footnote{Si richiede anche che il tensore vari con differenziabilità al variare del punto della varietà.} Le componenti del campo tensoriale, come è abbastanza prevedibile, trasformano come un tensore nella trasformazione tra due diverse carte nelle quali sono espresse:
+\begin{equation*}
+    \tensor{T}{^{j_1\dots j_r}_{i_1\dots i_s}}(x'^1,\dots, x'^n) = \frac{\partial x'^{j_1}}{\partial x^{k_1}} \dots \frac{\partial x'^{j_r}}{\partial x^{k_r}} \frac{\partial x^{l_1}}{\partial x'^{i_1}} \dots \frac{\partial x^{l_s}}{\partial x'^{i_s}} \tensor{T}{^{k_1 \dots k_r}_{l_1\dots l_s}}(x^1,\dots, x^n)
+\end{equation*}
+\end{definizione}
+\section{Cambiamento di base}
+Ricordando come trasformano le basi e le componenti, eq. \ref{eq.basetransvett}-\ref{eq.covar}, applichiamo nello sviluppo del tensore:
+\begin{align*}
+    T &= \tensor{T}{^{j_1 \dots j_r}_{i_1 \dots i_s}} e_{j_1} \otimes \dots \otimes e_{j_r} \otimes \theta^{i_1} \otimes \dots \otimes \theta^{i_s} \\
+    &= \tensor{T}{^{j_1 \dots j_r}_{i_1 \dots i_s}} \tensor{a}{_{j_1}^{k_1}} \dots \tensor{a}{_{j_r}^{k_r}} \tensor{(a^{-1})}{^{i_1}_{l_1}} \dots \tensor{(a^{-1})}{^{i_s}_{l_s}} e'_{k_1} \otimes \dots \otimes e'_{k_r} \otimes \theta'^{l_1} \otimes \dots \otimes \theta'^{l_s} \\
+    &\equiv \tensor{(T')}{^{k_1 \dots k_r} _{l_1 \dots l_s}}  e'_{k_1} \otimes \dots \otimes e'_{k_r} \otimes \theta'^{l_1} \otimes \dots \otimes \theta'^{l_s}
+\end{align*}
+ovvero un tensore del tipo $\binom{r}{s}$ trasforma $r$-volte in maniera controvariante e $s$-volte in maniera covariante.
+\begin{equation*}
+    \tensor{(T')}{^{k_1\dots k_r}_{l_1\dots l_s}} = \tensor{T}{^{j_1 \dots j_r}_{i_1 \dots i_s}} \tensor{a}{_{j_1}^{k_1}} \dots \tensor{a}{_{j_r}^{k_r}} \tensor{(a^{-1})}{^{i_1}_{l_1}} \dots \tensor{(a^{-1})}{^{i_s}_{l_s}}
+\end{equation*}
+\section{P-Forme differenziali}
+\begin{definizione}
+Una \textbf{p-forma differenziale} è un tensore $T_{i_1 \dots i_p}$ del tipo $\binom{0}{p}$ totalmente antisimmetrico.
+
+Chiamiamo $\Lambda_p V$ lo spazio delle $p$-forme sullo spazio $V$.
+\end{definizione}
+
+Rientrano in questa definizione gli elementi dello spazio cotangente, che erano già state chiamate 1-forme differenziali. Questa definizione generalizza quanto visto.
+Una funzione $f: X \rightarrow \mathbb{R}$ è una zero forma.
+
+\begin{esempio}
+Siano $\xi_1,\xi_2 \in \mathbb{R}^2$, sviluppati secondo
+\begin{align*}
+    \xi_1 = \xi_{11}e_1 + \xi_{12} e_2 &&   \xi_2 = \xi_{21} e_1 + \xi_{22} e_2
+\end{align*}
+allora possiamo definire la 2-forma differenziale:
+\begin{equation*}
+    S(\xi_1,\xi_2)= 
+    \begin{vmatrix}
+    \xi_{11} & \xi_{12}\\
+    \xi_{21} & \xi_{22}
+    \end{vmatrix}
+\end{equation*}
+che fornisce l'area orientata del parallelogramma generato da $\xi_1, \xi_2$.
+Può essere generalizzato a $n$ vettori in $\mathbb{R}^n$ per fornire il volume orientato:
+\begin{equation*}
+    V(\xi_1, \dots,\xi_n)= 
+    \begin{vmatrix}
+    \xi_{11} & \dots & \xi_{1n}\\
+    \vdots & \ddots & \vdots\\
+    \xi_{n1} & \dots & \xi_{nn} \\
+    \end{vmatrix}
+\end{equation*}
+Si veda \cite{arnold}.
+\end{esempio}
+
+\begin{definizione}
+Siano $\phi \in \Lambda_pV$ e $\chi \in \Lambda_q V$ rispettivamente $p$-forma e $q$-forma. Si definisce \textbf{prodotto esterno o wedge}:
+\begin{equation*}
+    \phi \wedge \chi = \frac{(p+q)!}{p!q!}\mathcal{A}(\phi \otimes \chi)
+\end{equation*}
+dove $\mathcal{A}$ è l'operatore di antisimmetrizzazione definito:
+\begin{equation*}
+    (\mathcal{A}T)(v_1,\dots,v_p) = \frac{1}{p!}\sum_{\theta \in S_p} \epsilon_\theta T( v_{\theta(1)}, \dots, v_{\theta(p)})
+\end{equation*}
+con $\epsilon_\theta$ il segno della permutazione $\theta$ del gruppo $S_p$ di permutazioni di ordine $p$.
+\end{definizione}
+
+Il prodotto esterno permette di ottenere una $(p+q)$-forma.
+L'insieme delle $p$-forme, per tutti i valori di $p$, dotato del prodotto wedge forma un'algebra chiamata \textbf{algebra esterna o di Grassmann}; questa è però una \textit{algebra graduata}, in quanto non si possono sommare tra loro forme $p$ e $q$ con $p\neq q$ (i gradi sono dati proprio da questa caratterizzazione interna allo spazio di tutte le forme differenziali).
+
+Il prodotto esterno gode delle proprietà:
+\begin{itemize}
+    \item multilinearità:
+    \begin{itemize}
+    \item $\phi \wedge \underbrace{( \chi + \psi)}_ \text{tra $q$-forme} = \phi \wedge \chi + \phi \wedge \psi$
+    \item $\underbrace{(\phi + \chi )}_\text{tra $p$-forme} \wedge \psi = \phi \wedge \psi + \chi \wedge \psi$
+    \item $f(\phi \wedge \chi)=f \phi \wedge \chi+ \phi \wedge f\chi$
+    \end{itemize}
+   
+    \item non sempre commutativo: $\phi \wedge \chi = (-1)^{pq}\chi \wedge \phi $
+    
+    \item associatività: $(\phi \wedge \chi)\wedge \psi = \phi \wedge ( \chi \wedge \psi)$
+\end{itemize}
+\begin{esempio}
+Siano $\phi$, $\chi$ 1-forme.
+\begin{equation*}
+    \phi \wedge \chi = 2 \mathcal{A}(\phi \otimes \chi) = 2\frac{1}{2}(\phi \otimes \chi - \chi \otimes \phi) = \phi \otimes \chi - \chi \otimes \phi
+\end{equation*}
+\end{esempio}
+\textbf{N.B:} se dim$V=n$ allora non esistono $p$-forme con $p>n$ in quanto vorrebbe dire che un indice deve apparire due volte e non può essere totalmente antisimmetrico\footnote{migliorare}
+
+Sia la base $\{ \theta^1, \dots, \theta^n\}$ di $V^*$, allora la \textbf{base di $\Lambda_p V$} è data da:
+\begin{equation*}
+    \{ \theta^{I_1} \wedge \dots \wedge \theta^{I_p} : I_i= 0, \dots, p, I_i < I_{i+1} \}
+\end{equation*}
+La dimensione dello spazio delle $p$-forme è $\binom{n}{p}$.
+\begin{esempio}
+Sia $n=4, \ p=2$ allora la base è:
+\begin{equation*}
+    \{ \theta^1 \wedge \theta^2, \theta^1 \wedge \theta^3, \theta^1 \wedge \theta^4, \theta^2 \wedge \theta^3, \theta^2 \wedge \theta^4, \theta^3 \wedge \theta^4 \}
+\end{equation*}
+\end{esempio}
+
+\begin{esempio}
+Sia $p=3$, allora il tensore ha sviluppo:
+\begin{align*}
+    \omega &= \omega_{ijk} \theta^i \otimes \theta^j \otimes \theta^k \\
+    &= \omega_{[ijk]} \theta^i \otimes \theta^j \otimes \theta^k
+\end{align*}
+dove nell'ultimo passaggio si è posto sugli indici l'operatore di antisimmetrizzazione.
+\begin{equation*}
+    \omega = \frac{1}{3!}( \omega_{ijk} + \omega_{kij} + \omega_{jki} - \omega_{ikj} - \omega_{jik} - \omega_{kji} ) \theta^i \otimes \theta^j \otimes \theta^k
+\end{equation*}
+Distribuendo le somme e sfruttando la saturazione degli indici, si effettuano i cambi di indice portando tutti gli $\omega$ allo stesso $\omega_{ijk}$:
+\begin{align*}
+    \omega &= \frac{1}{3!}\omega_{ijk}(
+       \theta^i \otimes \theta^j   \otimes \theta^k
+    +   \theta^j \otimes \theta^k   \otimes \theta^i
+    +   \theta^k \otimes \theta^i   \otimes \theta^j + \\
+    &
+    -   \theta^j \otimes \theta^i   \otimes \theta^k
+    -   \theta^i \otimes \theta^k   \otimes \theta^j
+    -   \theta^k \otimes \theta^j   \otimes \theta^i) \\
+    &= \frac{1}{3!} \omega_{ijk} \theta^i \wedge \theta^j \wedge \theta^k
+\end{align*}
+\end{esempio}
+
+Vale \textbf{in generale}:
+\begin{equation*}
+    \omega = \frac{1}{p!}\omega_{i_1 \dots i_p} \theta^{i_1} \wedge \dots \wedge \theta^{i_p}
+\end{equation*}
+
+\begin{definizione}
+Sia $\phi \in \Lambda_p V$ espressa nello sviluppo: $\phi = \frac{1}{p!}\phi_{i_1 \dots i_p} dx^{i_1} \wedge \dots \wedge dx^{i_p}$. La \textbf{derivata esterna} di una $p$-forma differenziale è definita come l'unica applicazione $\Lambda_p V \rightarrow \Lambda_{p+1}V$ che soddisfa:
+\begin{itemize}
+    \item $d(\phi + \chi) = d\phi + d\chi$
+    
+    \item $d(\phi \wedge \chi)=d\phi \wedge \chi + (-1)^p\phi \wedge d\chi$
+    
+    \item $dd\phi (:= d^2\phi) = 0$
+    
+    \item $df = \partial_i f dx^i$ dove $f$ è funzione (0-forma)
+\end{itemize}
+\end{definizione}
+La derivata esterna estende il concetto di differenziale di una funzione a forme differenziali.
+
+Possiamo determinare la formula generale per la derivata esterna $d\phi:$
+\begin{align*}
+    d\phi &= d(\frac{1}{p!}\phi_{i_1 \dots i_p} dx^{i_1} \wedge \dots \wedge dx^{i_p}) \\
+    &= \frac{1}{p!} d\phi_{i_1 \dots i_p} \wedge dx^{i_1} \wedge \dots \wedge dx^{i_p} + \frac{1}{p!}\phi_{i_1 \dots i_p} d(dx^{i_1} \wedge \dots \wedge dx^{i_p})
+\end{align*}
+    Si può dimostrare usando la seconda proprietà che il termine $d(dx^{i_1} \wedge \dots \wedge dx^{i_p})=0$ e pertanto:
+\begin{equation*}
+    d\phi = \frac{1}{p!} d\phi_{i_1 \dots i_p} \wedge dx^{i_1} \wedge \dots \wedge dx^{i_p}
+\end{equation*}
+    A indici $i_1 \dots i_p$ fissati allora $\phi_{i_1 \dots i_p}(x^1, \dots , x^n)$ sono funzioni, cioè è una 0-forma:
+\begin{equation}
+    d\phi = \frac{1}{p!}\partial_i \phi_{i_1 \dots i_p} dx^i \wedge dx^{i_1} \wedge \dots \wedge dx^{i_p}
+    \label{eq.derivesterna}
+\end{equation}
+è la formula della derivata esterna di una $p$-forma differenziale. Si usa anche la notazione $\phi_{i_1 \dots i_p, i} \equiv \partial_i \phi_{i_1 \dots i_p}$.
+
+
+
+\section{Varietà riemanniane e pseudo-riemanniane, tensore metrico}
+\begin{definizione}
+Sia una varietà differenziabile $X$ dotata di un campo tensoriale $g$ di tipo $\binom{0}{2}$ tale che:
+\begin{itemize}
+    \item $g$ è simmetrico: $g_{ij} = g_{ji}$
+    \item $\forall x \in X$ la forma bilineare $g$ è non degenere
+    \begin{equation*}
+        g_x(v, w) = 0 \ \forall v \in T_xX \implies w= 0
+    \end{equation*}
+\end{itemize}
+Se $g_x(v,v) > 0 \ \forall v \in T_xX$ la varietà è detta \textbf{riemanniana} (propria), altrimenti si parla di varietà \textbf{pseudo-riemanniana} (impropria).
+\end{definizione}
+Il campo tensoriale $g$ è chiamato \textbf{tensore metrico}. Nel caso di varietà riemanniane permette di definire le nozioni di distanza, lunghezza, curve geodetiche etc. tramite la definizione di un prodotto scalare definito positivo sullo spazio tangente.
+\begin{align*}
+    (v | w) = g_x(v,w) &&  \forall v, w  \in T_xX\\
+    \| v \| = \sqrt{g_x(v,v)} &&  \forall v \in T_xX
+\end{align*}
+Se la varietà è pseudo-riemanniana, il prodotto scalare non è definito positivo e ci possono essere vettori con lunghezza negativa.
+\begin{esempio}
+Sia $\gamma(t) : [a,b] \rightarrow X$ una curva differenziabile sulla varietà riemanniana $X$.
+La lunghezza della curva è definita da:
+\begin{equation*}
+    L(\gamma) = \int_a^b\|\gamma ' (t) \|dt
+\end{equation*}
+\end{esempio}
+
+Sia $\{\theta^i\}$ campo di vettori covarianti di base, allora scriviamo
+\begin{align*}
+    g &= g_{ij} \theta^i \otimes \theta^j = \frac{1}{2} g_{ij} \theta^i \otimes \theta^j + \frac{1}{2} g_{ij} \theta^i \otimes \theta^j\\
+    &= \frac{1}{2} g_{ij} \theta^i \otimes \theta^j + \frac{1}{2} g_{ji} \theta^j \otimes \theta^i = \frac{1}{2} g_{ij}( \theta^i \otimes \theta^j + \theta^j \otimes \theta^i) \\
+    &= g_{ij} \theta^i \theta^j
+\end{align*}
+dove per l'ultimo termine è stata usata una notazione che alleggerisce la simmetrizzazione detta anche prodotto simmetrizzato. Si scrive anche, nel caso di base naturale:
+\begin{equation*}
+    g \equiv ds^2 = g_{ij}dx^idx^j
+\end{equation*}
+
+Sia $\{e_i\}$ la base duale di $\{\theta^i\}$:
+\begin{equation*}
+    g_x(v,w) = g_x(v^i e_i,w^j e_j) = v^i w^j g_x(e_i, e_j) = g_{ij} v^i w^j \implies g_x(e_i, e_j)=g_{ij}
+\end{equation*}
+in tal modo si possono ottenere gli elementi di matrice del tensore $g$.
+
+\subsection{Abbassamento e alzamento indici}
+Mostriamo come il tensore $g$ stabilisca un isomorfismo tra $T_x$ e $T_x^*$. Sia $u \in T_x$ allora l'applicazione $g_x(u,\cdot): T_x \rightarrow \mathbb{R}$, dove è lasciato aperto il secondo termine della forma bilineare, è un funzionale su $T_x$, ovvero un elemento di $T_x^*$.
+\begin{align*}
+    g_x(u,\cdot) : T_x  &\rightarrow \mathbb{R} \\
+                v &\mapsto g_x(u,v)
+\end{align*}
+Chiamiamo pertanto \textbf{isomorfismo canonico} la mappa:
+\begin{align*}
+    &T_x \rightarrow T_x^* \\
+    &u \mapsto g_x(u,\cdot)= u^*
+\end{align*}
+che per componenti risulta:
+\begin{equation*}
+    g_x(u,v)=g_{ij} u^iv^j \implies u^*_j = g_{ij}u^i
+\end{equation*}
+Da qui in poi ometteremo l'indice * e manterremo la distinzione tra vettore e covettore basandoci sull'indice alto o basso. Tramite l'uso della metrica sappiamo dunque come passare da componenti covarianti a controvarianti:
+\begin{align*}
+    u_i=g_{ij}u^j && u^i=g^{ij}u_j
+\end{align*}
+La matrice di elementi $g^{ij}$ è l'inversa di $g_{ij}$. Generalizzando ai tensori, cioè sfruttando l'isomorfismo canonico tra $\otimes^pT_x$ e $\otimes^pT_x^*$:
+\begin{equation*}
+    T_{i_1\dots i_p} = g_{i_1 j_1} \dots g_{i_p j_p} T^{j_1 \dots j_p}
+\end{equation*}
+L'isomorfismo può essere usato per alzare o abbassare solo alcuni indici, ad esempio:
+\begin{equation*}
+    T^i_j= g_{jk}T^{ki}
+\end{equation*}
+
+\subsection{Ortonormalità, segnatura}
+\begin{definizione}
+Chiamiamo \textbf{forma quadratica} associata a $g$, l'applicazione
+\begin{align*}
+    T_xX & \rightarrow \mathbb{R} \\
+    v &\mapsto g_x(v, v)
+\end{align*}
+\end{definizione}
+
+Con la metrica introdotta è possibile quindi definire il concetto di base ortonormale, cioè tale che
+\begin{align*}
+    g(v_i,v_j) &= 0 \ \ \text{ Se $i\neq j$} \\
+    g(v_i,v_i) &= \pm 1 
+\end{align*}
+La scelta delle possibili basi ortonormali è arbitraria, non lo è però il numero di elementi che risulta $g(v_i,v_i)=1$ e $g(v_j,v_j)=-1$, in quanto dipende dal numero di autovalori positivi e negativi della matrice rappresentativa di $g$: poiché la forma bilineare è simmetrica, la sua matrice rappresentativa ammette base di autovettori ortonormali con autovalori reali; con questa base, in particolare la matrice ortogonale con colonne gli autovettori, è possibile diagonalizzare la rappresentativa di $g$ e quindi ridurre in forma canonica la forma quadratica. Possiamo in particolare applicare il teorema di Sylvester (con $V=T_x X$):
+\begin{teorema}[di Sylvester]
+Sia $g: V\times V \rightarrow \mathbb{R} $ simmetrica ($n=dimV$) allora $\exists! k \in \mathbb{N}$ e $\exists C$ base di $V$ tale che la matrice che rappresenta $g$ può essere scritta nella forma a blocchi:
+\begin{equation*}
+    \begin{pmatrix}
+    -I_{k} & 0 & 0 \\
+    0 & I_{n-k} & 0 \\
+    0 & 0 & 0
+    \end{pmatrix}
+\end{equation*}
+ovvero $g_{ij}v^iv^j= - \sum_{j=0}^{k}(v^i)^2 + \sum_{j=k+1}^{n-k}(v^j)^2$
+\end{teorema}
+\begin{definizione}
+Chiamiamo \textbf{segnatura} di una forma quadratica la coppia $(k, n-k)$, cioè il numero di autovalori negativi e positivi.
+\end{definizione}
+Chiamiamo $k$ l'indice della forma quadratica. In particolare distinguiamo
+\begin{itemize}
+    \item $k=0$: varietà Riemanniana propria
+    
+    Il tensore metrico è definito positivo. L'ortonormalizzazione è ottenuta con $(e_i|e_j)= \delta_{ij}$.
+    \item $k=1$: varietà Lorentziana
+    
+    Il tensore metrico non è definito positivo e ha un autovalore negativo; viene chiamato tensore lorentziano. L'ortonormalizzazione è ottenuta con $(e_i|e_j)=\eta_{ij}$. Lo spaziotempo di Minkowski è l'esempio più classico con segnatura $(-+++)$ e $\eta_{ij}=diag(-1,1,1,1)$.
+\end{itemize}
+
+\subsection{Elemento di volume e integrazione sulla varietà}\label{para.volume}
+\begin{definizione}
+Una \textbf{forma di volume o orientazione} della varietà $V$ di dimensione $n$ è una forma differenziale $v$ mai nulla:
+\begin{equation*}
+    v = v(x)dx^1\wedge \dots \wedge dx^n
+\end{equation*}
+dove $v(x)\neq 0$ in ogni punto della varietà. Se tale forma esiste ovunque sulla varietà, $V$ è detta \textbf{orientabile}.
+\end{definizione}
+
+\begin{definizione}
+L'orientazione è detta \textbf{destrorsa} se $v(x) > 0$ in qualsiasi punto della varietà. Se $v(x) < 0 $ in qualsiasi punto, allora è detta \textbf{sinistrorsa}.
+\end{definizione}
+
+Le forme di volume dipendono nella loro scrittura dal sistema di coordinate scelto ed in particolare devono mantenere la loro natura destrorsa/sinistrorsa nelle regioni dove due set di coordinate si sovrappongono. Quindi:
+\begin{align*}
+    v &= v(x) \frac{\partial x^1}{\partial \Bar{x}^{a_1}} d\Bar{x}^{a_1} \wedge \dots  \wedge \frac{\partial x^n}{\partial \Bar{x}^{a_n}}d\Bar{x}^{a_n} \\
+    &= v(x)det\left( \frac{\partial x^\mu}{\partial \Bar{x}^\nu}\right) d\Bar{x}^1 \wedge \dots \wedge d\Bar{x}^n
+\end{align*}
+mantiene la stessa orientazione se $det\left( \frac{\partial x^\mu}{\partial \Bar{x}^\nu}\right) > 0$.
+
+Dato quindi un elemento di volume $v$ sulla varietà $V$, si può integrare una qualsiasi funzione $f : V \rightarrow \mathbb{R}$, nella carta $\phi : O \rightarrow U$  e coordinate $x^\mu$ secondo:
+\begin{equation*}
+    \int_O fv = \int_U dx_1 \dots dx_n f(x) v(x)
+\end{equation*}
+La forma di volume fornisce pertanto un peso con il quale valutare le differenti parti dell'integrale. Qualora si voglia integrare sulla varietà, la si suddivide nelle carte che la ricoprono e si esegue l'integrazione sulle carte separate.
+Dato invece un campo vettoriale $F$, la sua contrazione con la forma differenziale $v$ sarà una $(n-1)$-forma differenziale che scriviamo $F\cdot v$. Questa può essere integrata su una qualsiasi sottovarietà $\mathcal{V}$ compatta e orientabile di dimensione $(n-1)$ per la quale scriveremo:
+\begin{equation*}
+    \int_\mathcal{V} F^i d\sigma_i =\int_\mathcal{V}F^i n_i d\sigma = \frac{1}{(n-1)!}\int_\mathcal{V} F\cdot v
+\end{equation*}
+L'elemento $n_\mu$ definisce la forma normale alla superficie orientabile $\mathcal{V}$, mentre $d\sigma$ è l'elemento di volume sulla sottovarietà $\mathcal{V}$. Questo non è unico a meno che la forma normale $n_\mu$ sia normalizzata; Se la forma $n_i$ è normalizzata per mezzo di una metrica $g$ come $n_i n_j g^{ij} = \pm 1$, allora $d\sigma$ è la misura di volume su $\mathcal{V}$ dovuta alla metrica indotta sulla sottovarietà.
+
+Su una varietà lorentziana 4-dimensionale, come quelle con cui avremo a che fare, la metrica permette di definire l'elemento di volume:
+\begin{equation*}
+    d\tau = \sqrt{-g} d^4x
+\end{equation*}
+dove qui $g= det(g_{\mu\nu})$ è il determinante (che è negativo).
+

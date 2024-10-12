@@ -1,0 +1,111 @@
+\chapter{Onde gravitazionali}
+Approfondiamo in questo capitolo gli aspetti legati alla descrizione, le proprietà e la creazione delle onde gravitazionali.
+Nel capitolo \S\ref{para.gravlineare} erano già state introdotte come limite lineare delle equazioni di Einstein. Nelle prime sezioni di questo capitolo si riprenderà il discorso lì fatto, riportando i risultati principali, mentre si rimanda a quella parte per vedere i calcoli.
+
+Gli appunti sono presi da \cite{maggiore_gw}.
+
+\section{Onde gravitazionali dalla gravità linearizzata}
+Consideriamo l'azione $S =S_{H} + S_M$ dove:
+\begin{equation*}
+    S_{H} = \frac{c^3}{16\pi G}\int d^4 x \sqrt{-g}R
+\end{equation*}
+che ha come equazioni del moto $R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = \frac{8\pi G}{c^4}T_{\mu\nu}$. La relatività generale è invariante sotto un ampio gruppo di simmetrie dato da trasformazioni di coordinate del tipo $x^\mu \mapsto x'^\mu(x)$ dove $x'^\mu$ è un diffeomorfismo di $x$. La corrispondente trasformazione per la metrica è:
+\begin{equation*}
+    g_{\mu\nu}(x) \mapsto g_{\mu\nu}(x') = \frac{\partial x^\rho}{\partial x'^\mu} \frac{\partial x^\sigma}{\partial x'^\nu}g_{\rho\sigma}(x)
+\end{equation*}
+Queste trasformazioni sono riferite col nome di simmetria di gauge per la relatività generale. Le onde gravitazionali sono inizialmente introdotte analizzando la perturbazione della metrica intorno ad un background piatto. Come verrà visto, sarà necessario andare oltre a questo background. Quindi per primo vediamo:
+\begin{equation*}
+    g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}(x) \qquad |h_{\mu\nu}| \ll 1    
+\end{equation*}
+Notiamo bene che i valori numerici di un tensore valgono una volta fissato un sistema di riferimento, quindi ci aspettiamo che questa condizione valga  in un certo sistema di riferimento sufficientemente grande. Tra l'altro la scelta di un sistema di riferimento rompe l'invarianza della relatività generale sotto le trasformazioni, ma questo è anche un metodo per eliminare tutti i gradi di libertà spuri che non ci fanno vedere gli aspetti fisici fondamentali della teoria.
+
+Rimane una libertà di gauge quando eseguiamo $x^\mu \mapsto x'^\mu = x^\mu + \xi^\mu$. Immessa nella trasformazione della metrica comporta, come visto in \S\ref{para.gaugeGR} a:
+\begin{equation*}
+    h_{\mu\nu} \mapsto h'_{\mu\nu} = h_{\mu\nu} - (\partial_\mu \xi_\nu + \partial_\nu\xi_\mu)
+\end{equation*}
+Nel caso di background piatto è sufficiente richiedere che $|\partial_\mu\xi_\nu| \ll 1$ per essere dello stesso ordine di $|h_{\mu\nu}|$, mentre nel caso di background curvo, la condizione è su $|\xi^\mu|$.
+
+In \ref{para.gravlineare} sono stati calcolati i simboli di Christoffel nel caso lineare, eq. \ref{eq.gammalineare}, e quindi il tensore di Riemann:
+\begin{equation*}
+    R_{\mu\nu\rho\sigma} = \frac{1}{2}\left( \partial_\nu\partial_\rho h_{\mu\sigma} + \partial_\mu\partial_\sigma h_{\nu\rho} - \partial_\mu\partial_\rho h_{\nu\sigma} - \partial_\nu\partial_\sigma h_{\mu\rho} \right)
+\end{equation*}
+Sotto la trasformazione di gauge residua, il Riemann rimane invariato nel caso lineare (mentre è covariante sotto diffeomorfismi generici). Questo verrà spesso utilizzato per eseguire calcoli.
+
+Introducendo $\Bar{h}_{\mu\nu} = h_{\mu\nu} - \frac{1}{2}h\eta_{\mu\nu}$ (trace inverted) con la proprietà che $\Bar{h}= - h$, le equazioni di Einstein si riducono a:
+\begin{equation*}
+    \Box \Bar{h}_{\mu\nu} + \eta_{\mu\nu}\partial^\rho\partial^\sigma\Bar{h}_{\rho\sigma}-\partial^\rho\partial_\nu\Bar{h}_{\rho\mu} - \partial^\rho\partial_\mu\Bar{h}_{\rho\nu} = - \frac{16\pi G}{c^4}T_{\mu\nu}
+\end{equation*}
+L'imposizione del gauge di Lorenz (o di de Donder o harmonic gauge) riduce le eq. di Einstein alle eq. di Pauli-Fierz, eq. \ref{eq.GRpaulifierz} . Come già mostrato è sempre possibile ricondurci in questo gauge poiché è risolvibile:
+\begin{equation*}
+    \Box \xi_\nu = \partial^\mu h_{\mu\nu} \neq 0
+\end{equation*}
+La condizione di gauge armonico, $\partial^\mu \Bar{h}_{\mu\nu}=0$ permette la rimozione di 4 gradi di libertà dai 10 iniziali. Inoltre la conservazione dell'energia-impulso $\partial^\mu T_{\mu\nu}=0$ (spaziotempo piatto) è implicata consistentemente in eq. \ref{eq.GRpaulifierz}.
+
+Dal punto di vista fisico, considerare le onde gravitazionali prodotte nella teoria linearizzata corrisponde a considerare i corpi che li producono immersi nello spaziotempo piatto che si muovono lungo le traiettorie dovute alla reciproca influenza. In questo caso stiamo usando la gravità Newtoniana per descrivere il sistema autogravitante e non la piena relatività generale.
+\subsection{Transverse traceless gauge}
+In \S\ref{para.vacuum_gw} era già stato visto cosa succedeva alle equazioni nel caso del vuoto. Questa condizione ci permette di rimuovere altri gradi di libertà riducendoci a due soli.  Rivediamo in breve e ampliamo il discorso.
+
+Le equazioni lontano dalla sorgente nel gauge armonico sono:
+\begin{equation*}
+    \Box\Bar{h}_{\mu\nu} = 0
+\end{equation*}
+La condizione di gauge armonico non fissa del tutto il gauge (come in elettrodinamica), ma lascia la libertà:
+\begin{equation*}
+    \partial^\mu h_{\mu\nu} \mapsto \partial^\mu h'_{\mu\nu} = \partial^\mu h_{\mu\nu} - \Box \xi_\nu
+\end{equation*}
+che lascia invariata l'equazione del moto per qualsiasi $\xi$ tale che $\Box\xi_\nu=0$. Questo, come fatto in \S\ref{para.vacuum_gw}, permette di scegliere un opportuno valore di $\xi$ in modo tale da avere:
+\begin{equation*}
+    \Bar{h}=0 \qquad \Bar{h}^{0i} = h^{0i}=0 \quad i=1,2,3
+\end{equation*}
+La prima condizione, traceless, permette $\Bar{h}_{\mu\nu}=h_{\mu\nu}$. In questa maniera sono rimossi altri 4 gradi di libertà, lasciandone 2.
+
+Notiamo che:
+\begin{equation*}
+    \partial^\mu \Bar{h}_{\mu\nu} = 0 \implies \partial^0 h_{00} + \partial^i h_{0i}= \partial^0 h_{00} =0
+\end{equation*}
+quindi che $h_{00}$ è una funzione costante del tempo $t$. Questa costante può essere portata a zero considerando che nel limite debole della relatività:
+\begin{equation*}
+    g_{00}\sim - \left( 1 + \frac{2\phi}{c^2}\right)
+\end{equation*}
+e perciò $h_{00}$ corrisponde alla parte statica del potenziale gravitazionale che ha generato l'onda. \'E una parte tempo-indipendente che in un'onda (tempo-dipendente) non propaga e quindi possiamo mandare liberamente a zero per la nostra discussione. Combiando il tutto, il gauge traceless traverso (TT-gauge) è definito da:
+\begin{equation}
+    \tensor{h}{^i_i}=0 \qquad h^{0\mu}=0 \qquad \partial^i h_{ij} = 0
+    \label{eq.tt_gauge}
+\end{equation}
+
+Il TT-gauge non può essere scelto dentro la sorgente, poiché è necessario $\Box \Bar{h}_{\mu\nu}=0$. Dentro la sorgente è possibile stare nel gauge di Lorenz e porre $\Box \xi_\mu = 0$, ma in questo caso non si può porre a zero una qualsiasi componente di $\Bar{h}_{\mu\nu}$.
+
+Le soluzioni a $\Box h_{\mu\nu}=0$ sono onde piane $h_{ij} = Re\left[\epsilon_{ij}e^{ik_\mu x^\mu}\right]$ che sostituite nell'equazione d'onda portano a $k_\mu k^\mu =0$ quindi le onde gravitazionali sono massless e viaggiano a $c$. Il tensore $e_{ij}(\bm{k})$ è la polarizzazione dell'onda.  Se si chiama $\hat{\bm{n}}= \bm{k}/|\bm{k}|$, la condizione $\partial^jh_{ij}=0$ diventa $n^ih_{ij}=0$, quindi le onde piane sono trasverse alla direzione di propagazione data dal vettore $\bm{k}$. Ponendo $\hat{\Bar{n}}=\hat{\bm{z}}$ e imponendo la simmetria, traceless:
+\begin{equation*}
+    h_{ij}^{TT}(t,z)= \begin{pmatrix}
+        h_+ & h_\times &0\\
+        h_\times & - h_+ &0 \\ 
+    0 &0 & 0
+    \end{pmatrix}_{ij} \cos(\omega (t- z/c))
+\end{equation*}
+I termini $h_+$, $h_\times$ sono le ampiezze delle polarizzazioni \virgolette{plus} e \virgolette{cross} che saranno chiare più avanti.
+
+Spesso vengono eseguiti i calcoli nella gauge armonica e successivamente ricondotte al TT-gauge.; per fare questo servirebbe determinare lo $\xi_\mu$ opportuno che risolve $\Box \xi_\mu = 0$, ma è operazione difficoltosa, quindi lo si esegue tramite una proiezione nel TT-gauge.
+Per primo si definisce il proiettore:
+\begin{equation}
+    P_{ij}(\hat{\bm n}) = \delta_{ij} - n_i n_j
+    \label{eq.proiettore_P_ttgauge}
+\end{equation}
+Questo è un tensore simmetrico, con traccia 2, trasverso ($n^iP_{ij}=0$) ed è un proiettore ($P^2 =P$). Con questo si costruisce:
+\begin{equation}
+    \Lambda_{ij,kl} = P_{ik}P_{jl} - \frac{1}{2}P_{ij}P_{kl}
+    \label{eq.proiettore_lambda}
+\end{equation}
+Esso è ancora un proiettore, è trasverso, traceless e simmetrico sullo scambio delle coppie di indici. Viene chiamato \textbf{Lambda tensor}. Questo permette di prendere un tensore $h_{ij}$ nel gauge armonico, ma non ancora TT e di ricondurlo ad un'onda gravitazionale nel gauge TT tramite:
+\begin{equation}
+    h_{ij}^{TT}= \Lambda_{ij,kl}h_{kl}
+\end{equation}
+Per costruzione si ottiene che il membro destro è trasverso traceless e dal fatto che $h_{\mu\nu}=0$ è soluzione d'onda, si ottiene che $\Box h_{\mu\nu}^{TT}=0$. Il fatto che $h_{\mu\nu}$ sia nel gauge di Lorenz e quindi soddisfi $\Box h_{\mu\nu}=0$ è necessario.
+
+
+% sviluppo onde
+
+% proprietà del tt gauge
+
+\subsection{Detector frame}
+

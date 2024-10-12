@@ -1,0 +1,486 @@
+\chapter{Connessioni lineari}
+Fissati due punti $p, q$ su $X$, con la sola struttura di varietà non c'è modo di poter identificare i due vettori tangenti $v_p, v_q$ così da poter dire se uno è \virgolette{uguale} all'altro, essendo elementi di due spazi differenti. Introduciamo quindi il concetto di \textit{trasporto parallelo} di un vettore tangente da $p$ a $q$ lungo una curva, che ci permetta di ottenere tale risultato. A tal fine verrà visto anche il concetto di \textit{curvatura} o torsione che ci permetterà o meno di dire se l'identificazione di $v_p$ in $v_q$ dipenda o meno dalla curva scelta.
+\section{Derivata covariante di vettore, trasporto parallelo}
+Introduciamo il concetto di derivata direzionale con il quale costruiremo il trasporto parallelo. Questo operatore svolgerà il ruolo di derivata parziale, ma in modo indipendente dalle coordinate scelte. La prima definizione verrà data sui campi vettoriali e sarà in seguito estesa a campi tensoriali.
+\begin{definizione}
+Chiamiamo \textbf{derivata covariante} o \textbf{connessione} sulla varietà differenziabile $X$ la mappa
+\begin{equation*}
+    v \mapsto \nabla v
+\end{equation*}
+che associa il campo vettoriale $v$ ad un campo tensoriale del tipo $\binom{1}{1}$ tale che valgono
+\begin{itemize}
+    \item linearità: $\nabla (v + w) = \nabla v +  \nabla w$
+    \item Leibniz: $\nabla (fv) = df\otimes v + f\nabla v$ dove $f: X \rightarrow \mathbb{R}$ differenziabile
+\end{itemize}
+\end{definizione}
+
+Per codificare la connessione si fa uso dei \textbf{coefficienti di connessione} o \textit{simboli di Christoffel} definiti sugli elementi della base dello spazio $T_pX$ e il suo duale, dato un punto $p\in X$.
+\begin{equation*}
+    \nabla e_i = \tensor{\Gamma}{^j_{ki}} \theta^k \otimes e_j
+\end{equation*}
+In tal modo possiamo ottenere una definizione esplicita della derivata covariante per il generico campo ($v^i$ sono funzioni):
+\begin{align*}
+    \nabla v &= \nabla (v^i e_i)= dv^i \otimes e_i + v^j\nabla e_j = (dv^i + v^j \tensor{\Gamma}{^i_{kj}}\theta^k )\otimes e_i
+\intertext{usando ora la proprietà della derivata esterna sul primo termine poi portando a base generica}
+    &=(\partial_k v^i dx^k + v^j \tensor{\Gamma}{^i_{kj}}\theta^k ) \otimes e_i = ( e_k(v^i)\theta^k + v^j \tensor{\Gamma}{^i_{kj}}\theta^k ) \otimes e_i\\
+    \nabla v &= ( e_k(v^i) + v^j\tensor{\Gamma}{^i_{kj}}) \theta^k \otimes e_i
+\end{align*}
+
+Utilizzeremo la notazione\footnote{Volutamente non è molto differente dalla notazione introdotta in precedenza $v^i_{,k}=\partial_k v^i$ per il motivo che questa introduce i termini correttivi delle $\Gamma$ invece che la sola derivata parziale.} $\tensor{v}{^i_{;k}}= e_k(v^i) + v^j\tensor{\Gamma}{^i_{kj}}$ per scrivere in maniera compatta la componente del campo tensoriale. Possiamo osservare nel caso della base naturale come la componente,  $\partial_k(v^i) + v^j\tensor{\Gamma}{^i_{kj}}$, sia composta dalla derivata parziale lungo la direzione $k$-esima e una correzione determinata dal coefficiente di correzione.
+\begin{definizione}
+Chiamiamo \textbf{derivata covariante lungo la curva} con tangente il vettore $u$ la quantità:
+\begin{equation*}
+    \nabla_u v =(\nabla v)(u)
+\end{equation*}
+\end{definizione}
+
+Poichè $\nabla v$ è un tensore di tipo $\binom{1}{1}$ a cui stiamo dando in ingresso un vettore, il risultato sarà un vettore, infatti:
+\begin{align*}
+    \nabla_u v &=(\nabla v)(u) = \tensor{v}{^i_{;k}} \theta^k \otimes e_i (u, \cdot ) = \tensor{v}{^i_{;k}} \theta^k(u) \otimes e_i \\
+    &= u^k \tensor{v}{^i_{;k}} e_i = u^k( e_k(v^i) + v^j\tensor{\Gamma}{^i_{kj}})e_i = u^k\nabla_{e_k}v
+\end{align*}
+Nel caso specifico della direzione di un vettore di base ($v= e_k=\delta^i_ke_i$) si ottiene la formula:
+\begin{equation}
+    \nabla_{e_j}e_i = \tensor{\Gamma}{^m}_{ji}e_m
+    \label{eq.covbasee}
+\end{equation}
+\begin{definizione}
+Si dice che il campo vettoriale $v$ è \textbf{trasportato parallelamente} lungo la curva $C(t)$ se $\nabla_{u_i} v= 0$ con $u_i = \frac{dC^i}{dt}$ per ogni punto della curva.
+\begin{align*}
+    \nabla_{u_i} v = 0 &\iff u^k( e_k(v^i) + v^j\tensor{\Gamma}{^i_{kj}})= 0 \\
+     & \iff u^k( \partial_kv^i + v^j\tensor{\Gamma}{^i_{kj}}) = 0
+\end{align*}
+\end{definizione}
+
+\subsection{Cambiamento di base}
+Vediamo sotto le trasformazioni di cambiamento di base, come trasforma la connessione e i coefficienti.
+Consideriamo le trasformazioni:
+\begin{align*}
+    e_i= \tensor{a}{_i^j} e'_j && v^i = \tensor{(a^{-1})}{_j^i}v'^j && \theta^k = \tensor{(a^{-1})}{_l^k}\theta'^l
+\end{align*}
+
+Calcoliamo quindi il differenziale:
+\begin{align*}
+    dv^i &= \tensor{(a^{-1})}{_l^i}dv'^l + v'^l d\tensor{(a^{-1})}{_l^i}\\
+    &= \tensor{(a^{-1})}{_l^i}dv'^l+ v'^l e'_h(\tensor{(a^{-1})}{_l^i})\theta'^h
+\end{align*}
+Avendo sfruttato $dv = \partial_k vdx^k = e_k(v)\theta^k$. Dunque, effettuando già la sostituzione sull'elemento di base dello spazio tangente:
+\begin{align*}
+    \nabla v &= (dv^i + v^j \tensor{\Gamma}{^i_{kj}}\theta^k)\otimes \tensor{a}{_i^m}e'_m \\
+    &= \left[\tensor{(a^{-1})}{_l^i}dv'^l+ v'^l e'_h(\tensor{(a^{-1})}{_l^i})\theta'^h + v'^l\tensor{(a^{-1})}{_l^j}\tensor{\Gamma}{^i_{kj}}\theta'^h\tensor{(a^{-1})}{_h^k}\right] \otimes \tensor{a}{_i^m}e'_m  \\
+\intertext{Raccogliendo $\tensor{(a^{-1})}{_l^i}$ e usando $\tensor{(a^{-1})}{_l^i}\tensor{a}{_i^m}=\tensor{\delta}{_l^m}$:}
+    &=\left[ dv'^m  + v'^l\left( \tensor{a}{_i^m}e'_h(\tensor{(a^{-1})}{_l^i}) + \tensor{(a^{-1})}{_l^j}\tensor{a}{_i^m}\tensor{\Gamma}{^i_{kj}}\tensor{(a^{-1})}{_h^k}\right) \theta'^h \right]\otimes e'_m \\
+    &\equiv (dv'^m + v'^l \tensor{(\Gamma')}{^m_{hl}}\theta'^h )\otimes e'_m
+\end{align*}
+
+In questo modo otteniamo come trasformano i coefficienti di connessione:
+\begin{equation}
+    \tensor{(\Gamma')}{^m_{hl}} = \tensor{a}{_i^m}\tensor{\Gamma}{^i_{kj}}\tensor{(a^{-1})}{_h^k}\tensor{(a^{-1})}{_l^j} + \tensor{a}{_i^m}e'_h(\tensor{(a^{-1})}{_l^i})
+    \label{eq.trasform_christoffel}
+\end{equation}
+I coefficienti di connessione non sono le componenti di un tensore, ma sono composti da un primo termine che trasforma come tale, mentre il secondo termine no in quanto dipende dalla derivata seconda.
+
+I coefficienti di connessione sono volontariamente costruiti per essere non tensoriali, ma tali che la combinazione $\tensor{v}{^i_{;k}}= e_k(v^i) + v^j\tensor{\Gamma}{^i_{kj}}$ trasformi come un tensore; in questo modo viene preservata la trasformazione come tensore della derivata covariante. Inoltre non essendo componenti di un tensore, non si dovrebbe provare ad alzare e abbassare i loro indici.
+
+\section{Derivata covariante di tensore}
+Estendiamo la precedente definizioni al più generico campo tensoriale.
+\begin{definizione}
+Definiamo la \textbf{derivata covariante di un campo tensore} $t$ di tipo $\binom{p}{q}$, il campo tensoriale $\nabla t$ di tipo $\binom{p}{q+1}$ che lungo il vettore $v$ rispetta
+\begin{equation*}
+    \nabla t (v, v_1, \dots, v_q, w_1, \dots, w_p) = \nabla_v t( v_1, \dots, v_q, w_1, \dots, w_p)
+\end{equation*}
+e per il quale valgono:
+\begin{itemize}
+    \item $\nabla_v (f) = v(f) = v^i\partial_i f$ dove $f:X \rightarrow \mathbb{R}$
+    \item $\nabla_v (t+s)= \nabla_v t + \nabla_v s$ dove $t,s$ tensori
+    \item $\nabla_v(t \otimes s)= \nabla_v t \otimes s + t \otimes \nabla_v s$
+    \item $\nabla_v$ commuta con la contrazione: $\nabla_i (\tensor{t}{^j_{jk}}) = \tensor{(\nabla t)}{_i^j_{jk}}$
+\end{itemize}
+\end{definizione}
+Osserviamo che la prima richiesta coincide con l'interpretazione dei campi vettoriali come derivate direzionali su campi scalari $f$.
+Poiché abbiamo già calcolato la derivata covariante di un vettore, a completamento vediamo quella di una 1-forma (covettore) $\alpha$. Sappiamo dalla definizione che dovrà essere a sua volta una 1-forma.
+Sfruttando l'ultima proprietà, la derivata covariante in direzione $v$ della contrazione $\alpha \otimes u$ (i.e. $\alpha[u]=\alpha_i u^i$) è uguale alla contrazione di $\nabla_v \alpha \otimes u + \alpha \otimes \nabla_v u$ ovvero
+\begin{equation*}
+    \nabla_v (\alpha[u]) = (\nabla_v \alpha)(u) + \alpha(\nabla_v u) \implies (\nabla_v \alpha)(u) = \nabla_v(\alpha[u]) - \alpha \nabla_v u
+\end{equation*}
+Dunque prendendo $u= e_i$ si avrà $\nabla_v\alpha (e_i) = (\nabla_v \alpha)_i$:
+\begin{equation*}
+    (\nabla_v \alpha)_i = \nabla_v (\alpha_i) - \alpha\nabla_v e_i
+\end{equation*}
+Per l'ultimo termine si sfrutta quanto già noto:
+\begin{equation*}
+    \nabla_v e_i =\nabla_{v^ke_k} e_i = v^k\nabla_{e_k}e_i = v^k \tensor{\Gamma}{^j_{ki}}e_j
+\end{equation*}
+Per ottenere:
+\begin{align*}
+    (\nabla_v \alpha)_i &= v(\alpha_i) - \alpha(v^k \tensor{\Gamma}{^j_{ki}}e_j)
+    = v^ke_k(\alpha_i) - v^k \tensor{\Gamma}{^j_{ki}}\alpha(e_j)\\
+    &= v^k(e_k(\alpha_i) - \tensor{\Gamma}{^j_{ki}}\alpha_j)
+\end{align*}
+
+Pertanto la derivata covariante di una 1-forma $\alpha$ in direzione del vettore tangente $v$ risulta la 1-forma:
+\begin{equation*}
+    \nabla_v \alpha = (\nabla_v \alpha)_i\theta^i = v^k(e_k(\alpha_i) -\tensor{\Gamma}{^j_{ki}}\alpha_j)\theta^i
+\end{equation*}
+In direzione generica abbiamo invece un tensore di tipo $\binom{0}{2}$ definito:
+\begin{equation*}
+    \nabla \alpha = (e_k(\alpha_i) -\tensor{\Gamma}{^j_{ki}}\alpha_j)\theta^k \otimes \theta^i
+\end{equation*}
+infatti:
+\begin{align*}
+    \nabla_v \alpha &= \nabla \alpha (v, \cdot ) = (e_k(\alpha_i) -\tensor{\Gamma}{^j_{ki}}\alpha_j)\theta^k \otimes \theta^i (v, \cdot) \\
+    &= (e_k(\alpha_i) -\tensor{\Gamma}{^j_{ki}}\alpha_j)\theta^k(v) \otimes \theta^i =v^k(e_k(\alpha_i) -\tensor{\Gamma}{^j_{ki}}\alpha_j)\theta^i
+\end{align*}
+Osserviamo che la scrittura ha la stessa forma a meno del fatto che si ha ora un covettore invece di un vettore (seguono alcuni indici differenti) e soprattutto il segno meno al posto del più.
+Per l'elemento di base si avrà pertanto:
+\begin{align}
+    \nabla \theta^i = -\tensor{\Gamma}{^i_{kj}}\theta^k \otimes \theta^j \\
+    \nabla_{e_j} \theta^i = -\tensor{\Gamma}{^i_{jm}}\theta^m
+\end{align}
+
+Abbiamo ora tutti gli elementi per poter determinare le componenti della derivata covariante di un tensore qualsiasi.
+\begin{esempio}
+Sia un tensore $\binom{1}{2}$, $t=\tensor{t}{^i_{kl}}e_i \otimes \theta^k \otimes \theta^l$, allora:
+\begin{align*}
+    \nabla_v t &= \nabla_v( \tensor{t}{^i_{kl}} ) e_i \otimes \theta^k \otimes \theta^l + \tensor{t}{^i_{kl}}(\nabla_v e_i \otimes \theta^k \otimes \theta^l + e_i \otimes \nabla_v \theta^k \otimes \theta^l + e_i \otimes \theta^k \otimes \nabla_v \theta^l ) \\
+    &= v(\tensor{t}{^i_{kl}}) e_i \otimes \theta^k \otimes \theta^l + \tensor{t}{^i_{kl}}(
+    v^j \tensor{\Gamma}{^m_{ji}}e_m \otimes \theta^k \otimes \theta^l -
+    v^j \tensor{\Gamma}{^k_{jm}} e_i \otimes \theta^m \otimes \theta^l - 
+    v^j \tensor{\Gamma}{^j_{jm}} e_i \otimes \theta^k \otimes \theta^m ) \\
+    &=v^j( e_j(\tensor{t}{^i_{kl}} )+ \tensor{\Gamma}{^i_{jm}}\tensor{t}{^m_{kl}} -
+    \tensor{\Gamma}{^m_{jk}}\tensor{t}{^i_{ml}} -
+    \tensor{\Gamma}{^m_{jl}}\tensor{t}{^i_{km}}) e_i \otimes \theta^k \otimes \theta^l
+\end{align*}
+otteniamo la regola generale:
+\begin{equation*}
+    \nabla_j (\tensor{t}{^i_{kl}} )= e_j(\tensor{t}{^i_{kl}} )+ \tensor{\Gamma}{^i_{jm}}\tensor{t}{^m_{kl}} -
+    \tensor{\Gamma}{^m_{jk}}\tensor{t}{^i_{ml}} -
+    \tensor{\Gamma}{^m_{jl}}\tensor{t}{^i_{km}}
+\end{equation*}
+dove si ha sulla correzione di $\Gamma$ un segno più per ogni indice alto, un segno meno per l'indice basso. L'indice della direzione è sempre il primo indice basso del coefficiente di connessione e i restanti indici rimangono a completamento delle somme saturate.
+\end{esempio}
+\subsection{Derivata covariante del prodotto}
+La derivata covariante di un prodotto è identica all'usuale formula per della derivazione.
+Notiamo per prima cosa:
+\begin{equation*}
+    \nabla_j \tensor{t}{^i_{kl}} = \tensor{(\nabla t)}{_j^i_{kl}} = \tensor{(\nabla_j t)}{^i_{kl}}
+\end{equation*}
+
+Consideriamo il prodotto tra $\binom{1}{1}$ e $\binom{0}{1}$:
+\begin{equation*}
+    s \otimes t = (\tensor{s}{^i_k}e_i\otimes \theta^k) \otimes t_l\theta^l = \tensor{s}{^i_k}t_l e_i\otimes \theta^k \otimes \theta^l
+\end{equation*}
+calcolando la derivata in direzione $e_j$ e usando la regola di Leibniz:
+\begin{equation*}
+    \nabla_j( s\otimes t) = \nabla_j s \otimes t + s \otimes \nabla_j t \implies \tensor{\left( \nabla_j(s\otimes t)\right)}{^i_{kl}} = \tensor{(\nabla_j s)}{^i_k}t_l + \tensor{s}{^i_k}(\nabla_j t)_l
+\end{equation*}
+ciò implica
+\begin{equation*}
+    \tensor{\left(\nabla(s\otimes t)\right)}{_j^i_{kl}} =  \tensor{(\nabla s)}{_j^i_k}t_l + \tensor{s}{^i_k}(\nabla t)_{jl}
+\end{equation*}
+ovvero
+\begin{equation*}
+    \nabla_j(\tensor{s}{^i_k}t_l) = t_l \nabla_j \tensor{s}{^i_k} + \tensor{s}{^i_k}\nabla_j t_l
+\end{equation*}
+che è la solita formula di Leibniz nella derivazione.
+\section{Connessione metrica}
+Su una varietà differenziabile è possibile definire molte derivate covarianti tramite i simboli di Christoffel e in generale nessuna è preferibile rispetto le altri. Si può infatti notare come tutti i calcoli eseguiti fino ad ora erano indipendenti dalla metrica adottata sulla varietà.
+
+La scelta di una metrica $g$ permette una scelta naturale della connessione sulla varietà e in particolar modo impone condizioni sul trasporto parallelo. Fino ad ora la sua definizione ci ha permesso di avere il vettore tangente in un punto $p$ trasportato nello spazio in un punto $q$, senza tuttavia preservare le proprietà metriche del primo. \'E di particolare interesse mantenere queste caratteristiche perché se ad esempio si considera una curva chiusa, il trasporto lungo tutta essa fino al punto di inizio, ci farebbe ottenere un vettore non solo in generale ruotato, ma di lunghezza differente.
+\begin{definizione}
+Diciamo che \textbf{la connessione è metrica} se il trasporto parallelo lascia invariato il prodotto scalare, cioè siano $u, w$ e $g$ tensore metrico, allora:
+\begin{equation*}
+    \nabla_v g(u,w) = 0 \ \forall v \textrm{ se } \nabla_v u = \nabla_v w = 0
+\end{equation*}
+in altre parole, usando la regola di Leibniz:
+\begin{equation*}
+    (\nabla_v g)(u,w) = g(\nabla_v u, w) + g(u, \nabla_v w) = 0
+\end{equation*}
+si scrive allora
+\begin{align*}
+    \nabla g = 0 &\iff \nabla_i g_{jk} = 0 \\
+    &\iff e_i(g_{jk}) -
+    \tensor{\Gamma}{^m_{ij}} g_{mk} -
+    \tensor{\Gamma}{^m_{ik}} g_{jm} = 0
+\end{align*}
+\end{definizione}
+\section{Tensore di torsione, connessione simmetrica}
+La condizione che la connessione sia metrica non permette di determinare i coefficienti di connessione; bisogna porre un ulteriore vincolo.
+\begin{definizione}
+Siano $u,v$ campi vettoriali lisci e $f: X \rightarrow \mathbb{R}$ differenziabile, si definisce \textbf{parentesi di Lie (commutatore)} il campo vettoriale
+\begin{equation*}
+    [u,v](f) = u(v(f)) - v(u(f))
+\end{equation*}
+in un punto $p\in X$ fissato.
+\end{definizione}
+Essendo un campo vettoriale, può ugualmente essere visto come:
+\begin{align*}
+    [u, v] : X &\rightarrow TX \\
+             p &\mapsto [u, v]|_p   
+\end{align*}
+
+Calcoliamo esplicitamente:
+\begin{align*}
+    [u,v] (f) &= u^i\partial_i(v^j\partial_j f) - v^j\partial_j(u^i\partial_i f) \\
+    &= u^i(\partial_iv^j\partial_j f + v^j \partial_i\partial_j f ) - v^j(\partial_j u^i \partial_i f + u^i \partial_j \partial_i f) \\
+    &= u^i\partial_iv^j\partial_j f - v^j\partial_j u^i \partial_i f \\
+    &= (u^j \partial_j v^i -v^j \partial_j u^i) \partial_i f = [u,v]^i \partial_i f
+\end{align*}
+Si può mostrare che le parentesi di Lie soddisfano l'identità di Jacobi:
+\begin{equation*}
+    [[v,u],w] + [[u,w],v] + [[w,v],u] = 0
+\end{equation*}
+Insieme all'antisimmetria e bilinearità, strutturano uno spazio vettoriale ad algebra di Lie.
+
+\begin{definizione}
+Sia $\alpha$ una 1-forma e $v, u$ vettori, si definisce il \textbf{tensore della torsione}
+\begin{equation*}
+    T(\alpha, v, u) = \alpha( \nabla_u v - \nabla_v u - [v,u]) 
+\end{equation*}
+\end{definizione}
+\begin{definizione}
+Diciamo che se $T = 0$ cioè $\nabla_u v - \nabla_v u = [v,u]$ la connessione è \textbf{simmetrica}.
+\end{definizione}
+Affermiamo (senza al momento dimostrarlo) che la condizione $T \neq 0$ non è compatibile con il principio di equivalenza; ci sarebbe la conseguenza che con $T \neq 0$, particelle con spin differente cadano diversamente in un campo gravitazionale e ciò non è osservato.
+
+Calcoliamo le componenti del tensore di torsione.
+\begin{align*}
+    \tensor{T}{^i_{kl}} &= T( dx^i, \partial_k, \partial_l ) = dx^i ( \nabla_{\partial_k}\partial_l - \nabla_{\partial_l}\partial_k - [\partial_k, \partial_l] ) \\
+    &=dx^i( \tensor{\Gamma}{^j_{kl}}\partial_j + \tensor{\Gamma}{^j_{lk}}\partial_j ) \\
+    &= \tensor{\Gamma}{^i_{kl}} - \tensor{\Gamma}{^i_{lk}}
+\end{align*}
+In tal modo è evidente perché viene detto simmetrico quando il tensore è nullo: gli indici bassi dei coefficienti di connessione commutano e i coefficienti sono simmetrici.
+
+Infine osserviamo che la richiesta che la connessione sia senza torsione, si traduce equivalentemente in: sia $f \in \mathcal{F}$ allora:
+\begin{equation*}
+    \nabla_u \nabla_ v f = \nabla_v \nabla_u f
+\end{equation*}
+ciò comporta che, facendo uso della prima proprietà della derivata covariante, si può sostituire $\partial \leftrightarrow \nabla$ nel calcolo delle componenti del commutatore e quindi ottenere:
+\begin{equation}
+    [u,v]^i = u^j\nabla_j v^i - v^j\nabla_ju^i
+    \label{eq.commutnabla}
+\end{equation}
+ma solo se si assume che non ci sia torsione.
+\section{Connessione di Levi-Civita}
+Mostriamo come, partendo dalle richieste che la connessione sia metrica e simmetrica, sia possibile determinare completamente i coefficienti di connessione.
+
+Partendo dall'ipotesi che la connessione sia metrica, $\nabla g =0$, scriviamo per componenti:
+\begin{equation*}
+    g_{jk;i}=g_{jk,i} -\tensor{\Gamma}{^m_{ij}} g_{mk} - \tensor{\Gamma}{^m_{ik}} g_{jm} = 0
+\end{equation*}
+Riscriviamo la stessa equazione permutando gli indici:
+\begin{align*}
+    g_{ki;j}=g_{ki,j} -\tensor{\Gamma}{^m_{jk}} g_{mi} - \tensor{\Gamma}{^m_{ji}} g_{km} = 0 \\
+    g_{ij;k}=g_{ij,k} -\tensor{\Gamma}{^m_{ki}} g_{mj} - \tensor{\Gamma}{^m_{kj}} g_{im} = 0
+\end{align*}
+Sommiamo alla prima, la seconda e sottraiamone la terza:
+\begin{equation*}
+    g_{jk,i} -\tensor{\Gamma}{^m_{ij}} g_{mk} - \tensor{\Gamma}{^m_{ik}} g_{jm} + g_{ki,j} -\tensor{\Gamma}{^m_{jk}} g_{mi} - \tensor{\Gamma}{^m_{ji}} g_{km} - g_{ij,k} +\tensor{\Gamma}{^m_{ki}} g_{mj} + \tensor{\Gamma}{^m_{kj}} g_{im} = 0
+\end{equation*}
+Sfruttiamo la simmetria del tensore metrico e della connessione per eliminare alcuni termini:
+\begin{equation*}
+    g_{jk,i} + g_{ki,j} - g_{ij,k} -2\tensor{\Gamma}{^m_{ij}} g_{mk} = 0
+\end{equation*}
+Moltiplicando per la metrica inversa $g^{kl}$ otteniamo che la scrittura della connessione è totalmente determinata dalla metrica, dalla sua inversa e dalle sue derivate.
+\begin{definizione}
+Chiamiamo una connessione metrica e simmetrica, \textbf{connessione di Levi-Civita}. Essa risulta completamente determinata da
+\begin{equation}
+   \tensor{\Gamma}{^l_{ij}} = \frac{1}{2}g^{lk}( g_{jk,i} + g_{ki,j} - g_{ij,k} )
+\label{eq.connlevicivita}
+\end{equation}
+\end{definizione}
+
+Risulta utile al fine di esercizi la formula della contrazione della connessione:
+\begin{equation}
+    \tensor{\Gamma}{^\nu_{\nu\mu}} = \partial_\mu \log\sqrt{|g|}
+    \label{eq.traccia_christoffel}
+\end{equation}
+dove $g$ è il determinante di $g_{\mu\nu}$. Infatti prendendo eq. \ref{eq.connlevicivita} e facendone la traccia:
+\begin{align*}
+    \tensor{\Gamma}{^\nu_{\nu\mu}} &= \frac{1}{2} g^{\nu\sigma}( g_{\mu\sigma,\nu} + g_{\sigma\nu,\mu} - g_{\nu\mu,\sigma})
+    =\frac{1}{2}( g^{\nu\sigma} g_{\mu\sigma,\nu} +g^{\nu\sigma} g_{\sigma\nu,\mu} - g^{\nu\sigma}g_{\nu\mu,\sigma})\\
+    \intertext{mandando $\nu\rightarrow\sigma$ e $\sigma\rightarrow\nu$ nel primo termine e usando la simmetria di $g$:}
+    &=\frac{1}{2}(g^{\sigma\nu}g_{\mu\nu,\sigma} + g^{\nu\sigma} g_{\sigma\nu,\mu} - g^{\nu\sigma}g_{\nu\mu,\sigma}) \\
+    &= \frac{1}{2}g^{\nu\sigma}g_{\sigma\nu,\mu}
+\end{align*}
+Se si considera l'identità $\Tr(A^{-1}\cdot\partial_\mu A)=\frac{1}{\det A}\partial_\mu A$ dove $A$ è una qualunque matrice non singolare, si può osservare che la traccia del coefficiente è pari a $\frac{1}{2}\Tr(G^{-1}\cdot\partial_\mu G)$, dove $G$ è la matrice del tensore metrico. Pertanto si ottiene:
+\begin{equation*}
+    \tensor{\Gamma}{^\nu_{\nu\mu}} = \frac{1}{2|g|}\partial_\mu g = \partial_\mu \log\sqrt{|g|}
+\end{equation*}
+
+Come conseguenza di tale formula, si ha che la divergenza covariante di un vettore $v$ può essere calcolata tramite:
+\begin{equation*}
+    \nabla_\mu v^\mu = \frac{1}{\sqrt{|g|}}\partial_\mu(\sqrt{|g|}v^\mu)
+\end{equation*}
+Infatti è nota $\nabla_\mu v^\nu = \partial_\mu v^\nu + v^\sigma\tensor{\Gamma}{^\nu_{\mu\sigma}}$ che specializzata:
+\begin{align*}
+    \nabla_\mu v^\mu = \partial_\mu v^\mu + v^\sigma\tensor{\Gamma}{^\mu_{\mu\sigma}} = \partial_\mu v^\mu + v^\sigma\partial_\sigma \log\sqrt{|g|} = \partial_\mu v^\mu + v^\mu \partial_\mu \log\sqrt{|g|}
+\end{align*}
+D'altra parte
+\begin{equation*}
+    \frac{1}{\sqrt{|g|}} \partial_\mu (\sqrt{|g|} v^\mu )= \frac{1}{\sqrt{|g|}}\sqrt{|g|}\partial_\mu v^\mu + v^\mu \frac{1}{2|g|}\partial_\mu g = \partial_\mu v^\mu + v^\mu\partial_\mu \log\sqrt{|g|}
+\end{equation*}
+
+\subsection{Variazione dei simboli di Christoffel rispetto la metrica}\label{para.variaz_connessione}
+I simboli di Christoffel $\Gamma$ non sono dei tensori. Tuttavia sotto variazione della metrica, la quantità variata $\delta \Gamma$ trasforma come tensore in quanto corrisponde alla differenza tra i simboli di Christoffel calcolati con $g_{\mu\nu}$ e con $g_{\mu\nu} + \delta g_{\mu\nu}$. Facendo riferimento a eq. \ref{eq.connlevicivita}, si ottiene nell'eseguire la differenza:
+\begin{equation*}
+    \delta\tensor{\Gamma}{^\sigma_{\mu\nu}} = \frac{1}{2} g^{\sigma\lambda} (\partial_\nu \delta g_{\lambda \mu} + \partial_\mu \delta g_{\lambda \nu} - \partial_\lambda \delta g_{\mu \nu} )
+\end{equation*}
+Ora, $\forall p \in \mathcal{M}$ è possibile determinare nell'intorno di $p$ delle coordinate tali che:
+\begin{align*}
+    g_{\mu\nu}(p) = \nu_{\mu\nu} && g_{\mu\nu,\rho}(p) = 0
+\end{align*}
+Queste coordinate sono chiamate \textbf{coordinate normali}. Sempre da eq. \ref{eq.connlevicivita} si ottiene che i simboli di connessione sono nulli in questo punto:
+\begin{equation*}
+    \tensor{\Gamma}{^\sigma_{\mu\nu}} (p) = 0
+\end{equation*}
+Facendo uso di queste coordinate,  è possibile eseguire $\partial_\lambda g_{\mu\nu} = \nabla_\lambda g_{\mu\nu}$ e pertanto, valutando in $p$:
+\begin{equation*}
+    \delta\tensor{\Gamma}{^\sigma_{\mu\nu}} = \frac{1}{2} g^{\sigma\lambda} (\nabla_\nu \delta g_{\lambda \mu} + \nabla_\mu \delta g_{\lambda \nu} - \nabla_\lambda \delta g_{\mu \nu} )
+\end{equation*}
+Il membro di destra è un tensore, in quanto dipende solamente da $\delta g_{\mu\nu}$, quindi il membro a sinistra è anch'esso tensore. Pertanto l'espressione derivata nel sistema di coordinate normali deve valere in tutti i sistemi di coordinate e, data l'arbitrarietà di $p$, deve valere in generale.
+
+\section{Connessione di spin}\label{para.veilbein}
+Introduciamo ora una distinzione tra gli indici greci e latini. Con indici latini indicheremo le generiche componenti rispetto una base qualsiasi dello spazio tangente e cotangente (come fatto fino ad adesso). Con indici greci, come usato principalmente in relatività generale, intenderemo invece che le basi dei due spazi sono basi di sistemi di coordinate, quindi basi con proprietà particolari di simmetria per lo spaziotempo. Questo tipo di notazione viene chiamata \textbf{abstract index notation} e fu introdotta da Penrose. 
+Gli indici latini pertanto definiscono delle \textit{vere} equazioni tensoriali, indipendenti dalla base scelta e ci ricordano il numero e il tipo di variabili sulle quali agisce il tensore. Le equazioni scritte in indici greci saranno da leggere come equazioni per le componenti; in altre parole $\tensor{T}{^{\mu\nu\rho}_{\sigma\lambda}}$ sarà la componente di una base del tensore  $\tensor{T}{^{abc}_{de}}$ di tipo $\binom{3}{2}$. 
+Ciò risulta particolarmente importante quando si discutono le teorie di gauge, come il caso di Chern-Simons, visto che ci sono richieste meno stringenti sulla scelta della base.
+
+In tutti i vari calcoli di relatività generale si è fatto uso delle basi di $T_p M$ e $T_p^*M$ date da:
+\begin{align*}
+    \hat{e}_{(\mu)} &= \partial_\mu  \\
+    \hat{\theta}^{(\mu)} &= dx^\mu
+\end{align*}
+con $x^\mu$ delle coordinate, quindi con un significato fisico ben preciso. Consideriamo ora una base qualsiasi:
+\begin{equation*}
+\begin{array}{cc}
+     \hat{e}_{(a)} & a = 0, 1, \dots, d-1
+\end{array}
+\end{equation*}
+e scegliamo questa ortonormale:
+\begin{equation*}
+    g(\hat{e}_{(a)}, \hat{e}_{(b)} ) = \eta_{ab}
+\end{equation*}
+con $\eta_{ab}$ la metrica di Minkowski di dimensione $d$. In dimensione $4$ questa base verrà chiamata \virgolette{tetrade}, in dimensione 3 \virgolette{triade} e così via\footnote{Viene fatto notare che la tetrade viene chiamata in tedesco \virgolette{vierbein} ovvero \virgolette{4 gambe}, mentre il caso generale viene detto \virgolette{vielbein} ovvero \virgolette{molte gambe}}.
+
+Sviluppiamo una base nell'altra, tramite un'opportuna matrice invertibile di trasformazione:
+\begin{equation}
+    \hat{e}_{(a)} = \tensor{e}{^\mu_a}\hat{e}_{(\mu)}
+    \label{eq.trasform_base_tang_indici_abstr}
+\end{equation}
+con $\tensor{e}{^\mu_b}\tensor{e}{^a_\mu} = \tensor{\delta}{^a_b}$ e $\tensor{e}{^\mu_a}\tensor{e}{^a_\nu} = \tensor{\delta}{^\mu_\nu}$.
+La condizione di ortonormalità diventa:
+\begin{equation*}
+       g(\hat{e}_{(a)}, \hat{e}_{(b)})=  \tensor{e}{^\mu_a}\tensor{e}{^\nu_b} g( \hat{e}_{(\mu)}, \hat{e}_{(\nu)}) = g_{\mu\nu}\tensor{e}{^\mu_a}\tensor{e}{^\nu_b} = \eta_{ab}
+\end{equation*}
+dunque:
+\begin{equation*}
+    g_{\mu\nu} = \tensor{e}{^a_\mu} \tensor{e}{^b_\nu} \eta_{ab}
+\end{equation*}
+Similmente nello spazio cotangente, data la base ortonormale scelta come:
+\begin{equation*}
+    \hat{\theta}^{(a)}(\hat{e}_{(b)}) = \tensor{\delta}{^a_b}
+\end{equation*}
+allora:
+\begin{equation*}
+    \hat{\theta}^{(a)}(\tensor{e}{^\mu_b}\hat{e}_{(\mu)}) = \tensor{e}{^\mu_b} \hat{\theta}^{(a)}(\hat{e}_{(\mu)}) = \tensor{\delta}{^a_b} 
+\end{equation*}
+moltiplicando per $\tensor{e}{^b_\nu}$:
+\begin{equation*}
+    \tensor{\delta}{^\mu_\nu}\hat{\theta}^{(a)}(\hat{e}_{(\mu)}) = \tensor{e}{^a_\nu} \implies \hat{\theta}^{(a)}(\hat{e}_{(\nu)}) = \tensor{e}{^a_\nu}
+\end{equation*}
+Se scriviamo $\hat{\theta}^{(a)} = \tensor{f}{^a_\mu}dx^\mu$ come trasformazione per la base cotangente, si ottiene sostituendo nella precedente:
+\begin{equation*}
+    \tensor{f}{^a_\mu} dx^\mu( \hat{e}_{(\nu)}) = \tensor{f}{^a_\nu} = \tensor{e}{^a_\nu}
+\end{equation*}
+così otteniamo che la trasformazione per il duale è:
+\begin{equation}
+    \hat{\theta}^{(\mu)} = \tensor{e}{^\mu_a}\hat{\theta}^{(a)} \iff \hat{\theta}^{(a)} = \tensor{e}{^a_\mu} \hat{\theta}^{(\mu)}
+    \label{eq.trasform_base_cotang_indici_abstr}
+\end{equation}
+\begin{esempio}
+Data una metrica, ad esempio la statica sfericamente simmetrica:
+\begin{equation*}
+    ds^2 = - V(r)dt^2 + \frac{dr^2}{V(r)} + r^2(d\theta^2 + \sin^2\theta d\phi^2)
+\end{equation*}
+Il formalismo risulta particolarmente utile perché si ottengono direttamente:
+\begin{align*}
+    \hat{\theta}^{(0)} &= \sqrt{V(r)} dt \qquad
+    \hat{\theta}^{(1)} = \frac{dr}{\sqrt{V(r)}} \\
+    \hat{\theta}^{(2)} &= rd\theta \qquad
+    \hat{\theta}^{(3)} = r\sin\theta d\phi
+\end{align*}
+e quindi si possono riconoscere velocemente:
+\begin{align*}
+    \tensor{e}{^0_t} &= \sqrt{V(r)} \qquad
+    \tensor{e}{^1_r} = \frac{1}{\sqrt{V(r)}} \\
+    \tensor{e}{^2_\theta} &= r \qquad
+    \tensor{e}{^3_\phi} = r\sin\theta
+\end{align*}
+con tutti gli altri elementi nulli.
+\end{esempio}
+
+Le basi $\hat{e}_{(a)}$ possono essere cambiate indipendentemente dalle coordinate:
+\begin{equation*}
+    \hat{e}_{(a)}\mapsto \hat{e}_{(a)}' = \tensor{\Lambda}{_a^b}(x)\hat{e}_{(b)}
+\end{equation*}
+dove $\tensor{\Lambda}{_a^b}(x)$ dipendono dal punto e quindi sono trasformazioni locali. Se imponiamo che sia mantenuta l'ortonormalità:
+\begin{align*}
+    \eta_{ab} &= g(\hat{e}_{(a)}, \hat{e}_{(b)}) = g(\tensor{\Lambda}{_a^c}(x)\hat{e}_{(c)}, \tensor{\Lambda}{_b^d}(x)\hat{e}_{(d)}) \\
+    &= \tensor{\Lambda}{_a^c}(x) \tensor{\Lambda}{_b^d}(x) g(\hat{e}_{(c)}, \hat{e}_{(d)}) = \tensor{\Lambda}{_a^c}(x)\tensor{\Lambda}{_b^d}(x)\eta_{cd}
+\end{align*}
+Si trova che le trasformazioni $\Lambda$ devono lasciare in ogni punto la metrica di Minkowski invariante. Sono pertanto delle \textbf{trasformazioni di Lorentz locali}.
+
+In questa maniera si introduce in relatività generale, oltre alla possibilità di cambiare le coordinate tramite diffeomorfismi, la libertà di eseguire trasformazioni di Lorentz locali. Un oggetto può quindi possedere entrambi gli indici come ad esempio il tensore:
+\begin{equation*}
+    \tensor{(T')}{^{a\mu}_{b\nu}} = \tensor{(\Lambda^{-1})}{_c^a}\frac{\partial x'^\mu}{\partial x^\lambda}\tensor{\Lambda}{_b^d}\frac{\partial x^\rho}{\partial x'^\nu}\tensor{T}{^{c\lambda}_{d\rho}}
+\end{equation*}
+per il quale gli indici greci trasformano col jacobiano/jacobiano inverso della trasformazione delle coordinate mentre quelli latini trasformano con le Lorentz locali.
+
+La derivata covariante per indici greci è la solita nota: derivata parziale corretta affinché trasformi come tensore con i simboli di Christoffel di eq. \ref{eq.connlevicivita}. In una base arbitraria si può fare la stessa procedura introducendo però i simboli della \textbf{connessione di spin}\footnote{Il nome è dovuto al fatto che si possono eseguire derivate covariante di spinori in spazitempo curvi. I fermioni sono nella rappresentazione 4-dimensionale del gruppo di Lorentz con quantizzazione data dall'algebra di Clifford $\{ \gamma^\mu, \gamma^\nu\} = 2\eta^{\mu\nu}$. Il formalismo permette di generalizzarla in $\{\gamma^\mu, \gamma^\nu\} = 2g^{\mu\nu}$ con le $\gamma$ nello spazio curvo date da $\gamma^\mu(x) = \gamma^a \tensor{e}{^\mu_a}$.} $\tensor{\omega}{_\mu^a_b}$:
+\begin{equation}
+    \nabla_\mu \tensor{X}{^a_b} = \partial_\mu \tensor{X}{^a_b} + \tensor{\omega}{_\mu^a_c}\tensor{X}{^c_b} - \tensor{\omega}{_\mu^c_b}\tensor{X}{^a_c}
+    \label{eq.deriv_covar_indici_latini}
+\end{equation}
+con correzione di segno negativo per indice basso e segno positivo per l'indice alto. In questa maniera questo oggetto trasforma correttamente sia sotto diffeomorfismi sia sotto trasformazioni di Lorentz locali.
+
+Possiamo determinare una relazione tra i coefficienti della connessione di spin e di Levi-Civita. Consideriamo un vettore $X^\mu$ e:
+\begin{equation*}
+    \nabla X = (\nabla_\mu X^\nu) dx^\mu \otimes \partial_\nu = (\partial_\mu X^\nu + \tensor{\Gamma}{^\nu_{\mu\lambda}}X^\lambda)dx^\mu \otimes \partial_\nu
+\end{equation*}
+D'altra parte vale:
+\begin{align*}
+    \nabla X &= (\nabla_\mu X^a) dx^\mu \otimes \hat{e}_{(a)} = (\partial_\mu X^a + \tensor{\omega}{_\mu^a_b}X^b) dx^\mu \otimes \hat{e}_{(a)} \\
+    &= \left[\partial_\mu( \tensor{e}{^a_\nu}X^\nu) + \tensor{\omega}{_\mu^a_b}\tensor{e}{^b_\lambda}X^\lambda\right] dx^\mu \otimes (\tensor{e}{^\sigma_a}\partial_\sigma) \\
+    &= \tensor{e}{^\sigma_a}(\tensor{e}{^a_\nu}\partial_\mu X^\nu  + X^\nu\partial_\mu\tensor{e}{^a_\nu} + \tensor{\omega}{_\mu^a_b}\tensor{e}{^b_\lambda}X^\lambda ) dx^\mu \otimes \partial_\sigma \\
+    &= ( \partial_\mu X^\sigma + \tensor{e}{^\sigma_a}X^\nu\partial_\mu \tensor{e}{^a_\nu} + \tensor{e}{^\sigma_a}\tensor{e}{^b_\lambda}\tensor{\omega}{_\mu^a_b} X^\lambda )dx^\mu \otimes \partial_\sigma
+\end{align*}
+Poiché gli indici $\sigma, \nu$ sono saturati, mandiamo $\sigma \mapsto \nu$ in tutti e tre i termini, mentre nel secondo $\nu \mapsto \lambda$:
+\begin{align*}
+    \nabla X &= ( \partial_\mu X^\nu + \tensor{e}{^\nu_a}X^\lambda\partial_\mu \tensor{e}{^a_\lambda} + \tensor{e}{^\nu_a}\tensor{e}{^b_\lambda}\tensor{\omega}{_\mu^a_b} X^\lambda )dx^\mu \otimes \partial_\nu \\
+    &\equiv (\partial_\mu X^\nu + \tensor{\Gamma}{^\nu_{\mu\lambda}}X^\lambda)dx^\mu \otimes \partial_\nu
+\end{align*}
+e quindi:
+\begin{equation*}
+    \tensor{\Gamma}{^\nu_{\mu\lambda}} = \tensor{e}{^\nu_a}\partial_\mu\tensor{e}{^a_\lambda} + \tensor{e}{^\nu_a}\tensor{e}{^b_\lambda}\tensor{\omega}{_\mu^a_b}
+\end{equation*}
+ovvero:
+\begin{equation}
+    \tensor{\omega}{_\mu^a_b} = \tensor{e}{^a_\nu}\tensor{e}{^\lambda_b}\tensor{\Gamma}{^\nu_{\mu\lambda}} - \tensor{e}{^\lambda_b}\partial_\mu \tensor{e}{^a_\lambda}
+    \label{eq.legame_conn_spin_levicivita}
+\end{equation}
+Si può notare che questa è equivalente a (moltiplica  a sinistra da entrambi i lati per $\tensor{e}{^b_\rho}$):
+\begin{equation}
+    \nabla_\mu \tensor{e}{^a_\rho} = 0
+\end{equation}
+cioè che la tetrade è covariantemente costante.
+
+Vediamo come il fatto che la metrica sia covariantemente costante si ripercuota sugli indici latini. Poiché scegliamo nella triade/tetrade una base ortonormale:
+\begin{equation*}
+    \nabla g = 0 \iff \nabla \eta = 0
+\end{equation*}
+Esplicitamente:
+\begin{equation*}
+    \nabla_\mu \eta_{ab} = \partial_\mu \eta_{ab} - \tensor{\omega}{_\mu^c_a}\eta_{cb}- \tensor{\omega}{_\mu^c_b}\eta_{ac} = 0
+    \iff \omega_{\mu a b} = - \omega_{\mu ba}
+\end{equation*}
+La connessione di spin è antisimmetrica negli indici latini, che si abbassano/alzano con Minkowski.

@@ -1,0 +1,326 @@
+\chapter{Formalismo di Ernst}
+In questo capitolo verrà visto e introdotto un sistema estremamente efficace per la risoluzione delle equazioni di Einstein e la generazione di nuove soluzioni; il formalismo di Ernst. Tramite questo metodo, che introduce dei potenziali omonimi soddisfacenti l'equazione di Ernst, le soluzioni per uno spaziotempo assisimmetrico e stazionario saranno più facilmente ottenibili rispetto l'integrazione diretta delle equazioni di Einstein. Come verrà mostrato, questo formalismo è del tutto equivalente alle equazioni di campo della relatività generale, guadagnando però in \virgolette{semplicità}; basti pensare che per ottenere direttamente la soluzione di Kerr sono stati necessari 50 anni di tentativi; tramite questo sistema delle soluzioni molto più complesse e che combinano soluzioni esatte già note, saranno ricavabili.
+
+\section{Equazioni e potenziali di Ernst}
+Risolviamo le equazioni di Einstein richiedendo che lo spaziotempo possieda i vettori di Killing $\xi = \partial_t$ e $\eta = \partial_\phi$ tali che $[\xi, \eta] = 0$, quindi che sia stazionario e assisimmetrico. Questo tipo di soluzioni sono utili per descrivere buchi neri rotanti, stelle e in generale corpi assisimmetrici in rotazione, ma non per soluzioni cosmologiche visto che in questo caso la stazionarietà cade.
+
+Si ha una simmetria del tipo:
+\begin{equation*}
+    \left\{\begin{array}{c}
+         t\mapsto -t \\
+         \phi \mapsto -\phi
+     \end{array}\right.
+\end{equation*}
+quindi la metrica (4-dim.) avrà dipendenza solo dalle altre componenti:
+\begin{equation*}
+    g_{\mu\nu}=g_{\mu\nu}(x_1,x_2) \qquad g_{it}=g_{i\phi} = 0 ,\quad i=1,2
+\end{equation*}
+perciò la forma più generale è:
+\begin{equation}
+    ds^2 = g_{00}dt^2 + 2g_{03}dtd\phi + g_{33}d\phi^2 + g_{ij}dx^i dx^j
+    \label{eq.metrica_stazio_assisim_generale}
+\end{equation}
+Il tensore di Weyl è nullo in 2-dim (relativamente a $x_1, x_2$) perciò è possibile fare il cambio di coordinate:
+\begin{equation*}
+    g_{ij}dx^i dx^j \rightarrow g_{22}\left[ (d\bm{x}^1)^2 + (d\bm{x}^2)^2\right]
+\end{equation*}
+Siccome il sistema gode di simmetria cilindrica, risulta conveniente esprimere $(x_1, x_2) = (\rho, z)$ e ci riduciamo ad un sistema con incognite che scriviamo nella forma:
+\begin{align*}
+         g_{00} = -f \qquad& g_{03} =f\omega  \\
+         g_{33} = \frac{\alpha^2}{f} \qquad& g_{22} = \frac{e^{2\gamma}}{f} 
+\end{align*}
+così che la metrica diventa:
+\begin{equation}
+    ds^2 = - f(\rho,z) \left[ dt - \omega(\rho, z) d\phi\right]^2 + \frac{1}{f(\rho,z)}\left[ e^{2\gamma(\rho, z)}(d\rho^2 + dz^2) + \alpha^2(\rho) d\phi^2 \right]
+    \label{eq.metrica_stazio_assisim_cilindriche}
+\end{equation}
+Questa è la più generica metrica stazionaria, assisimmetrica in coordinate cilindriche. Come si vedrà fra poco, si può tranquillamente porre $\alpha(\rho) = \rho$ così che eq. \ref{eq.metrica_stazio_assisim_cilindriche} viene chiamata \textbf{metrica di Lewis-Weyl-Papapetrou} (LWP).
+
+Possiamo risolvere le equazioni in un sistema di Einstein-Maxwell con azione che scriviamo, diversamente da eq. \ref{eq.azione_einstein_maxwell}, nella forma:
+\begin{equation*}
+    S = \frac{1}{16\pi G}\int d^4x \sqrt{-g} \left( R - F_ {\mu\nu} F^{\mu\nu} \right)
+\end{equation*}
+La variazione porta alle equazioni del moto:
+\begin{align}
+    \tensor{EE}{^\mu_\nu} :=& \quad \tensor{R}{^\mu_\nu} - \frac{1}{2}\delta^\mu_\nu R = 2 \tensor{T}{^\mu_\nu} \label{eq.ee}\\
+   ME^\nu :=& \quad \nabla_\mu F^{\mu\nu} = 0 \label{eq.me}
+\end{align}
+Il tensore di gauge lo scegliamo nella forma che rispetta le simmetrie della metrica:
+\begin{equation}
+    A_\mu = \left( A_t(\rho,z), 0,0, A_\phi(\rho,z)\right)
+    \label{eq.pot_gauge_cilindrico}
+\end{equation}
+
+Ora verranno risolte le varie equazioni per ottenere i potenziali di Ernst e la rispettiva equazione.
+\begin{itemize}
+\item $\tensor{EE}{^\rho_\rho} + \tensor{EE}{^z_z}$ implica:
+\begin{equation*}
+    0 = \frac{f}{e^{2\gamma}\alpha}\left( \partial_{\rho\rho}\alpha + \partial_z \alpha \right)
+\end{equation*}
+Questa equazione è disaccoppiata dalle altre e il fatto che $\Lambda = 0$ rende possibile lo zero al membro di sinistra. Questa equazione ci permette di porre $\alpha = \rho$, come prima accennato.
+    \item $ME^\phi$ implica:
+\begin{align*}
+    \frac{f}{e^{2\gamma}}&\left[\frac{\partial_\rho f}{\rho^2}(\partial_\rho A_\phi + \omega\partial_\rho A_t) + \frac{\partial_z f}{\rho^2}(\partial_z A_\phi + \omega\partial_z A_t)  - \frac{f}{\rho^3}(\partial_\rho A_\phi +\omega\partial_\rho A_t) + \right. \\ 
+&\left. + \frac{f}{\rho^2}(\partial_{\rho\rho}A_\phi + \partial_{zz}A_\phi + \omega\partial_{\rho\rho} A_t + \omega\partial_{zz}A_t + \partial_\rho\omega\partial_\rho A_t + \partial_z \omega \partial_z A_t) \right]
+\end{align*}
+che possiamo scrivere come:
+\begin{equation}
+    - \frac{t}{e^{2\gamma}}\left[ \nabla\cdot \left( \frac{f}{\rho^2}(\nabla A_\phi + \omega \nabla A_t) \right)\right]
+\label{eq.me_phi}
+\end{equation}
+Gli operatori $\nabla\cdot$ e $\nabla$ sono quelli usuali di una metrica piatta cilindrica $ds^2 = d\rho^2 + \rho^2d\phi^2 + dz^2$:
+\begin{align*}
+    \nabla f &= \partial_\rho f \hat{e}_\rho + \partial_z f \hat{e}_z \\
+    \nabla\cdot A &= \frac{1}{\rho} A_\rho + \partial_\rho A_\rho + \partial_z A_z
+\end{align*}
+\item $ME^t$ implica:
+\begin{equation}
+    \nabla\cdot \left[ \frac{1}{f}\nabla A_t - \frac{f\omega}{\rho^2}(\nabla A_\phi + \omega \nabla A_t) \right] = 0
+\label{eq.me_t}
+\end{equation}
+\item $\tensor{EE}{^\phi_t}$ implica:
+\begin{equation}
+    \nabla\cdot \left[ \frac{f^2}{\rho^2}\nabla\omega + \frac{f}{\rho^2}A_t (\nabla A_\phi + \omega \nabla A_t) \right] = 0
+\label{eq.ee_phi_t}
+\end{equation}
+\item $\tensor{EE}{^t_\phi} - \tensor{EE}{^\phi_\phi}$ implica:
+\begin{equation}
+    f\nabla^2f = (\nabla f)^2 - \frac{f^4}{\rho^2}(\nabla\omega)^2 + 2f\left[(\nabla A_\phi)^2 + \frac{f^2}{\rho^2}(\nabla A_\phi + \omega \nabla A_t)^2 \right]
+\label{eq.ee_tphi_phiphi}
+\end{equation}
+\end{itemize}
+Queste ultime sono quattro equazioni in quattro incognite ($\omega, f, A_\phi, A_t$) e quindi il sistema è risolvibile. Non appare $\gamma$ in quanto agisce da seme della soluzione che solitamente viene preso a partire da altre soluzioni note; in questa maniere si possono generare continuamente nuove soluzioni dalle precedenti. La funzione $\gamma$ viene determinata da $\tensor{EE}{^\rho_z}$ che fornisce $\partial_\rho \gamma$ e $\partial_z \gamma$.
+
+Dunque il procedimento è il seguente: si parte da una soluzione di $[f_0, \omega_0, A_{0t}, A_{0\phi}]$ che viene usata nell'equazione per $\gamma$ di prima; $\gamma$ è disaccoppiato dal sistema di quattro equazioni e quindi rimane invariato tra differenti soluzioni. Successivamente si risolve il sistema di equazioni per la nuova soluzione, controllando bene che le soluzioni finali siano effettivamente nuove e non di gauge.
+
+Iniziamo ad eseguire i calcoli. Sfruttiamo il fatto che $\nabla \cdot (\frac{1}{\rho}\hat{e}_\phi \times \nabla h) = $ se $h$ è almeno $C^2$ .
+Dall'eq. \ref{eq.me_phi} si può notare che conviene definire $\Tilde{A}_\phi$ tale che:
+\begin{equation}
+   \hat{e}_\phi \times \nabla\Tilde{A}_\phi = \frac{f}{\rho}(\nabla A_\phi + \omega \nabla A_t )
+   \label{eq.potenziale_twisted}
+\end{equation}
+detto \textbf{potenziale twisted}. Così è direttamente soddisfatta l'equazione di Maxwell $\nabla\cdot(\frac{1}{\rho}\hat{e}_\phi \times \nabla\Tilde{A}_\phi )= 0$. Possiamo successivamente usare l'identità $\bm{v}\times(\bm{u}\times\bm{w}) = \bm{u}(\bm{v}\cdot\bm{w}) - \bm{w}(\bm{v}\cdot\bm{u})$ così:
+\begin{equation*}
+    \hat{e}_\phi \times (\hat{e}_\phi \times \nabla \Tilde{A}_\phi ) = - \nabla\Tilde{A}_\phi
+\end{equation*}
+e poiché
+\begin{equation*}
+    -\nabla\Tilde{A}_\phi = \frac{f}{\rho}\hat{e}_\phi \times \nabla A_\phi  + \frac{f}{\rho} \omega \hat{e}_\phi \times A_t \implies \frac{1}{\rho}\hat{e}_\phi \times \nabla A_\phi = - \left( f^{-1}\nabla \Tilde{A}_\phi + \frac{\omega}{\rho}\hat{e}_\phi \times \nabla A_t \right)
+\end{equation*}
+le eq. \ref{eq.me_phi}, \ref{eq.me_t} diventano:
+\begin{align}
+    \nabla\cdot\left[ f^{-1}\nabla \Tilde{A}_\phi + \frac{\omega}{\rho}\hat{e}_\phi \times \nabla A_t \right] = 0 \label{eq.me_phi_redone} \\
+    \nabla\cdot\left[ f^{-1}\nabla A_t - \frac{\omega}{\rho}\hat{e}_\phi \times \nabla\Tilde{A}_\phi \right] = 0 \label{eq.me_t_redone}
+\end{align}
+\begin{definizione}
+Definiamo il \textbf{potenziale di Ernst} complesso:
+\begin{equation}
+    \Phi = A_t + i\Tilde{A}_\phi
+    \label{eq.potenziale_ernst_phi}
+\end{equation}
+\end{definizione}
+Così eq. \ref{eq.me_phi_redone}, \ref{eq.me_t_redone} vengono riassunte in:
+\begin{equation}
+    \nabla\cdot\left[ f^{-1}\nabla\Phi + i\frac{\omega}{\rho}\hat{e}_\phi \times \nabla\Phi \right] = 0
+    \label{eq.ernst_0}
+\end{equation}
+
+L'eq. \ref{eq.ee_phi_t} può essere riscritta come:
+\begin{equation*}
+    \nabla\cdot\left[ \frac{f^2}{\rho}\nabla\omega + \frac{2}{f}\hat{e}_\phi \times \Im{\Phi^*\nabla\Phi}\right] = 0
+\end{equation*}
+dove $\Im{\Phi^*\nabla\Phi} = - \Tilde{A}_\phi\nabla A_t + A_t\nabla\Tilde{A}_\phi$. In analogia al caso elettrico possiamo definire $h$ tale che:
+\begin{equation}
+    \hat{e}_\phi \times \nabla h = - \frac{f^2}{\rho^2}\nabla\omega  - 2\hat{e}_\phi\times \Im{\Phi^*\nabla\Phi}
+\end{equation}
+In questo modo $-\nabla h = \hat{e}_\phi\times(\hat{e}_\phi \times \nabla h) = - \frac{f^2}{\rho^2}\hat{e}_\phi\times\nabla\omega - 2\hat{e}_\phi\times(\hat{e}_\phi \times \Im{\Phi^*\nabla\Phi})$ da cui segue:
+\begin{equation*}
+    \hat{e}_\phi \times \nabla\omega = f^{-1}\left[ \nabla h +2\Im{\Phi^*\nabla\Phi}\right]
+\end{equation*}
+Tutto ciò permette di riscrivere eq. \ref{eq.ee_phi_t} come:
+\begin{equation}
+    \nabla\cdot\left[ f^{-2}\nabla h + \frac{2}{f^2}\Im{\Phi^*\nabla\Phi}\right]
+    \label{eq.ernst_3}
+\end{equation}
+L'eq. \ref{eq.ee_tphi_phiphi} può essere espressa in termini del potenziale twisted come:
+\begin{equation*}
+    f\nabla^2f = (\nabla f)^2 - \frac{f^4}{\rho^2}(\nabla\omega)^2+2f\left[(\nabla A_t)^2 + (\hat{e}_\phi\times\nabla\Tilde{A}_\phi)^2 \right]
+\end{equation*}
+per diventare rispetto $\Phi$ e $h$:
+\begin{equation}
+    f\nabla^2f= (\nabla f)^2 - \left[ \nabla h +2\Im{\Phi^*\nabla\Phi}\right]^2 + 2f\nabla\Phi^*\nabla\Phi
+    \label{eq.ernst_4}
+\end{equation}
+\begin{definizione}
+    Definiamo:
+    \begin{equation}
+        \epsilon = f - \Phi\Phi^* +ih
+        \label{eq.potenziale_ernst_epsilon}
+    \end{equation}
+\end{definizione}
+Tramite i due potenziali di Ernst $\Phi$, $\epsilon$ si ha che le eq. \ref{eq.ernst_3}, \ref{eq.ernst_4} e \ref{eq.me_phi_redone}, \ref{eq.me_t_redone} (ovvero eq. \ref{eq.ernst_0}) diventano rispettivamente:
+\begin{align}
+    (\Re\epsilon + |\Phi|^2)\nabla^2\epsilon &= (\nabla\epsilon + 2\Phi^*\nabla\Phi)\nabla\epsilon \label{eq.ernst_vera_5}\\
+    (\Re\epsilon + |\Phi|^2)\nabla^2\Phi &= (\nabla\epsilon + 2\Phi^*\nabla\Phi)\nabla\Phi \label{eq.ernst_vera_6}
+\end{align}
+Queste sono note come le \textbf{equazioni di Ernst} e sono equivalenti alle equazioni di Einstein-Maxwell.
+\section{Simmetrie delle equazioni di Ernst}
+\subsection{Riscalamento}
+Prima di passare alle generali simmetrie delle equazioni di Ernst, vediamo un primo semplice esempio, anche per vedere le potenzialità di questo formalismo.
+Dalle equazioni di Ernst, eq. \ref{eq.ernst_vera_5}, \ref{eq.ernst_vera_6}, si può notare una prima invarianza ottenuta per il riscalamento dato da:
+\begin{equation*}
+    \left\{\begin{array}{ccl}
+         \epsilon \mapsto \lambda\lambda^* \epsilon \\
+         \Phi \mapsto \lambda \Phi
+    \end{array}\right.
+\end{equation*}
+Questa simmetria ha interessanti conseguenze sulle soluzioni.
+
+Applichiamola alla soluzione di Reissner-Nordstr\"om, eq. \ref{eq.metrica_rn}, con il seed di partenza dato dal potenziale di gauge:
+\begin{equation*}
+    A_{\mu} = \left( -\frac{q}{r},0,0,0\right)
+\end{equation*}
+Dalla definizione di $\Phi$, eq. \ref{eq.potenziale_ernst_phi}, e poiché il twisted è nullo avendo $\omega = 0$:
+\begin{equation*}
+    \Phi = A_t \qquad \Phi= \Phi^*
+\end{equation*}
+La metrica LWP è semplicemente:
+\begin{equation*}
+    ds^2 = -fdt^2 + \frac{1}{f}\left[ e^{2\gamma}(d\rho^2 + dz^2) + \rho^2d\phi^2\right]
+\end{equation*}
+quindi, per confronto, $f$ è il termine che moltiplica $dt^2$ nella metrica RN. Sempre da definizione, $h=0$ visto che sia $\omega$ sia $\Im = 0$. In questo modo si ottengono facilmente i due potenziali di Ernst:
+\begin{equation*}
+    \epsilon = 1 - \frac{2m}{r} + \frac{q^2}{r^2} - \frac{q^2}{r^2} = 1 - \frac{2m}{r}
+\end{equation*}
+\begin{equation*}
+    \Phi = - \frac{q}{r}
+\end{equation*}
+Consideriamo il riscalamento come una trasformazione unitaria, $\lambda = e^{i\alpha}$. Allora:
+\begin{equation*}
+    \Bar{\epsilon} = \epsilon
+\end{equation*}
+\begin{equation*}
+    \Bar{\Phi} = - e^{i\alpha}\frac{q}{r} = - \frac{q}{r}\cos\alpha + i\frac{q}{r}\sin\alpha
+\end{equation*}
+Questa trasformazione ci permette di \virgolette{accendere} un campo magnetico a partire dalla soluzione iniziale che comprendeva solo una carica elettrica. 
+
+Dal confronto tra le due metriche si ottiene anche $\rho^2$ come termine che moltiplica $d\phi^2$:
+\begin{equation*}
+    \frac{\rho^2}{f}=r^2\sin\theta \implies \rho^2 = (r^2 - 2mr + q^2)\sin^2\theta
+\end{equation*}
+Si può poi verificare che a meno di una costante;
+\begin{equation*}
+    z =(r-m)\cos\theta
+\end{equation*}
+poiché in questo modo non ci sono termini $d\rho dz $ e:
+\begin{equation*}
+    d\rho^2 + dz^2 = \left( \frac{dr^2}{r^2 -2mr + q^2} + d\theta^2\right)(r^2 -2mr + q^2 + (m^2-q^2)\sin^2\theta )
+\end{equation*}
+e perciò:
+\begin{equation*}
+    e^{2\gamma} \frac{r^2 -2mr +q^2 + (m^2-q^2)\sin^2\theta}{1 - \frac{2m}{r} + \frac{q^2}{r^2}}d\theta^2 \equiv r^2d\theta^2
+\end{equation*}
+Risulta conveniente mantenere le coordinate sferiche poiché la soluzione di Reissner-Nordstr\"om in cilindriche è alquanto complicata (non è rotante quindi ha simmetria sferica, non cilindrica), così il confronto è facilitato:
+\begin{align*}
+    ds^2 = -f(r,\theta)(dt - \omega d\phi)^2 + \frac{1}{f}&\left[ e^{2\gamma(r^2-2mr+q^2+ (m^2-q^2)\sin^2\theta}\left( \frac{dr^2}{r^2-2mr+q^2} + d\theta^2 \right)  \right. \\ &\left. + (r^2-2mr+q^2)\sin^2\theta d\phi^2 \right]
+\end{align*}
+Per questa metrica l'operatore differenziale agisce come:
+\begin{equation*}
+    \nabla f = (r^2 -2mr + q^2)^{1/2}\partial_r f\hat{e}_r
+ + \partial_\theta f \hat{e}_\theta
+ \end{equation*}
+e dunque, chiamando $\Delta(r) = r^2 - 2mr + q^2$:
+\begin{equation*}
+    \left\{\begin{array}{c}
+         \sqrt{\Delta}\partial_r A_\phi + \frac{\sqrt{\Delta}}{f}\Tilde{A}_\phi = 0 \\
+         \partial_\theta A_\phi = - \frac{\Delta}{f}\sin \partial_r \Tilde{A}_\phi
+    \end{array}\right.
+\end{equation*}
+Avendo, dopo la trasformazione, $A_t = - \frac{q}{r}\cos\alpha$ e $\Tilde{A}_\phi = -\frac{q}{r}\sin\alpha$ si ricava $A_\phi = q\cos\theta\sin\alpha$. Così siamo riusciti ad ottenere la forma del potenziale di gauge per questa nuova soluzione:
+\begin{equation*}
+    \Bar{A}_\mu = \left( - \frac{q}{r}\cos\alpha, 0,0, q\cos\theta\sin\alpha \right)
+\end{equation*}
+Questa rotazione ci ha introdotto una carica magnetica: abbiamo ora la carica elettrica $e = q\cos\alpha$ e quella di monopolo magnetico $p = q\sin\alpha$ che rispettano $e^2 + p^2 = q^2$. In questo caso la soluzione ottenuta è ancora una soluzione di RN, ma con delle cariche differenti. In altri casi si possono ottenere delle soluzioni completamente diverse. Spesso si fa uso di un procedimento di questo tipo in verso opposto, per eliminare eventuali cariche magnetiche da una soluzione.
+
+L'aspetto importante da sottolineare è che le nuove soluzioni sono ricavate tutte da delle simmetrie per le equazioni di Ernst: catalogare tutte le simmetrie possibili permette di avere completo controllo sulle nuove soluzioni ottenibili.
+
+\subsection{Simmetrie e trasformazioni per le equazioni di Ernst}
+Vogliamo ora capire quali siano tuttue le simmetrie generali legate all'eq. di Ernst. L'azione che fornisce l'eq. di Ernst è:
+\begin{equation}
+    S[\epsilon, \epsilon^*, \Phi, \Phi^*] = \int \rho d\rho d\phi dz \left[ \frac{(\nabla\epsilon + 2\Phi^*\nabla\Phi)\cdot(\nabla\epsilon^* + 2\Phi\nabla\Phi^*)}{(\epsilon + \epsilon^* + 2\Phi\Phi^*)^2} - \frac{2\nabla\Phi\cdot\nabla\Phi^* }{(\epsilon + \epsilon^*) +2\Phi\Phi^*}\right]
+    \label{eq.azione_ernst}
+\end{equation}
+che nel caso non elettromagnetico è solamente:
+\begin{equation}
+    S_{Ein}[\epsilon,\epsilon^*] = \int\rho d\rho d\phi dz \left[ \frac{\nabla\epsilon \cdot \nabla \epsilon^*}{(\epsilon + \epsilon^*)^2} \right]
+    \label{eq.azione_ernst_non_em}
+\end{equation}
+Infatti le equazioni di moto ottenute dalle equazioni di Eulero-Lagrange:
+\begin{equation*}
+    \nabla\cdot\left[ \frac{\partial \mathcal{L}}{\partial \nabla\epsilon^*}\right] = \frac{\partial \mathcal L}{\partial \epsilon^*} \iff \nabla\cdot\left[ \frac{\nabla\epsilon}{(\epsilon + \epsilon^*)^2}\right] = -2 \frac{\nabla\epsilon\nabla\epsilon^*}{(\epsilon + \epsilon^*)^3}
+\end{equation*}
+
+forniscono $\Re \epsilon \nabla^2\epsilon = \nabla \epsilon \cdot \nabla \epsilon$ ovvero eq. \ref{eq.ernst_vera_5} nel caso con $\Phi=0$.
+Seguendo un approccio di questo tipo, è possibile studiare le simmetrie dell'equazione a partire dalle simmetrie dell'azione e dalla metrica costruita su questa azione.
+
+Se consideriamo la lagrangiana $\mathcal L = \frac{\nabla\epsilon\cdot\nabla\epsilon^*}{(\epsilon + \epsilon^*)^2}$ e poniamo $\epsilon = x + iy$ si ottiene la metrica:
+\begin{equation*}
+    ds^2 = \frac{(dx + idy)(dx - idy)}{4x^2} = \frac{dx^2 + dy^2}{4x^2}
+\end{equation*}
+Le simmetrie di questa metrica sono generate dai vettori di Killing della stessa, i quali risolvono la derivata di Lie $\mathcal L_\xi g_{\mu\nu} = 0$ ovvero $\nabla_{(\nu}\xi_{\mu)}=0$. Se scriviamo $\xi_\mu =(\xi_0(x,y,), \xi_1(x,y))$, $\xi^\mu = 4x^2(\xi_0,\xi_1)$, la condizione di Killing corrisponde al risolvere la matrice:
+\begin{equation*}
+    \begin{pmatrix}
+        \frac{2}{x}(\xi_0 + x\partial_x\xi_0) & \frac{2}{x}\xi_1 + \partial_y\xi_0+\partial_x\xi_1 \\
+        \frac{2}{x}\xi_1 + \partial_y\xi_? + \partial_x\xi_1 & -\frac{2}{x}\xi_0 + 2\partial_y \xi_1
+    \end{pmatrix}
+    = 0
+\end{equation*}
+La risoluzione porta al vettore:
+\begin{equation*}
+    \xi_\mu dx^\mu = \frac{y_{00} +yy_{01}}{x}dx + \left(-\frac{y_{01}}{2} + \frac{y y_{00} + \frac{1}{2}y^2y_{01} + y_{02}}{x^2}\right)dy
+\end{equation*}
+con $y_{00}, y_{01}, y_{02}$ delle costanti che poste nulle una alla volta portano ai vettori di Killing:
+\begin{align*}
+    \xi^\mu_1 &= ax\partial_x + ay\partial_y \\
+    \xi^\mu_2 &= axy\partial_x - \frac{a}{2}(x^2-y^2)\partial_y \\
+    \xi^\mu_3 &= a\partial_y
+\end{align*}
+Questi soddisfano l'algebra di $sl(2,\mathbb R) \approx su(1,1)$:
+\begin{equation*}
+    [\xi_1, \xi_2] = 4\xi_2 \quad [\xi_3 ,\xi_1] = 4\xi_3 \quad [\xi_3, \xi_2] = 4\xi_1
+\end{equation*}
+Usando questi generatori si possono ottenere le trasformazioni che lasciano invariate la metrica. Ad esempio scrivendo $\Bar{\epsilon} = \Bar{x}+ i \Bar{y}$  e il campo vettoriale nella forma $\xi_i = \xi^0_i\partial_x + \xi^1_i\partial_y$  si ottiene il sistema di equazioni:
+\begin{equation*}
+    \left\{\begin{array}{cc}
+         \frac{\partial \Bar{x}}{\partial t} = \xi^0_i \\
+         \frac{\partial\Bar{y}}{\partial t} = \xi^1_i
+    \end{array}\right.
+\end{equation*}
+Risolvendo con le dovute condizioni di bordo (a $t=0$ si deve avere l'identità) si ottiene, per esempio, che la trasformazione relativa al generatore $\xi_1$ è il riscalamento $\Bar{\epsilon} = \lambda\epsilon$, $\lambda \in \mathbb R$.
+La trasformazione dovuta a $\xi_2$ è invece $\Bar{\epsilon} = \frac{\epsilon}{1 + ic\epsilon}$, $c \in \mathbb R$ detta di Ehlers, mentre per $\xi_3$ si ottiene $\Bar{\epsilon} = \epsilon + ib$ con $b\in\mathbb R$.
+Queste tre trasformazioni dipendenti da tre parametri reali determinano il gruppo $SU(1,1)$.
+In questo caso non essendoci campo elettromagnetico, la trasformazione di riscalamento e di traslazione provocano un cambiamento riassorbibile come cambio di coordinate banale. Solo Ehlers produce trasformazioni utili.
+
+In presenza di campo elettromagnetico scriviamo anche $\Phi = v+ iw$  e la metrica che si ottiene è:
+\begin{align*}
+    ds^2 =\frac{1}{4(x^? + v^2 + w^2)^2}&\left[ dx^2 + dy^2 + 4vdxdv + 4vdwdy + \right.\\ &\left. + 4wdxdw -4wdydv - 4x(dv^2 + dw^2)\right]
+\end{align*}
+e le trasformazioni finite sono:
+\begin{enumerate}
+    \item $\Bar{\epsilon} = \lambda \lambda^*\epsilon \qquad \Bar{\Phi} = \lambda \Phi$
+    \item  $\Bar{\epsilon} = \epsilon + ib \qquad \Bar{\Phi} = \Phi$
+    \item $\Bar{\epsilon} = \frac{\epsilon}{1 +ic\epsilon} \qquad \Bar{\Phi} = \frac{\Phi}{1+ic\epsilon}$ (Ehlers)
+    \item $\Bar{\epsilon} = \epsilon -2\beta^*\Phi - \beta\beta^* \qquad \Bar{\Phi} = \Phi + \beta$
+    \item  $\Bar{\epsilon} = \frac{\epsilon}{1 - 2\alpha^*\Phi - \alpha\alpha^*\epsilon} \qquad \Bar{\Phi} = \frac{\Phi + \alpha\epsilon}{1-2\alpha^*\Phi-\alpha\alpha^*\epsilon}$ (Harrison)
+\end{enumerate}
+con $b, c \in \mathbb R$ e $\lambda, \alpha, \beta \in \mathbb C$; dipendono da 8 parametri reali e il gruppo corrispondente è $SU(1,2)$.
+
+Si può mostrare che applicando la 5. di Harrison alla soluzione di Schwarzschild si ottiene la soluzione di Reissner-Nordstr\"om con solo campo elettrico; usando invece $c\in \mathbb C$ si otterrebbe anche un campo magnetico. In questo modo si è ottenuta una metrica fisicamente non equivalente partendo da Schwarzschild, senza integrare le equazioni del moto.
+%A queste trasformazioni continue possiamo affiancare le trasformazioni discrete di inversione:
+%\begin{equation*}
+    
+%\end{equation*}
+%e coniugazione:
+%\begin{equation*}
+    
+%\end{equation*}

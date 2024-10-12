@@ -1,0 +1,108 @@
+\documentclass[twoside]{report}
+\usepackage[italian]{babel}
+\usepackage{cmbright}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{faktor}
+\usepackage{physics}
+\usepackage{amsthm}
+\usepackage{dsfont}
+\usepackage{geometry}
+\usepackage{bm}
+\usepackage{tensor}
+\usepackage{csquotes}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{hyperref}
+\usepackage[style = numeric, sorting = none]{biblatex}
+\geometry{a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm}
+\addbibresource{references.bib}
+\hypersetup{
+	%bookmarks=true,
+	linkcolor=blue,
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=cyan
+}
+
+\newcommand{\virgolette}[1]{``#1''}
+\newcommand{\R}[1]{$\mathbb{R}^{#1}$}
+\newcommand{\cost}{\textrm{cost.}}
+\DeclareMathOperator\arctanh{arctanh}
+%\DeclareMathOperator{\Tr}{Tr}
+
+\theoremstyle{definition}
+\newtheorem{definizione}{Definizione}[section]
+\theoremstyle{plain}
+\newtheorem{esempio}{Esempio}[section]
+\theoremstyle{plain}
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{lemma}[teorema]{Lemma}
+
+
+\title{Appunti di Relatività Generale}
+\author{M. Chiarenza }
+\date{October 2021 - August 2023}
+
+\begin{document}
+\begin{titlepage}
+    \centering
+    \null
+    \vspace{4 cm}
+    \Huge Appunti di Relatività Generale
+    
+    \vspace{1 cm}
+    \Large M. Chiarenza
+
+    Ottobre 2021 - Agosto 2023
+    \vspace{3 cm}
+   
+    \includegraphics[width=0.8\linewidth]{immagini/blackhole_sketch.jpg}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+\pagestyle{headings}
+\section*{Premessa}
+Questi appunti sono stati presi seguendo i corsi di  \textit{Introduzione alla relatività generale} e \textit{Gravità e superstringhe 1} tenuti dalla professoressa S. Klemm all'Università degli Studi di Milano.  Ulteriori integrazioni sono state prese dall'analogo corso di introduzione alla relatività generale tenuto dal professore E. Castorina, sempre presso UNIMI. Il testo riporta in bella forma gli appunti presi a lezione, con l'aggiunta di qualche esercizio dato da svolgere e personali integrazioni. In quanto appunti, ciò che è riportato può essere sempre soggetto ad errori. Sono gradite correzioni.
+
+I libri su cui sono stati basati i corsi e da cui sono state prese ulteriori informazioni sono riportati nella bibliografia. Le immagini utilizzate sono in parte prese dai precedenti libri, in parte da ricerche su internet e, soprattutto per le sezioni relative al primo corso di GR, dagli appunti sul corso raccolti da Carlo Mascaretti. Crediti ai rispettivi creatori, ve le ho rubate perché mi piacciono.
+
+I testi maggiormente adottati sono stati \cite{wald}\cite{tong}\cite{tong_cosmo}\cite{hawking}\cite{townsend}\cite{straumann}.
+\newpage
+
+\include{capitoli/varietà}
+\include{capitoli/tensori}
+\include{capitoli/connessioni}
+\include{capitoli/geodetiche}
+\include{capitoli/curvatura}
+\include{capitoli/continui}
+\include{capitoli/equazion_einstein}
+\include{capitoli/formulazione_lagrangiana}
+\include{capitoli/schwarzschild}
+\include{capitoli/cosmologia}
+\include{capitoli/spazi_curvaturacost}
+\include{capitoli/kerr_newman}
+\include{capitoli/causale}
+\include{capitoli/komar}
+\include{capitoli/buchineri}
+\include{capitoli/ernst}
+\include{capitoli/chern}
+\include{capitoli/stellare}
+%\include{capitoli/gravwaves}
+\include{capitoli/appendici}
+
+\printbibliography
+
+
+
+
+
+
+
+
+
+
+\end{document}
